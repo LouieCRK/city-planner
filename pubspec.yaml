@@ -23,7 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_svg: ^0.17.4
+  flutter_svg: ^0.18.0
   google_fonts: ^1.1.0
 
 
@@ -47,8 +47,9 @@ flutter:
   uses-material-design: true
 
   assets:
+  - assets/
   - assets/images/
-  - assets/svg/
+  - assets/images/login-banner.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

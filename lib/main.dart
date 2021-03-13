@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uk_city_planner/ui/login_page.dart';
+import 'package:uk_city_planner/ui/login/login_page.dart';
 import 'common/logger.dart';
 
 void main() {
@@ -12,7 +12,8 @@ class CityPlannerApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Logger.logDebug("Hello World");
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'UK City Planner',
       theme: ThemeData(
         // This is the theme of your application.
         //
