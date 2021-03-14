@@ -13,4 +13,9 @@ class HomePage extends StatelessWidget {
   }
 }
 
-
+// want to use this as the background...
+// decoration: BoxDecoration(
+// gradient: LinearGradient(
+// begin: Alignment.topRight,
+// end: Alignment.bottomLeft,
+// colors: [Colors.teal, Colors.cyan],

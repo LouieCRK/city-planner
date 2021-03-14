@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uk_city_planner/ui/login/login_page.dart';
+import 'package:uk_city_planner/ui/login/login_page2.dart';
 import 'common/logger.dart';
 
 void main() {

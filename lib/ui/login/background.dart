@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class Background extends StatelessWidget {
   final Widget child;
   const Background({
@@ -24,6 +23,19 @@ class Background extends StatelessWidget {
                   'assets/images/login-banner.png',
                 )
             ),
+            Container(
+                padding: EdgeInsets.all(10.0),
+                decoration: BoxDecoration(
+                    border: Border(bottom: BorderSide(color: Colors.grey[100]))
+                ),
+                child: TextField(
+                  decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: "Username or Email",
+                      hintStyle: TextStyle(color: Colors.grey[400])
+                  ),
+                )
+            )
           ]
       ),
     );
