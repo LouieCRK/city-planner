@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uk_city_planner/ui/login/login_page.dart';
+import 'package:uk_city_planner/ui/register/register_page.dart';
 import 'common/logger.dart';
 
 void main() {
@@ -10,7 +11,7 @@ class CityPlannerApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Logger.logDebug("Hello World");
+    Logger.logDebug("Application is in debug mode");
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'UK City Planner',
