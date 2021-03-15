@@ -75,6 +75,9 @@ class HomePage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(40),
                 ),
                 child: TextField(
+                  obscureText: true,
+                  enableSuggestions: false,
+                  autocorrect: false,
                   style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     border: InputBorder.none,
@@ -150,30 +153,41 @@ class HomePage extends StatelessWidget {
               top: 695,
               width: size.width * 0.85,
               height: 50,
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 4,
-                        offset: Offset(0, 5)
-                    )],
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(40),
-                ),
-                child: TextButton(
-                  child: Text("SIGN UP"),
-                  style: TextButton.styleFrom(
-                    primary: Colors.black54,
-                    minimumSize: Size(20,20),
-                  ),
-                  onPressed: () => print ("Sign up pressed..."),
-                ),
-              ),
+              child: NewWidget(),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class NewWidget extends StatelessWidget {
+  const NewWidget({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+              color: Colors.black26,
+              blurRadius: 4,
+              offset: Offset(0, 5)
+          )],
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(40),
+      ),
+      child: TextButton(
+        child: Text("SIGN UP"),
+        style: TextButton.styleFrom(
+          primary: Colors.black54,
+          minimumSize: Size(20,20),
+        ),
+        onPressed: () => print ("Sign up pressed..."),
       ),
     );
   }

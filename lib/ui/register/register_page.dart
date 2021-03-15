@@ -141,6 +141,9 @@ class RegisterPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(40),
                 ),
                 child: TextField(
+                  obscureText: true,
+                  enableSuggestions: false,
+                  autocorrect: false,
                   style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     border: InputBorder.none,
@@ -174,6 +177,9 @@ class RegisterPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(40),
                 ),
                 child: TextField(
+                  obscureText: true,
+                  enableSuggestions: false,
+                  autocorrect: false,
                   style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     border: InputBorder.none,

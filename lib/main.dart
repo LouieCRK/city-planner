@@ -32,6 +32,7 @@ class CityPlannerApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: HomePage(),
+
     );
   }
 }
