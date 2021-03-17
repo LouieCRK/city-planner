@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'file:///C:/Users/Crook/Documents/GitHub/uk-city-planner/lib/ui/registration/register_page.dart';
 
-class HomePage extends StatelessWidget {
+import '../user-access/navigation_bar.dart';
+
+class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +135,14 @@ class HomePage extends StatelessWidget {
                     primary: Colors.black54,
                     minimumSize: Size(20,20),
                   ),
-                  onPressed: () => print ("Sign in pressed..."),
+                    onPressed: () { // temporary page route to fake login
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              NavBar(),
+                        ),
+                      );
+                    }
                 ),
               ),
             ),
@@ -146,7 +156,14 @@ class HomePage extends StatelessWidget {
                     primary: Colors.white,
                     shadowColor: Colors.black,
                   ),
-                  onPressed: () => print ("Don't have account pressed..."),
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              RegisterPage(),
+                        ),
+                      );
+                    }
                 )
             ),
 
@@ -154,41 +171,37 @@ class HomePage extends StatelessWidget {
               top: 695,
               width: size.width * 0.85,
               height: 50,
-              child: NewWidget(),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 4,
+                        offset: Offset(0, 5)
+                    )],
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(40),
+                ),
+                child: TextButton(
+                  child: Text("SIGN UP"),
+                  style: TextButton.styleFrom(
+                    primary: Colors.black54,
+                    minimumSize: Size(20,20),
+                  ),
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              RegisterPage(),
+                        ),
+                      );
+                    }
+                ),
+              ),
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class NewWidget extends StatelessWidget {
-  const NewWidget({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-              color: Colors.black26,
-              blurRadius: 4,
-              offset: Offset(0, 5)
-          )],
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(40),
-      ),
-      child: TextButton(
-        child: Text("SIGN UP"),
-        style: TextButton.styleFrom(
-          primary: Colors.black54,
-          minimumSize: Size(20,20),
-        ),
-        onPressed: () => print ("Sign up pressed..."),
       ),
     );
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:uk_city_planner/ui/login_page.dart';
-import 'package:uk_city_planner/ui/register_page.dart';
+import 'file:///C:/Users/Crook/Documents/GitHub/uk-city-planner/lib/ui/registration/login_page.dart';
+import 'file:///C:/Users/Crook/Documents/GitHub/uk-city-planner/lib/ui/registration/register_page.dart';
+import 'package:uk_city_planner/ui/user-access/settings_page.dart';
+
 class NavBar extends StatefulWidget {
   @override
   NavState createState() => NavState();
@@ -9,13 +11,13 @@ class NavBar extends StatefulWidget {
 class NavState extends State<NavBar> {
   int selectedIndex = 0;
   List<Widget> widgetOptions = <Widget>[
-    HomePage(),
-    RegisterPage(),
-    // Text('Home'),
-    // Text('Recommended'),
+    // LoginPage(),
+    // RegisterPage(),
+    Text('Home'),
+    Text('Recommended'),
     Text('Planner'),
     Text('Map'),
-    Text('Settings'),
+    SettingsPage(),
   ];
 
   void onItemTap(int index) {
@@ -40,7 +42,7 @@ class NavState extends State<NavBar> {
           BottomNavigationBarItem( // recommended page
             icon: Icon(Icons.recommend),
             label: ('Recommended'),
-            backgroundColor: Colors.cyan,
+            backgroundColor: Colors.teal,
           ),
           BottomNavigationBarItem( // planner page button
             icon: Icon(Icons.library_books_rounded),
@@ -50,7 +52,7 @@ class NavState extends State<NavBar> {
           BottomNavigationBarItem( // map page button
             icon: Icon(Icons.location_on_rounded),
             label: ('Map/Search'),
-            backgroundColor: Colors.cyan,
+            backgroundColor: Colors.teal,
           ),
           BottomNavigationBarItem( // settings page button
             icon: Icon(Icons.settings_rounded),

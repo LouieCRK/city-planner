@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'login_page.dart';
+
 class RegisterPage extends StatelessWidget {
 
   @override
@@ -36,8 +38,15 @@ class RegisterPage extends StatelessWidget {
                 icon: Icon(Icons.keyboard_arrow_left_rounded),
                 hoverColor: Colors.grey,
                 iconSize: 50,
-                color: Colors.teal,
-                onPressed: () => print ("Back button pressed..."),
+                color: Colors.cyan,
+                onPressed: () {
+                  Navigator.of(context).pop(
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          LoginPage(),
+                    ),
+                  );
+                }
               ),
             ),
 
