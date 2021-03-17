@@ -19,6 +19,7 @@ class HomePage extends StatelessWidget {
         child: Stack( // stack used to be able to stack widgets
           alignment: Alignment.center,
           children: <Widget>[
+
             Positioned( // logo/banner at the top of the screen
               top: 0,
               width: size.width,

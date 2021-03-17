@@ -19,11 +19,25 @@ class RegisterPage extends StatelessWidget {
         child: Stack( // stack used to be able to stack widgets
           alignment: Alignment.center,
           children: <Widget>[
+
             Positioned( // logo/banner at the top of the screen
               top: 0,
               width: size.width,
               child: Image.asset(
                 'assets/images/login-banner.png',
+              ),
+            ),
+
+            Positioned( // back button - direct back to login page
+              top: size.height * 0.07,
+              left: -4,
+              child: IconButton(
+                // icon: Icon(Icons.keyboard_backspace_rounded),
+                icon: Icon(Icons.keyboard_arrow_left_rounded),
+                hoverColor: Colors.grey,
+                iconSize: 50,
+                color: Colors.teal,
+                onPressed: () => print ("Back button pressed..."),
               ),
             ),
 

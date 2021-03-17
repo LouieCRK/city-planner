@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:uk_city_planner/ui/login/login_page.dart';
-import 'package:uk_city_planner/ui/register/register_page.dart';
 import 'common/logger.dart';
+// page import
+import 'package:uk_city_planner/ui/navigation_bar.dart';
+import 'package:uk_city_planner/ui/login_page.dart';
+import 'package:uk_city_planner/ui/map_page.dart';
+import 'package:uk_city_planner/ui/register_page.dart';
+
 
 void main() {
   runApp(CityPlannerApp());
@@ -31,7 +35,7 @@ class CityPlannerApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
+      home: NavBar(),
 
     );
   }
