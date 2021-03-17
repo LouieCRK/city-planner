@@ -32,7 +32,7 @@ class LoginPage extends StatelessWidget {
             ),
 
             Positioned( // username/email input entry
-              top: 400,
+              top: size.height * 0.5,
               width: size.width * 0.85,
               height: 50,
               child: Container(
@@ -65,7 +65,7 @@ class LoginPage extends StatelessWidget {
             ),
 
             Positioned( // password input entry
-              top: 480,
+              top: size.height * 0.59,
               width: size.width * 0.85,
               height: 50,
               child: Container(
@@ -101,7 +101,7 @@ class LoginPage extends StatelessWidget {
             ),
 
             Positioned( // 'forgot password?' text button
-              top: 535,
+                top: size.height * 0.655,
               width: 160,
               child: TextButton(
                 child: Text('Forgot Password?'),
@@ -114,7 +114,7 @@ class LoginPage extends StatelessWidget {
             ),
 
             Positioned( // sign in button
-              top: 587,
+              top: size.height * 0.71,
               width: size.width * 0.85,
               height: 50,
               child: Container(
@@ -148,7 +148,7 @@ class LoginPage extends StatelessWidget {
             ),
 
             Positioned( // 'don't have an account?' text button
-                top: 643,
+                top: size.height * 0.775,
                 width: 200,
                 child: TextButton(
                   child: Text("Don't have an account?"),
@@ -168,7 +168,7 @@ class LoginPage extends StatelessWidget {
             ),
 
             Positioned( // sign up button
-              top: 695,
+              top: size.height * 0.84,
               width: size.width * 0.85,
               height: 50,
               child: Container(

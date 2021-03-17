@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'login_page.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -51,7 +50,7 @@ class RegisterPage extends StatelessWidget {
             ),
 
             Positioned( // first name input entry
-              top: 400,
+              top: size.height * 0.48,
               width: size.width * 0.85,
               height: 50,
               child: Container(
@@ -84,7 +83,7 @@ class RegisterPage extends StatelessWidget {
             ),
 
             Positioned( // username input entry
-              top: 465,
+              top: size.height * 0.565,
               width: size.width * 0.85,
               height: 50,
               child: Container(
@@ -117,7 +116,7 @@ class RegisterPage extends StatelessWidget {
             ),
 
             Positioned( // email address input entry
-              top: 530,
+              top: size.height * 0.65,
               width: size.width * 0.85,
               height: 50,
               child: Container(
@@ -150,7 +149,7 @@ class RegisterPage extends StatelessWidget {
             ),
 
             Positioned( // password input entry
-              top: 595,
+              top: size.height * 0.735,
               width: size.width * 0.85,
               height: 50,
               child: Container(
@@ -186,7 +185,7 @@ class RegisterPage extends StatelessWidget {
             ),
 
             Positioned( // confirm password input entry
-              top: 660,
+              top: size.height * 0.82,
               width: size.width * 0.85,
               height: 50,
               child: Container(
@@ -222,7 +221,7 @@ class RegisterPage extends StatelessWidget {
             ),
 
             Positioned( // registration button
-              top: 730,
+              top: size.height * 0.905,
               width: size.width * 0.85,
               height: 50,
               child: Container(

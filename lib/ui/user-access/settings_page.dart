@@ -8,31 +8,43 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Center(
-        child: Container(
-            decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
-            gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [Colors.teal, Colors.cyan],
-            ),
-            ),
+        body: Container(
+          color: Colors.white,
+          child: Stack( // stack used to be able to stack widgets
+            alignment: Alignment.center,
+            children: <Widget>[
 
-          child: IconButton(
-            icon: Icon(Icons.logout),
-              color: Colors.white,
-              onPressed: () { // temporary page route to fake logout
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        LoginPage(),
-                  ),
-                );
-              }
+              Positioned( // logo/banner at the top of the screen
+                top: size.height * 0.45,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [Colors.teal, Colors.cyan],
+                    ),
+                    ),
+                  child: IconButton(
+                      icon: Icon(Icons.logout),
+                      color: Colors.white,
+                      onPressed: () { // temporary page route to fake logout
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => LoginPage(),
+                          ),
+                        );
+                      }
+                    ),
+                ),
+              ),
+              Positioned(
+                top: size.height * 0.52,
+                child: Text('Logout Here'),
+              ),
+            ],
           ),
         ),
-      ),
     );
 
   }
