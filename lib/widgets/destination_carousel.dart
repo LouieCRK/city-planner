@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:uk_city_planner/models/destination_model.dart';
 import 'package:uk_city_planner/models/point_of_interest_model.dart';
 import 'package:uk_city_planner/screens/info_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

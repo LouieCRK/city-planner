@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:uk_city_planner/widgets/destination_carousel.dart';
-import 'package:uk_city_planner/widgets/hotel_carousel.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatefulWidget {
