@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:uk_city_planner/models/point_of_interest_model.dart';
-import 'package:uk_city_planner/screens/info_page.dart';
+import 'file:///C:/Users/Crook/Documents/GitHub/uk-city-planner/lib/ui/user-access/info_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class DestinationCarousel extends StatelessWidget {
+class RestaurantCarousel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

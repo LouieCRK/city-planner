@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:uk_city_planner/screens/home_page.dart';
+import 'file:///C:/Users/Crook/Documents/GitHub/uk-city-planner/lib/ui/user-access/home_page.dart';
 import 'file:///C:/Users/Crook/Documents/GitHub/uk-city-planner/lib/ui/registration/login_page.dart';
 import 'file:///C:/Users/Crook/Documents/GitHub/uk-city-planner/lib/ui/registration/register_page.dart';
 import 'package:uk_city_planner/ui/user-access/settings_page.dart';

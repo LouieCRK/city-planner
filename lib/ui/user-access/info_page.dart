@@ -19,10 +19,11 @@ class _InfoPageState extends State<InfoPage> {
   Text _buildRatingStars(int rating) {
     String stars = '';
     for (int i = 0; i < rating; i++) {
-      stars += '⭐';
+      stars += '★';
     }
     stars.trim();
-    return Text(stars);
+    return Text(stars,
+      style: TextStyle(fontSize: 20, color: Colors.white));
   }
 
   @override
@@ -34,7 +35,7 @@ class _InfoPageState extends State<InfoPage> {
           Stack(
             children: <Widget>[
               Container(
-                height: size.height * 0.42,
+                height: size.height * 0.35,
                 width: size.width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30.0),
@@ -95,7 +96,7 @@ class _InfoPageState extends State<InfoPage> {
                         Icon(
                           FontAwesomeIcons.locationArrow,
                           size: 15.0,
-                          color: Colors.white70,
+                          color: Color(0xff23adb0),
                         ),
                         SizedBox(width: 5.0),
                         Text(
@@ -134,7 +135,7 @@ class _InfoPageState extends State<InfoPage> {
               widget.pointOfInterest.name,
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 25.0,
+                fontSize: 26.0,
                 fontWeight: FontWeight.w700,
                 letterSpacing: 0.8,
               ),
@@ -150,7 +151,7 @@ class _InfoPageState extends State<InfoPage> {
                 color: CupertinoColors.darkBackgroundGray,
                 fontSize: 15.0,
                 fontWeight: FontWeight.w600,
-                letterSpacing: 0.3,
+                letterSpacing: 0.2,
               ),
             ),
           ),
@@ -177,8 +178,8 @@ class _InfoPageState extends State<InfoPage> {
             child: Text(
               widget.pointOfInterest.website,
               style: TextStyle(
-                color: Color(0xff1dbfc2),
-                fontSize: 16.0,
+                color: Color(0xff23adb0),
+                fontSize: 15.0,
                 fontWeight: FontWeight.w600,
                 letterSpacing: 0,
               ),
@@ -192,7 +193,7 @@ class _InfoPageState extends State<InfoPage> {
               widget.pointOfInterest.phoneNumber,
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 16.0,
+                fontSize: 15.0,
                 fontWeight: FontWeight.w600,
                 letterSpacing: 0,
               ),
@@ -205,8 +206,8 @@ class _InfoPageState extends State<InfoPage> {
             child: Text(
               widget.pointOfInterest.email,
               style: TextStyle(
-                color: Color(0xff1dbfc2),
-                fontSize: 16.0,
+                color: Color(0xff23adb0),
+                fontSize: 15.0,
                 fontWeight: FontWeight.w600,
                 letterSpacing: 0,
               ),
@@ -214,13 +215,13 @@ class _InfoPageState extends State<InfoPage> {
           ),
           SizedBox(height: 10,),
 
-          Row( // bottom containers
-            mainAxisAlignment: MainAxisAlignment.center,
+          // todo - fix bottom containers, put them all in one row
+          Stack( // bottom containers
+            alignment: Alignment.center,
             children: [
               Container( // rating
                 alignment: Alignment.centerLeft,
-                color: Colors.red,
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.all(5),
                 width: size.width * 0.35,
                   child: Container(
                     alignment: Alignment.center,
@@ -236,9 +237,9 @@ class _InfoPageState extends State<InfoPage> {
                           ),
                         ),
                         Container(
-                          padding: EdgeInsets.all(10),
+                          padding: EdgeInsets.all(5),
                           decoration: BoxDecoration(
-                            color: Colors.teal,
+                            color: Color(0xff23adb0),
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                             child: _buildRatingStars(widget.pointOfInterest.rating),
@@ -248,7 +249,6 @@ class _InfoPageState extends State<InfoPage> {
                   ),
               ),
               Container( // price
-                color: Colors.lightGreen,
                 padding: EdgeInsets.all(5),
                 width: size.width * 0.2,
                 child: Container(
@@ -258,24 +258,34 @@ class _InfoPageState extends State<InfoPage> {
                       Text(
                         'Price',
                         style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 0,
                         ),
                       ),
                       Container(
                         decoration: BoxDecoration(
-                          color: Colors.teal,
+                          color: Color(0xff23adb0),
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         padding: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
                         child: Text(
                           '££',
+                          style: TextStyle(
+                            color: CupertinoColors.white,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 0,
+                          ),
                         ),
+
                       ),
                     ],
                   ),
                 ),
               ),
               Container( // opening hours
-                color: Colors.purple,
                 padding: EdgeInsets.all(5),
                 width: size.width * 0.3,
                 child: Container(
@@ -285,35 +295,57 @@ class _InfoPageState extends State<InfoPage> {
                       Text(
                         'Opening',
                         style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 0,
                         ),
                       ),
                       Container(
                         margin: EdgeInsets.only(bottom: 5),
                         decoration: BoxDecoration(
-                          color: Colors.teal,
+                          color: Color(0xff23adb0),
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         padding: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
                         child: Text(
                           widget.pointOfInterest.openingHours[0],
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 0,
+                          ),
                         ),
                       ),
                       Text(
                         'Closing',
                         style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 0,
                         ),
                       ),
                       Container(
                         margin: EdgeInsets.only(top: 5),
                         decoration: BoxDecoration(
-                          color: Colors.teal,
+                          color: Color(0xff23adb0),
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         padding: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
                         child: Text(
                           widget.pointOfInterest.openingHours[1],
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 0,
+                          ),
                         ),
                       ),
+                      // todo - (not priority) - add distance from poi in kms
+                      // todo - add 'add to planner' button
                     ],
                   ),
                 ),
