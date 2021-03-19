@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'file:///C:/Users/Crook/Documents/GitHub/uk-city-planner/lib/ui/user-access/home_page.dart';
-import 'file:///C:/Users/Crook/Documents/GitHub/uk-city-planner/lib/ui/registration/login_page.dart';
-import 'file:///C:/Users/Crook/Documents/GitHub/uk-city-planner/lib/ui/registration/register_page.dart';
 import 'package:uk_city_planner/ui/user-access/settings_page.dart';
 
 class NavBar extends StatefulWidget {
@@ -40,13 +38,14 @@ class NavState extends State<NavBar> {
           boxShadow: <BoxShadow>[
             BoxShadow(
               color: CupertinoColors.darkBackgroundGray,
-              blurRadius: 30,
-              spreadRadius: 2,
+              blurRadius: 20,
+              spreadRadius: 3,
             ),
           ],
         ),
         child: BottomNavigationBar(
-          unselectedItemColor: Colors.white70,
+          unselectedItemColor: Color(0xffe1fcfc),
+          selectedItemColor: Colors.white,
           iconSize: 30,
           showUnselectedLabels: false,
           showSelectedLabels: true,
@@ -54,27 +53,27 @@ class NavState extends State<NavBar> {
             BottomNavigationBarItem( // home page
               icon: Icon(Icons.home_rounded),
               label: ('Home'),
-              backgroundColor: Colors.teal,
+              backgroundColor: Color(0xff1dbfc2),
             ),
             BottomNavigationBarItem( // recommended page
               icon: Icon(Icons.recommend),
               label: ('Recommended'),
-              backgroundColor: Colors.teal,
+              backgroundColor: Color(0xff1dbfc2),
             ),
             BottomNavigationBarItem( // planner page button
               icon: Icon(Icons.library_books_rounded),
               label: ('Planner'),
-              backgroundColor: Colors.teal,
+              backgroundColor: Color(0xff1dbfc2),
             ),
             BottomNavigationBarItem( // map page button
               icon: Icon(Icons.location_on_rounded),
               label: ('Map/Search'),
-              backgroundColor: Colors.teal,
+              backgroundColor: Color(0xff1dbfc2),
             ),
             BottomNavigationBarItem( // settings page button
               icon: Icon(Icons.settings_rounded),
               label: ('Settings'),
-              backgroundColor: Colors.teal,
+              backgroundColor: Color(0xff1dbfc2),
             ),
           ],
           currentIndex: selectedIndex,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uk_city_planner/widgets/nightlife_carousel.dart';
 import 'package:uk_city_planner/widgets/restaurant_carousel.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -9,13 +10,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
-  int _currentTab = 0;
+  var _widgetSelector; // todo - use variable to call corresponding widget classes
   List<IconData> _icons = [
     FontAwesomeIcons.utensils,
     FontAwesomeIcons.cocktail,
     FontAwesomeIcons.dice,
     FontAwesomeIcons.eye,
-    FontAwesomeIcons.laugh,
+    FontAwesomeIcons.shoppingBag,
   ];
 
   Widget _buildIcon(int index) {
@@ -24,12 +25,33 @@ class _HomePageState extends State<HomePage> {
         setState(() {
           _selectedIndex = index;
         });
-        // ignore: unrelated_type_equality_checks
-        if(_selectedIndex =='0'){
-            print ('Restaurants (0) was pressed...');
+        if(_selectedIndex.isFinite){
+          if(_selectedIndex == 0){
+            print ('(0) Restaurant selected...');
+            _widgetSelector = RestaurantCarousel();
+            RestaurantCarousel();
+            return;
+          }
+          if(_selectedIndex == 1){
+            print ('(1) Nightlife selected...');
+            _widgetSelector = NightlifeCarousel();
+            return;
+          }
+          if(_selectedIndex == 2){
+            print ('(2) Entertainment selected...');
+            return;
+          }
+          if(_selectedIndex == 3){
+            print ('(3) Sightseeing selected...');
+            return;
+          }
+          if(_selectedIndex == 4){
+            print ('(4) Shopping selected...');
+            return;
+          }
         }
-        // print (_selectedIndex);
       },
+
       child: Container(
         height: 60.0,
         width: 60.0,
@@ -79,9 +101,11 @@ class _HomePageState extends State<HomePage> {
                   .toList(),
             ),
             SizedBox(height: 20.0),
+            // _widgetSelector, // todo - use variable to call corresponding widget classes
             RestaurantCarousel(),
+            NightlifeCarousel(),
             SizedBox(height: 20.0),
-            // HotelCarousel(),
+
           ],
         ),
       ),

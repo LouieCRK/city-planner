@@ -4,7 +4,7 @@ import 'package:uk_city_planner/models/point_of_interest_model.dart';
 import 'file:///C:/Users/Crook/Documents/GitHub/uk-city-planner/lib/ui/user-access/info_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class RestaurantCarousel extends StatelessWidget {
+class NightlifeCarousel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -16,7 +16,7 @@ class RestaurantCarousel extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                'Restaurants near you',
+                'Nightlife near you',
                 style: TextStyle(
                   fontSize: 22.0,
                   fontWeight: FontWeight.bold,
@@ -42,11 +42,9 @@ class RestaurantCarousel extends StatelessWidget {
         SizedBox(height: 10),
 
         Container( // list view build for restaurants near user location
-          height: size.height * 0.59, // todo - change back remove testing height
-          // height: 250,
+          height: size.height * 0.6,
           child: GridView.builder(
             padding: EdgeInsets.only(bottom: 20, left: 10, right: 10),
-
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:2, crossAxisSpacing: 0, mainAxisSpacing: 10),
             scrollDirection: Axis.vertical,
             itemCount: pointsOfInterest.length,
