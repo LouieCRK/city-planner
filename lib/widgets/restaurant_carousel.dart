@@ -42,7 +42,7 @@ class RestaurantCarousel extends StatelessWidget {
         SizedBox(height: 10),
 
         Container( // list view build for restaurants near user location
-          height: size.height * 0.59, // todo - change back remove testing height
+          height: size.height * 0.59,
           // height: 250,
           child: GridView.builder(
             padding: EdgeInsets.only(bottom: 20, left: 10, right: 10),

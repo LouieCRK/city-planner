@@ -213,22 +213,61 @@ class _InfoPageState extends State<InfoPage> {
               ),
             ),
           ),
-          SizedBox(height: 10,),
+          SizedBox(height: 15),
 
           // todo - fix bottom containers, put them all in one row
-          Stack( // bottom containers
-            alignment: Alignment.center,
+          Row( // bottom containers
+            verticalDirection: VerticalDirection.down,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container( // rating
-                alignment: Alignment.centerLeft,
-                padding: EdgeInsets.all(5),
-                width: size.width * 0.35,
+                alignment: Alignment.topCenter,
+                // color: Colors.red,
+                padding: EdgeInsets.only(left: 12, right: 12,),
                   child: Container(
-                    alignment: Alignment.center,
+                    alignment: Alignment.topCenter,
                     child: Column(
                       children: [
-                        Text(
-                          'Rating',
+                        SizedBox(
+                          height: 25,
+                          child: Text(
+                            'Rating',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 0,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.only(left: 5, right: 5, top: 1, bottom: 2),
+                          width: 100,
+                          decoration: BoxDecoration(
+                            color: Color(0xff23adb0),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                            child: _buildRatingStars(widget.pointOfInterest.rating.round()),
+                        ),
+                      ],
+                    ),
+                  ),
+              ),
+
+              Container( // opening hours
+                // color: Colors.green,
+                padding: EdgeInsets.only(left: 13, right: 13),
+                alignment: Alignment.center,
+                child: Container(
+                  alignment: Alignment.centerRight,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 25,
+                        child: Text(
+                          'Opening/Closing',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 16.0,
@@ -236,73 +275,9 @@ class _InfoPageState extends State<InfoPage> {
                             letterSpacing: 0,
                           ),
                         ),
-                        Container(
-                          padding: EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                            color: Color(0xff23adb0),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                            child: _buildRatingStars(widget.pointOfInterest.rating),
-                        ),
-                      ],
-                    ),
-                  ),
-              ),
-              Container( // price
-                padding: EdgeInsets.all(5),
-                width: size.width * 0.2,
-                child: Container(
-                  alignment: Alignment.center,
-                  child: Column(
-                    children: [
-                      Text(
-                        'Price',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 0,
-                        ),
                       ),
                       Container(
-                        decoration: BoxDecoration(
-                          color: Color(0xff23adb0),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        padding: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
-                        child: Text(
-                          '££',
-                          style: TextStyle(
-                            color: CupertinoColors.white,
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 0,
-                          ),
-                        ),
-
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Container( // opening hours
-                padding: EdgeInsets.all(5),
-                width: size.width * 0.3,
-                child: Container(
-                  alignment: Alignment.center,
-                  child: Column(
-                    children: [
-                      Text(
-                        'Opening',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 0,
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(bottom: 5),
+                        margin: EdgeInsets.only(bottom: 3),
                         decoration: BoxDecoration(
                           color: Color(0xff23adb0),
                           borderRadius: BorderRadius.circular(10.0),
@@ -318,17 +293,8 @@ class _InfoPageState extends State<InfoPage> {
                           ),
                         ),
                       ),
-                      Text(
-                        'Closing',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 0,
-                        ),
-                      ),
                       Container(
-                        margin: EdgeInsets.only(top: 5),
+                        margin: EdgeInsets.only(top: 3),
                         decoration: BoxDecoration(
                           color: Color(0xff23adb0),
                           borderRadius: BorderRadius.circular(10.0),
@@ -344,14 +310,113 @@ class _InfoPageState extends State<InfoPage> {
                           ),
                         ),
                       ),
-                      // todo - (not priority) - add distance from poi in kms
-                      // todo - add 'add to planner' button
+                    ],
+                  ),
+                ),
+              ),
+
+              Container( // price
+                // color: Colors.blue,
+                padding: EdgeInsets.only(left: 12, right: 12,),
+                child: Container(
+                  alignment: Alignment.topCenter,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 25,
+                        child: Text(
+                          'Price',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 0,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Color(0xff23adb0),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+                        child: Text(
+                          '£££ / £££££',
+                          style: TextStyle(
+                            color: CupertinoColors.white,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w700,
+                            letterSpacing: 0,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ),
             ],
           ),
+          // todo - (not priority) - add distance from poi in kms
+          // todo - add 'add to planner' button
+          SizedBox(
+            height: 15,
+          ),
+          Positioned(
+            bottom: 0,
+            top: 75,
+            child: Container(
+              width: size.width * 0.9,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(40),
+              ),
+              child: TextButton(
+                onPressed: (){
+                  print('Add to Planner button pressed...');
+                },
+                child: Text('Add to Planner'),
+                style: TextButton.styleFrom(
+                  backgroundColor: Color(0xff23adb0),
+                  primary: Colors.white,
+                  shadowColor: CupertinoColors.black,
+                  elevation: 4,
+                  textStyle: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 0.1,
+                  ),
+                ),
+              ),
+            ),
+          ),
+
+          // Positioned( // sign in button
+          //   top: size.height * 0.71,
+          //   width: size.width * 0.85,
+          //   height: 50,
+          //   child: Container(
+          //     padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+          //     decoration: BoxDecoration(
+          //       boxShadow: [
+          //         BoxShadow(
+          //             color: Colors.black26,
+          //             blurRadius: 4,
+          //             offset: Offset(0, 5)
+          //         )],
+          //       color: Color(0xff23adb0),
+          //       borderRadius: BorderRadius.circular(40),
+          //     ),
+          //     child: TextButton(
+          //         child: Text("Add to Planner"),
+          //         style: TextButton.styleFrom(
+          //           primary: Colors.black54,
+          //           minimumSize: Size(20,20),
+          //         ),
+          //         onPressed: () { // temporary page route to fake login
+          //           print('Add to Planner button pressed...');
+          //         }
+          //     ),
+          //   ),
+          // ),
           ],
         ),
     );

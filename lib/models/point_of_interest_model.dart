@@ -3,7 +3,7 @@ class PointOfInterest {
   String type;
   String name;
   String city;
-  int rating;
+  double rating;
   String address;
   String description;
   String website;
@@ -32,7 +32,7 @@ List<PointOfInterest> pointsOfInterest = [
     type: 'Restaurant',
     name: 'Thaikun',
     city: 'Bath',
-    rating: 4,
+    rating: 4.5,
     address: 'Block E/F Little Southgate, Bath BA1 1AQ',
     description: 'Escape to the streets of Bangkok and enjoy Thai street food at Thaikhun Bath, located on Little Southgate. Expect a Thai taste adventure, Thai cocktails and the authentic Thai hospitality. Open everyday.',
     website: 'https://www.thaikhun.co.uk/',
@@ -45,7 +45,7 @@ List<PointOfInterest> pointsOfInterest = [
     type: 'Restaurant',
     name: 'Bar & Block Steakhouse',
     city: 'Bath',
-    rating: 4,
+    rating: 4.45,
     address: '4 James St W, Bath BA1 2BX',
     description: 'Pop in and kick start your day with our tender steak + eggs for breakfast. Or sit back and enjoy one of our succulent steaks, available throughout the day ‘til late',
     website: 'https://www.barandblock.co.uk/en-gb',
@@ -58,7 +58,7 @@ List<PointOfInterest> pointsOfInterest = [
     type: 'Restaurant',
     name: 'Menu Gordon Jones',
     city: 'Bath',
-    rating: 5,
+    rating: 4.9,
     address: '2 Wellsway, Bath BA2 3AQ',
     description: 'A surprise tasting menu by Gordon Jones. Experience contrasting flavours, textures and temperatures with English, Indian and Asian influences.',
     website: 'https://menugordonjones.co.uk/#gordon-jones-home',
@@ -71,7 +71,7 @@ List<PointOfInterest> pointsOfInterest = [
     type: 'Restaurant',
     name: 'Opa Bath',
     city: 'Bath',
-    rating: 4,
+    rating: 4.4,
     address: '2 Wellsway, Bath BA2 3AQ',
     description: 'We have a true passion for traditional Greek food, every last week of the month we’ll be visiting a different Greek island to acknowledge the different and unique tastes each has to offer. Do you have a favourite Greek island? Join us as we introduce our new menus and tell us about your most memorable Greek dishes.',
     website: 'https://opabath.com/',
@@ -84,7 +84,7 @@ List<PointOfInterest> pointsOfInterest = [
     type: 'Restaurant',
     name: 'Sotto Sotto',
     city: 'Bath',
-    rating: 5,
+    rating: 4.9,
     address: '10 N Parade, Bath BA2 4AL',
     description: 'Sotto sotto...italian blah blah',
     website: 'https://sottosotto.co.uk',
@@ -97,7 +97,7 @@ List<PointOfInterest> pointsOfInterest = [
     type: 'Restaurant',
     name: 'Curry Garden',
     city: 'Bath',
-    rating: 4,
+    rating: 3.2,
     address: '41A Upper Bloomfield Rd, Odd Down, Bath BA2 2RY',
     description: 'Curry garden....blah blah',
     website: 'thenewcurrygarden.co.uk',
