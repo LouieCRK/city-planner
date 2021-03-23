@@ -129,264 +129,274 @@ class _InfoPageState extends State<InfoPage> {
             width: 10, height: 10,
           ),
 
-          Container( // name
-            width: size.width * 0.9,
-            child: Text(
-              widget.pointOfInterest.name,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 26.0,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 0.8,
-              ),
-            ),
-          ),
-          SizedBox(height: 2,),
-
-          Container( // address
-            width: size.width * 0.9,
-            child: Text(
-              widget.pointOfInterest.address,
-              style: TextStyle(
-                color: CupertinoColors.darkBackgroundGray,
-                fontSize: 15.0,
-                fontWeight: FontWeight.w600,
-                letterSpacing: 0.2,
-              ),
-            ),
-          ),
-          SizedBox(height: 10,),
-
-          Container( // description
-            alignment: Alignment.centerLeft,
-            width: size.width * 0.8,
-            margin: EdgeInsets.only(right: 50, left: 10),
-            child: Text(
-              widget.pointOfInterest.description,
-              style: TextStyle(
-                color: Color(0xff696969),
-                fontSize: 18.0,
-                fontWeight: FontWeight.w600,
-                letterSpacing: 0.1,
+          Column(
+            children: [
+              Container( // name
+                width: size.width * 0.9,
+                child: Text(
+                  widget.pointOfInterest.name,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 26.0,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 0.8,
+                  ),
                 ),
               ),
-            ),
-          SizedBox(height: 10,),
+              SizedBox(height: 2,),
 
-          Container( // website
-            width: size.width * 0.9,
-            child: Text(
-              widget.pointOfInterest.website,
-              style: TextStyle(
-                color: Color(0xff23adb0),
-                fontSize: 15.0,
-                fontWeight: FontWeight.w600,
-                letterSpacing: 0,
+              Container( // address
+                width: size.width * 0.9,
+                child: Text(
+                  widget.pointOfInterest.address,
+                  style: TextStyle(
+                    color: CupertinoColors.darkBackgroundGray,
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 0.2,
+                  ),
+                ),
               ),
-            ),
-          ),
-          SizedBox(height: 6,),
+              SizedBox(height: 10,),
 
-          Container( // phone number
-            width: size.width * 0.9,
-            child: Text(
-              widget.pointOfInterest.phoneNumber,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 15.0,
-                fontWeight: FontWeight.w600,
-                letterSpacing: 0,
+              Container( // description
+                alignment: Alignment.centerLeft,
+                width: size.width * 0.8,
+                margin: EdgeInsets.only(right: 50, left: 10),
+                child: Flexible(
+                  flex: 400,
+                  fit: FlexFit.loose,
+                  child: Text(
+                    widget.pointOfInterest.description,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 9,
+                    style: TextStyle(
+                      color: Color(0xff696969),
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 0.1,
+                      ),
+                    ),
+                ),
+                ),
+              SizedBox(height: 10,),
+
+              Container( // website
+                width: size.width * 0.9,
+                child: Text(
+                  widget.pointOfInterest.website,
+                  style: TextStyle(
+                    color: Color(0xff23adb0),
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 0,
+                  ),
+                ),
               ),
-            ),
-          ),
-          SizedBox(height: 6,),
+              SizedBox(height: 6,),
 
-          Container( // email
-            width: size.width * 0.9,
-            child: Text(
-              widget.pointOfInterest.email,
-              style: TextStyle(
-                color: Color(0xff23adb0),
-                fontSize: 15.0,
-                fontWeight: FontWeight.w600,
-                letterSpacing: 0,
+              Container( // phone number
+                width: size.width * 0.9,
+                child: Text(
+                  widget.pointOfInterest.phoneNumber,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 0,
+                  ),
+                ),
               ),
-            ),
-          ),
-          SizedBox(height: 15),
+              SizedBox(height: 6,),
 
-          // todo - fix bottom containers, put them all in one row
-          Row( // bottom containers
-            verticalDirection: VerticalDirection.down,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container( // rating
-                alignment: Alignment.topCenter,
-                // color: Colors.red,
-                padding: EdgeInsets.only(left: 12, right: 12,),
-                  child: Container(
+              Container( // email
+                width: size.width * 0.9,
+                child: Text(
+                  widget.pointOfInterest.email,
+                  style: TextStyle(
+                    color: Color(0xff23adb0),
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 0,
+                  ),
+                ),
+              ),
+              SizedBox(height: 15),
+
+              // todo - fix bottom containers, put them all in one row
+              Row( // bottom containers
+                verticalDirection: VerticalDirection.down,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container( // rating
                     alignment: Alignment.topCenter,
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 25,
-                          child: Text(
-                            'Rating',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: 0,
+                    // color: Colors.red,
+                    padding: EdgeInsets.only(left: 12, right: 12,),
+                      child: Container(
+                        alignment: Alignment.topCenter,
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 25,
+                              child: Text(
+                                'Rating',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: 0,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              alignment: Alignment.center,
+                              padding: EdgeInsets.only(left: 5, right: 5, top: 1, bottom: 2),
+                              width: 100,
+                              decoration: BoxDecoration(
+                                color: Color(0xff23adb0),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                                child: _buildRatingStars(widget.pointOfInterest.rating.round()),
+                            ),
+                          ],
+                        ),
+                      ),
+                  ),
+
+                  Container( // opening hours
+                    // color: Colors.green,
+                    padding: EdgeInsets.only(left: 13, right: 13),
+                    alignment: Alignment.center,
+                    child: Container(
+                      alignment: Alignment.centerRight,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 25,
+                            child: Text(
+                              'Opening/Closing',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 0,
+                              ),
                             ),
                           ),
-                        ),
-                        Container(
-                          alignment: Alignment.center,
-                          padding: EdgeInsets.only(left: 5, right: 5, top: 1, bottom: 2),
-                          width: 100,
-                          decoration: BoxDecoration(
-                            color: Color(0xff23adb0),
-                            borderRadius: BorderRadius.circular(10.0),
+                          Container(
+                            margin: EdgeInsets.only(bottom: 3),
+                            decoration: BoxDecoration(
+                              color: Color(0xff23adb0),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            padding: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+                            child: Text(
+                              widget.pointOfInterest.openingHours[0],
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 0,
+                              ),
+                            ),
                           ),
-                            child: _buildRatingStars(widget.pointOfInterest.rating.round()),
-                        ),
-                      ],
+                          Container(
+                            margin: EdgeInsets.only(top: 3),
+                            decoration: BoxDecoration(
+                              color: Color(0xff23adb0),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            padding: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+                            child: Text(
+                              widget.pointOfInterest.openingHours[1],
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 0,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-              ),
 
-              Container( // opening hours
-                // color: Colors.green,
-                padding: EdgeInsets.only(left: 13, right: 13),
-                alignment: Alignment.center,
-                child: Container(
-                  alignment: Alignment.centerRight,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 25,
-                        child: Text(
-                          'Opening/Closing',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 0,
+                  Container( // price
+                    // color: Colors.blue,
+                    padding: EdgeInsets.only(left: 12, right: 12,),
+                    child: Container(
+                      alignment: Alignment.topCenter,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 25,
+                            child: Text(
+                              'Price',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 0,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(bottom: 3),
-                        decoration: BoxDecoration(
-                          color: Color(0xff23adb0),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        padding: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
-                        child: Text(
-                          widget.pointOfInterest.openingHours[0],
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 0,
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Color(0xff23adb0),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            padding: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+                            child: Text(
+                              '£££ / £££££',
+                              style: TextStyle(
+                                color: CupertinoColors.white,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: 0,
+                              ),
+                            ),
                           ),
-                        ),
+                        ],
                       ),
-                      Container(
-                        margin: EdgeInsets.only(top: 3),
-                        decoration: BoxDecoration(
-                          color: Color(0xff23adb0),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        padding: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
-                        child: Text(
-                          widget.pointOfInterest.openingHours[1],
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 0,
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
-
-              Container( // price
-                // color: Colors.blue,
-                padding: EdgeInsets.only(left: 12, right: 12,),
+              // todo - (not priority) - add distance from poi in kms
+              // todo - add 'add to planner' button
+              SizedBox(
+                height: 15,
+              ),
+              Positioned(
+                bottom: 0,
+                top: 75,
                 child: Container(
-                  alignment: Alignment.topCenter,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 25,
-                        child: Text(
-                          'Price',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 0,
-                          ),
-                        ),
+                  width: size.width * 0.9,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                  child: TextButton(
+                    onPressed: (){
+                      print('Add to Planner button pressed...');
+                    },
+                    child: Text('Add to Planner'),
+                    style: TextButton.styleFrom(
+                      backgroundColor: Color(0xff23adb0),
+                      primary: Colors.white,
+                      shadowColor: CupertinoColors.black,
+                      elevation: 4,
+                      textStyle: TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 0.1,
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Color(0xff23adb0),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        padding: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
-                        child: Text(
-                          '£££ / £££££',
-                          style: TextStyle(
-                            color: CupertinoColors.white,
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w700,
-                            letterSpacing: 0,
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ),
               ),
             ],
-          ),
-          // todo - (not priority) - add distance from poi in kms
-          // todo - add 'add to planner' button
-          SizedBox(
-            height: 15,
-          ),
-          Positioned(
-            bottom: 0,
-            top: 75,
-            child: Container(
-              width: size.width * 0.9,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(40),
-              ),
-              child: TextButton(
-                onPressed: (){
-                  print('Add to Planner button pressed...');
-                },
-                child: Text('Add to Planner'),
-                style: TextButton.styleFrom(
-                  backgroundColor: Color(0xff23adb0),
-                  primary: Colors.white,
-                  shadowColor: CupertinoColors.black,
-                  elevation: 4,
-                  textStyle: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 0.1,
-                  ),
-                ),
-              ),
-            ),
           ),
 
           // Positioned( // sign in button
