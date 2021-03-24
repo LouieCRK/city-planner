@@ -4,10 +4,8 @@ import 'package:uk_city_planner/models/point_of_interest_model.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class InfoPage extends StatefulWidget {
-  // final Destination destination;
   final PointOfInterest pointOfInterest;
 
-  // InfoPage({this.destination});
   InfoPage({this.pointOfInterest});
 
   @override
@@ -126,7 +124,7 @@ class _InfoPageState extends State<InfoPage> {
             ],
           ),
           SizedBox(
-            width: 10, height: 10,
+            height: 11,
           ),
 
           Column(
@@ -136,21 +134,24 @@ class _InfoPageState extends State<InfoPage> {
                 child: Text(
                   widget.pointOfInterest.name,
                   style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 26.0,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: 0.8,
+                      color: Color(0xff494949),
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 1.2,
+                      shadows: <Shadow>[
+                        Shadow(color: CupertinoColors.black, blurRadius: 2,)
+                      ]
                   ),
                 ),
               ),
-              SizedBox(height: 2,),
+              SizedBox(height: 4,),
 
               Container( // address
                 width: size.width * 0.9,
                 child: Text(
                   widget.pointOfInterest.address,
                   style: TextStyle(
-                    color: CupertinoColors.darkBackgroundGray,
+                    color: Color(0xff494949),
                     fontSize: 15.0,
                     fontWeight: FontWeight.w600,
                     letterSpacing: 0.2,
@@ -171,7 +172,7 @@ class _InfoPageState extends State<InfoPage> {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 9,
                     style: TextStyle(
-                      color: Color(0xff696969),
+                      color: Color(0xff494949),
                       fontSize: 18.0,
                       fontWeight: FontWeight.w600,
                       letterSpacing: 0.1,
@@ -179,7 +180,7 @@ class _InfoPageState extends State<InfoPage> {
                     ),
                 ),
                 ),
-              SizedBox(height: 10,),
+              SizedBox(height: 10),
 
               Container( // website
                 width: size.width * 0.9,
@@ -187,7 +188,7 @@ class _InfoPageState extends State<InfoPage> {
                   widget.pointOfInterest.website,
                   style: TextStyle(
                     color: Color(0xff23adb0),
-                    fontSize: 15.0,
+                    fontSize: 15.5,
                     fontWeight: FontWeight.w600,
                     letterSpacing: 0,
                   ),
@@ -201,7 +202,7 @@ class _InfoPageState extends State<InfoPage> {
                   widget.pointOfInterest.phoneNumber,
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 15.0,
+                    fontSize: 15.5,
                     fontWeight: FontWeight.w600,
                     letterSpacing: 0,
                   ),
@@ -215,15 +216,14 @@ class _InfoPageState extends State<InfoPage> {
                   widget.pointOfInterest.email,
                   style: TextStyle(
                     color: Color(0xff23adb0),
-                    fontSize: 15.0,
+                    fontSize: 15.5,
                     fontWeight: FontWeight.w600,
                     letterSpacing: 0,
                   ),
                 ),
               ),
-              SizedBox(height: 15),
+              SizedBox(height: 25),
 
-              // todo - fix bottom containers, put them all in one row
               Row( // bottom containers
                 verticalDirection: VerticalDirection.down,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -365,68 +365,31 @@ class _InfoPageState extends State<InfoPage> {
                 ],
               ),
               // todo - (not priority) - add distance from poi in kms
-              // todo - add 'add to planner' button
               SizedBox(
                 height: 15,
               ),
-              Positioned(
-                bottom: 0,
-                top: 75,
-                child: Container(
-                  width: size.width * 0.9,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(40),
-                  ),
-                  child: TextButton(
-                    onPressed: (){
-                      print('Add to Planner button pressed...');
-                    },
-                    child: Text('Add to Planner'),
-                    style: TextButton.styleFrom(
-                      backgroundColor: Color(0xff23adb0),
-                      primary: Colors.white,
-                      shadowColor: CupertinoColors.black,
-                      elevation: 4,
-                      textStyle: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 0.1,
-                      ),
-                    ),
+              FlatButton(
+                minWidth: size.width * 0.9,
+                height: 40,
+                color: Color(0xff23adb0),
+                splashColor: Color(0xff23adb0),
+                focusColor: Color(0xff23adb0),
+                child: new Text(
+                    "Add to Planner",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 0.1,
+                    color: Colors.white,
                   ),
                 ),
+                  onPressed: (){
+                    print('Add to Planner button pressed...');
+                  },
+                  shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
               ),
             ],
           ),
-
-          // Positioned( // sign in button
-          //   top: size.height * 0.71,
-          //   width: size.width * 0.85,
-          //   height: 50,
-          //   child: Container(
-          //     padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-          //     decoration: BoxDecoration(
-          //       boxShadow: [
-          //         BoxShadow(
-          //             color: Colors.black26,
-          //             blurRadius: 4,
-          //             offset: Offset(0, 5)
-          //         )],
-          //       color: Color(0xff23adb0),
-          //       borderRadius: BorderRadius.circular(40),
-          //     ),
-          //     child: TextButton(
-          //         child: Text("Add to Planner"),
-          //         style: TextButton.styleFrom(
-          //           primary: Colors.black54,
-          //           minimumSize: Size(20,20),
-          //         ),
-          //         onPressed: () { // temporary page route to fake login
-          //           print('Add to Planner button pressed...');
-          //         }
-          //     ),
-          //   ),
-          // ),
           ],
         ),
     );

@@ -103,9 +103,8 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height: 20.0),
             // _widgetSelector, // todo - use variable to call corresponding widget classes
             RestaurantCarousel(),
-            NightlifeCarousel(),
+            // NightlifeCarousel(),
             SizedBox(height: 20.0),
-
           ],
         ),
       ),
