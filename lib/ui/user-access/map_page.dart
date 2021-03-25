@@ -12,13 +12,14 @@ class MapPage extends StatelessWidget {
         children: <Widget>[
           Stack(
             children: <Widget>[
-              Container(
-                height: size.height,
+              Container( // container for google map
+                height: size.height * 0.926,
                 width: size.width,
                 child: GoogleMap(
+                  mapType: MapType.normal,
                   initialCameraPosition: CameraPosition(
                     target: LatLng(51.4538022, -2.5972985),
-                    zoom: 15,
+                    zoom: 16,
                   ),
                 )
               ),
@@ -92,15 +93,6 @@ class MapPage extends StatelessWidget {
                 ),
               ),
             ],
-          ),
-          SizedBox(
-            height: 20,
-            child: Container(
-              color: Color(0xff1dbfc2),
-            ),
-          ),
-          Text(
-              'Testing Spacing...'
           ),
         ],
       ),

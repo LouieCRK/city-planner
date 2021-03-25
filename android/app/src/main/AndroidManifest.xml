@@ -9,6 +9,11 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="UK City Planner"
         android:icon="@mipmap/ic_launcher">
+        <!-- API Key for Google Maps -->
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyB6uwFl75De0-z_ugKzTO91Mczo6nJOFlw" />
+        <!--            android:value="${MAPS_API_KEY}" />-->
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
