@@ -13,16 +13,6 @@ class InfoPage extends StatefulWidget {
 }
 
 class _InfoPageState extends State<InfoPage> {
-  // function made to create rating stars out of ascii
-  Text _buildRatingStars(int rating) {
-    String stars = '';
-    for (int i = 0; i < rating; i++) {
-      stars += '★';
-    }
-    stars.trim();
-    return Text(stars, style: TextStyle(fontSize: 20, color: Colors.white));
-  }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -428,5 +418,15 @@ class _InfoPageState extends State<InfoPage> {
         ],
       ),
     );
+  }
+
+  // function made to create rating stars out of ascii
+  Text _buildRatingStars(int rating) {
+    String stars = '';
+    for (int i = 0; i < rating; i++) {
+      stars += '★';
+    }
+    stars.trim();
+    return Text(stars, style: TextStyle(fontSize: 20, color: Colors.white));
   }
 }

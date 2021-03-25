@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapPage extends StatelessWidget {
 
@@ -11,6 +12,16 @@ class MapPage extends StatelessWidget {
         children: <Widget>[
           Stack(
             children: <Widget>[
+              Container(
+                height: size.height,
+                width: size.width,
+                child: GoogleMap(
+                  initialCameraPosition: CameraPosition(
+                    target: LatLng(51.4538022, -2.5972985),
+                    zoom: 15,
+                  ),
+                )
+              ),
               Container(
                 height: size.height * 0.25,
                 width: size.width,
