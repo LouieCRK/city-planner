@@ -1,8 +1,47 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:uk_city_planner/models/point_of_interest_model.dart';
 
-class MapPage extends StatelessWidget {
+class MapPage extends StatefulWidget {
+  final PointOfInterest pointOfInterest;
+
+  MapPage({this.pointOfInterest});
+
+  @override
+  _MapPageState createState() => _MapPageState();
+}
+
+class _MapPageState extends State<MapPage> {
+  Set<Marker> _markers = {};
+  BitmapDescriptor mapMarker;
+
+  // un comment to use custom marker images
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   setCustomMarker();
+  // }
+  //
+  // void setCustomMarker() async{
+  //   mapMarker = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'assets/images/map-banner.png',);
+  // }
+
+  void _OnMapCreated(GoogleMapController controller) {
+    setState((){
+      _markers.add(
+        Marker(
+            markerId: MarkerId('id-1'),
+            position: LatLng(widget.pointOfInterest.location[0], widget.pointOfInterest.location[1]),
+            // icon: mapMarker, // un comment to use custom marker images
+            infoWindow: InfoWindow(
+              title: 'Bristol City',
+              snippet: 'Snippet...',
+            ),
+        ),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +55,8 @@ class MapPage extends StatelessWidget {
                 height: size.height * 0.926,
                 width: size.width,
                 child: GoogleMap(
+                  onMapCreated: _OnMapCreated,
+                  markers: _markers,
                   mapType: MapType.normal,
                   initialCameraPosition: CameraPosition(
                     target: LatLng(51.4538022, -2.5972985),
