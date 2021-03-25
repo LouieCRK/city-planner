@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:uk_city_planner/ui/registration/login_page.dart';
 
 class SettingsPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -19,9 +18,9 @@ class SettingsPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30.0),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black26,
+                      color: Colors.black45,
                       offset: Offset(0.0, 2.0),
-                      blurRadius: 6.0,
+                      blurRadius: 20.0,
                     ),
                   ],
                 ),
@@ -45,7 +44,7 @@ class SettingsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      'Hello User,',
+                      'Hello,',
                       // widget.pointOfInterest.name,
                       style: TextStyle(
                           color: Color(0xff23adb0),
@@ -84,18 +83,42 @@ class SettingsPage extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: 20,
+            height: 200,
             child: Container(
-              color: Color(0xff1dbfc2),
+                // color: Color(0xff1dbfc2),
+                ),
+          ),
+          Positioned(
+            // logo/banner at the top of the screen
+            top: size.height * 0.7,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: [Colors.teal, Colors.cyan],
+                ),
+              ),
+              child: IconButton(
+                icon: Icon(Icons.logout),
+                color: Colors.white,
+                onPressed: () {
+                  // temporary page route to fake logout
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => LoginPage(),
+                    ),
+                  );
+                },
+              ),
             ),
           ),
-          Text(
-              'Testing Spacing...'
+          Positioned(
+            child: Text('Logout Here'),
           ),
         ],
       ),
     );
   }
 }
-
-

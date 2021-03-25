@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:uk_city_planner/ui/user-access/map_page.dart';
 import 'package:uk_city_planner/ui/user-access/planner_page.dart';
+import 'package:uk_city_planner/ui/user-access/recommended_page.dart';
 import 'file:///C:/Users/Crook/Documents/GitHub/uk-city-planner/lib/ui/user-access/home_page.dart';
 import 'package:uk_city_planner/ui/user-access/settings_page.dart';
 
@@ -13,10 +14,8 @@ class NavBar extends StatefulWidget {
 class NavState extends State<NavBar> {
   int selectedIndex = 0;
   List<Widget> widgetOptions = <Widget>[
-    // LoginPage(),
-    // RegisterPage(),
     HomePage(),
-    Text('Recommended'),
+    RecommendedPage(),
     PlannerPage(),
     MapPage(),
     SettingsPage(),

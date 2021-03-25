@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:uk_city_planner/ui/registration/login_page.dart';
 
-class MapPage extends StatelessWidget {
-
+class RecommendedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -29,7 +29,7 @@ class MapPage extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(30.0),
                     child: Image(
-                      image: AssetImage('assets/images/map-banner.png'),
+                      image: AssetImage('assets/images/recommended-banner.png'),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -64,7 +64,7 @@ class MapPage extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         Text(
-                          'Check out \npoints of interest \nnear you!',
+                          "Lets see what \nis recommended \nfor you!",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 27.0,
@@ -94,6 +94,5 @@ class MapPage extends StatelessWidget {
         ],
       ),
     );
-
   }
 }

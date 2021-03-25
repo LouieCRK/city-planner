@@ -38,9 +38,9 @@ class _InfoPageState extends State<InfoPage> {
                   borderRadius: BorderRadius.circular(30.0),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black26,
+                      color: Colors.black45,
                       offset: Offset(0.0, 2.0),
-                      blurRadius: 6.0,
+                      blurRadius: 20.0,
                     ),
                   ],
                 ),
