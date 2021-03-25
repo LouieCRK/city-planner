@@ -25,33 +25,33 @@ class _HomePageState extends State<HomePage> {
         setState(() {
           _selectedIndex = index;
         });
-        if(_selectedIndex.isFinite){
-          if(_selectedIndex == 0){
-            print ('(0) Restaurant selected...');
+        // todo - use better logic
+        if (_selectedIndex.isFinite) {
+          if (_selectedIndex == 0) {
+            print('(0) Restaurant selected...');
             _widgetSelector = RestaurantCarousel();
             RestaurantCarousel();
             return;
           }
-          if(_selectedIndex == 1){
-            print ('(1) Nightlife selected...');
+          if (_selectedIndex == 1) {
+            print('(1) Nightlife selected...');
             _widgetSelector = NightlifeCarousel();
             return;
           }
-          if(_selectedIndex == 2){
-            print ('(2) Entertainment selected...');
+          if (_selectedIndex == 2) {
+            print('(2) Entertainment selected...');
             return;
           }
-          if(_selectedIndex == 3){
-            print ('(3) Sightseeing selected...');
+          if (_selectedIndex == 3) {
+            print('(3) Sightseeing selected...');
             return;
           }
-          if(_selectedIndex == 4){
-            print ('(4) Shopping selected...');
+          if (_selectedIndex == 4) {
+            print('(4) Shopping selected...');
             return;
           }
         }
       },
-
       child: Container(
         height: 60.0,
         width: 60.0,

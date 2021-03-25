@@ -20,8 +20,7 @@ class _InfoPageState extends State<InfoPage> {
       stars += '★';
     }
     stars.trim();
-    return Text(stars,
-      style: TextStyle(fontSize: 20, color: Colors.white));
+    return Text(stars, style: TextStyle(fontSize: 20, color: Colors.white));
   }
 
   @override
@@ -80,14 +79,16 @@ class _InfoPageState extends State<InfoPage> {
                     Text(
                       widget.pointOfInterest.name,
                       style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 35.0,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 1.2,
+                          color: Colors.white,
+                          fontSize: 35.0,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 1.2,
                           shadows: <Shadow>[
-                            Shadow(color: CupertinoColors.black, blurRadius: 20,)
-                          ]
-                      ),
+                            Shadow(
+                              color: CupertinoColors.black,
+                              blurRadius: 20,
+                            )
+                          ]),
                     ),
                     Row(
                       children: <Widget>[
@@ -100,12 +101,14 @@ class _InfoPageState extends State<InfoPage> {
                         Text(
                           widget.pointOfInterest.city,
                           style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
+                              color: Colors.white,
+                              fontSize: 20.0,
                               shadows: <Shadow>[
-                                Shadow(color: CupertinoColors.black, blurRadius: 20,)
-                              ]
-                          ),
+                                Shadow(
+                                  color: CupertinoColors.black,
+                                  blurRadius: 20,
+                                )
+                              ]),
                         ),
                       ],
                     ),
@@ -126,10 +129,10 @@ class _InfoPageState extends State<InfoPage> {
           SizedBox(
             height: 11,
           ),
-
           Column(
             children: [
-              Container( // name
+              Container(
+                // name
                 width: size.width * 0.9,
                 child: Text(
                   widget.pointOfInterest.name,
@@ -139,14 +142,19 @@ class _InfoPageState extends State<InfoPage> {
                       fontWeight: FontWeight.w600,
                       letterSpacing: 1.2,
                       shadows: <Shadow>[
-                        Shadow(color: CupertinoColors.black, blurRadius: 2,)
-                      ]
-                  ),
+                        Shadow(
+                          color: CupertinoColors.black,
+                          blurRadius: 2,
+                        )
+                      ]),
                 ),
               ),
-              SizedBox(height: 4,),
+              SizedBox(
+                height: 4,
+              ),
 
-              Container( // address
+              Container(
+                // address
                 width: size.width * 0.9,
                 child: Text(
                   widget.pointOfInterest.address,
@@ -158,9 +166,12 @@ class _InfoPageState extends State<InfoPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
 
-              Container( // description
+              Container(
+                // description
                 alignment: Alignment.centerLeft,
                 width: size.width * 0.8,
                 margin: EdgeInsets.only(right: 50, left: 10),
@@ -176,16 +187,19 @@ class _InfoPageState extends State<InfoPage> {
                       fontSize: 18.0,
                       fontWeight: FontWeight.w600,
                       letterSpacing: 0.1,
-                      ),
                     ),
+                  ),
                 ),
-                ),
+              ),
               SizedBox(height: 10),
 
-              Container( // website
+              Container(
+                // website
                 width: size.width * 0.9,
                 child: Text(
                   widget.pointOfInterest.website,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
                   style: TextStyle(
                     color: Color(0xff23adb0),
                     fontSize: 15.5,
@@ -194,9 +208,12 @@ class _InfoPageState extends State<InfoPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 6,),
+              SizedBox(
+                height: 6,
+              ),
 
-              Container( // phone number
+              Container(
+                // phone number
                 width: size.width * 0.9,
                 child: Text(
                   widget.pointOfInterest.phoneNumber,
@@ -208,12 +225,17 @@ class _InfoPageState extends State<InfoPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 6,),
+              SizedBox(
+                height: 6,
+              ),
 
-              Container( // email
+              Container(
+                // email
                 width: size.width * 0.9,
                 child: Text(
                   widget.pointOfInterest.email,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
                   style: TextStyle(
                     color: Color(0xff23adb0),
                     fontSize: 15.5,
@@ -224,47 +246,54 @@ class _InfoPageState extends State<InfoPage> {
               ),
               SizedBox(height: 25),
 
-              Row( // bottom containers
+              Row(
+                // bottom containers
                 verticalDirection: VerticalDirection.down,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container( // rating
+                  Container(
+                    // rating
                     alignment: Alignment.topCenter,
                     // color: Colors.red,
-                    padding: EdgeInsets.only(left: 12, right: 12,),
-                      child: Container(
-                        alignment: Alignment.topCenter,
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 25,
-                              child: Text(
-                                'Rating',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.w600,
-                                  letterSpacing: 0,
-                                ),
+                    padding: EdgeInsets.only(
+                      left: 12,
+                      right: 12,
+                    ),
+                    child: Container(
+                      alignment: Alignment.topCenter,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 25,
+                            child: Text(
+                              'Rating',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 0,
                               ),
                             ),
-                            Container(
-                              alignment: Alignment.center,
-                              padding: EdgeInsets.only(left: 5, right: 5, top: 1, bottom: 2),
-                              width: 100,
-                              decoration: BoxDecoration(
-                                color: Color(0xff23adb0),
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                                child: _buildRatingStars(widget.pointOfInterest.rating.round()),
+                          ),
+                          Container(
+                            alignment: Alignment.center,
+                            padding: EdgeInsets.only(
+                                left: 5, right: 5, top: 1, bottom: 2),
+                            width: 100,
+                            decoration: BoxDecoration(
+                              color: Color(0xff23adb0),
+                              borderRadius: BorderRadius.circular(10.0),
                             ),
-                          ],
-                        ),
+                            child: _buildRatingStars(
+                                widget.pointOfInterest.rating.round()),
+                          ),
+                        ],
                       ),
+                    ),
                   ),
-
-                  Container( // opening hours
+                  Container(
+                    // opening hours
                     // color: Colors.green,
                     padding: EdgeInsets.only(left: 13, right: 13),
                     alignment: Alignment.center,
@@ -290,7 +319,8 @@ class _InfoPageState extends State<InfoPage> {
                               color: Color(0xff23adb0),
                               borderRadius: BorderRadius.circular(10.0),
                             ),
-                            padding: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+                            padding: EdgeInsets.only(
+                                left: 10, right: 10, top: 5, bottom: 5),
                             child: Text(
                               widget.pointOfInterest.openingHours[0],
                               style: TextStyle(
@@ -307,7 +337,8 @@ class _InfoPageState extends State<InfoPage> {
                               color: Color(0xff23adb0),
                               borderRadius: BorderRadius.circular(10.0),
                             ),
-                            padding: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+                            padding: EdgeInsets.only(
+                                left: 10, right: 10, top: 5, bottom: 5),
                             child: Text(
                               widget.pointOfInterest.openingHours[1],
                               style: TextStyle(
@@ -322,10 +353,13 @@ class _InfoPageState extends State<InfoPage> {
                       ),
                     ),
                   ),
-
-                  Container( // price
+                  Container(
+                    // price
                     // color: Colors.blue,
-                    padding: EdgeInsets.only(left: 12, right: 12,),
+                    padding: EdgeInsets.only(
+                      left: 12,
+                      right: 12,
+                    ),
                     child: Container(
                       alignment: Alignment.topCenter,
                       child: Column(
@@ -347,7 +381,8 @@ class _InfoPageState extends State<InfoPage> {
                               color: Color(0xff23adb0),
                               borderRadius: BorderRadius.circular(10.0),
                             ),
-                            padding: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+                            padding: EdgeInsets.only(
+                                left: 10, right: 10, top: 5, bottom: 5),
                             child: Text(
                               '£££ / £££££',
                               style: TextStyle(
@@ -369,29 +404,29 @@ class _InfoPageState extends State<InfoPage> {
                 height: 15,
               ),
               FlatButton(
-                minWidth: size.width * 0.9,
-                height: 40,
-                color: Color(0xff23adb0),
-                splashColor: Color(0xff23adb0),
-                focusColor: Color(0xff23adb0),
-                child: new Text(
+                  minWidth: size.width * 0.9,
+                  height: 40,
+                  color: Color(0xff23adb0),
+                  splashColor: Color(0xff23adb0),
+                  focusColor: Color(0xff23adb0),
+                  child: new Text(
                     "Add to Planner",
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 0.1,
-                    color: Colors.white,
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 0.1,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-                  onPressed: (){
+                  onPressed: () {
                     print('Add to Planner button pressed...');
                   },
-                  shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
-              ),
+                  shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(30.0))),
             ],
           ),
-          ],
-        ),
+        ],
+      ),
     );
   }
 }
