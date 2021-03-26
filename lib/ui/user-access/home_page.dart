@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:uk_city_planner/widgets/nightlife_carousel.dart';
 import 'package:uk_city_planner/widgets/restaurant_carousel.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -35,7 +34,7 @@ class _HomePageState extends State<HomePage> {
           }
           if (_selectedIndex == 1) {
             print('(1) Nightlife selected...');
-            _widgetSelector = NightlifeCarousel();
+            // _widgetSelector = NightlifeCarousel();
             return;
           }
           if (_selectedIndex == 2) {
