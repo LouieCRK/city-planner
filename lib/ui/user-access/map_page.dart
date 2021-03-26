@@ -28,16 +28,16 @@ class _MapPageState extends State<MapPage> {
   // }
 
   void _OnMapCreated(GoogleMapController controller) {
-    setState((){
+    setState(() {
       _markers.add(
         Marker(
-            markerId: MarkerId('id-1'),
-            position: LatLng(widget.pointOfInterest.location[0], widget.pointOfInterest.location[1]),
-            // icon: mapMarker, // un comment to use custom marker images
-            infoWindow: InfoWindow(
-              title: 'Bristol City',
-              snippet: 'Snippet...',
-            ),
+          markerId: MarkerId('id-1'),
+          position: LatLng(51.4538022, -2.5972985),
+          // icon: mapMarker, // un comment to use custom marker images
+          infoWindow: InfoWindow(
+            title: 'Bristol City',
+            snippet: 'Snippet...',
+          ),
         ),
       );
     });
@@ -51,19 +51,19 @@ class _MapPageState extends State<MapPage> {
         children: <Widget>[
           Stack(
             children: <Widget>[
-              Container( // container for google map
-                height: size.height * 0.926,
-                width: size.width,
-                child: GoogleMap(
-                  onMapCreated: _OnMapCreated,
-                  markers: _markers,
-                  mapType: MapType.normal,
-                  initialCameraPosition: CameraPosition(
-                    target: LatLng(51.4538022, -2.5972985),
-                    zoom: 16,
-                  ),
-                )
-              ),
+              Container(
+                  // container for google map
+                  height: size.height * 0.926,
+                  width: size.width,
+                  child: GoogleMap(
+                    onMapCreated: _OnMapCreated,
+                    markers: _markers,
+                    mapType: MapType.normal,
+                    initialCameraPosition: CameraPosition(
+                      target: LatLng(51.4538022, -2.5972985),
+                      zoom: 16,
+                    ),
+                  )),
               Container(
                 height: size.height * 0.25,
                 width: size.width,
@@ -133,11 +133,20 @@ class _MapPageState extends State<MapPage> {
                   ],
                 ),
               ),
+              // todo - create a left app bar that has clickable icon buttons
+              Container(
+                margin: const EdgeInsets.only(left: 10, top: 265),
+                height: size.height * 0.5,
+                width: 75,
+                color: Colors.red,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                ),
+              ),
             ],
           ),
         ],
       ),
     );
-
   }
 }

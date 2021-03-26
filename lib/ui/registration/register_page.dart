@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'login_page.dart';
 
 class RegisterPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -17,39 +16,38 @@ class RegisterPage extends StatelessWidget {
             colors: [Colors.teal, Colors.cyan],
           ),
         ),
-        child: Stack( // stack used to be able to stack widgets
+        child: Stack(
+          // stack used to be able to stack widgets
           alignment: Alignment.center,
           children: <Widget>[
-
-            Positioned( // logo/banner at the top of the screen
+            Positioned(
+              // logo/banner at the top of the screen
               top: 0,
               width: size.width,
               child: Image.asset(
                 'assets/images/login-banner.png',
               ),
             ),
-
-            Positioned( // back button - direct back to login page
+            Positioned(
+              // back button - direct back to login page
               top: size.height * 0.07,
               left: -4,
               child: IconButton(
-                // icon: Icon(Icons.keyboard_backspace_rounded),
-                icon: Icon(Icons.keyboard_arrow_left_rounded),
-                hoverColor: Colors.grey,
-                iconSize: 50,
-                color: Colors.cyan,
-                onPressed: () {
-                  Navigator.of(context).pop(
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          LoginPage(),
-                    ),
-                  );
-                }
-              ),
+                  // icon: Icon(Icons.keyboard_backspace_rounded),
+                  icon: Icon(Icons.keyboard_arrow_left_rounded),
+                  hoverColor: Colors.grey,
+                  iconSize: 50,
+                  color: Colors.cyan,
+                  onPressed: () {
+                    Navigator.of(context).pop(
+                      MaterialPageRoute(
+                        builder: (context) => LoginPage(),
+                      ),
+                    );
+                  }),
             ),
-
-            Positioned( // first name input entry
+            Positioned(
+              // first name input entry
               top: size.height * 0.48,
               width: size.width * 0.85,
               height: 50,
@@ -81,8 +79,8 @@ class RegisterPage extends StatelessWidget {
                 ),
               ),
             ),
-
-            Positioned( // username input entry
+            Positioned(
+              // username input entry
               top: size.height * 0.565,
               width: size.width * 0.85,
               height: 50,
@@ -114,8 +112,8 @@ class RegisterPage extends StatelessWidget {
                 ),
               ),
             ),
-
-            Positioned( // email address input entry
+            Positioned(
+              // email address input entry
               top: size.height * 0.65,
               width: size.width * 0.85,
               height: 50,
@@ -147,8 +145,8 @@ class RegisterPage extends StatelessWidget {
                 ),
               ),
             ),
-
-            Positioned( // password input entry
+            Positioned(
+              // password input entry
               top: size.height * 0.735,
               width: size.width * 0.85,
               height: 50,
@@ -183,8 +181,8 @@ class RegisterPage extends StatelessWidget {
                 ),
               ),
             ),
-
-            Positioned( // confirm password input entry
+            Positioned(
+              // confirm password input entry
               top: size.height * 0.82,
               width: size.width * 0.85,
               height: 50,
@@ -219,8 +217,8 @@ class RegisterPage extends StatelessWidget {
                 ),
               ),
             ),
-
-            Positioned( // registration button
+            Positioned(
+              // registration button
               top: size.height * 0.905,
               width: size.width * 0.85,
               height: 50,
@@ -231,8 +229,8 @@ class RegisterPage extends StatelessWidget {
                     BoxShadow(
                         color: Colors.black26,
                         blurRadius: 4,
-                        offset: Offset(0, 5)
-                    )],
+                        offset: Offset(0, 5))
+                  ],
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(40),
                 ),
@@ -240,9 +238,9 @@ class RegisterPage extends StatelessWidget {
                   child: Text("REGISTER"),
                   style: TextButton.styleFrom(
                     primary: Colors.black54,
-                    minimumSize: Size(20,20),
+                    minimumSize: Size(20, 20),
                   ),
-                  onPressed: () => print ("Register pressed..."),
+                  onPressed: () => print("Register pressed..."),
                 ),
               ),
             ),

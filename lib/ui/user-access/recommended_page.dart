@@ -88,9 +88,7 @@ class RecommendedPage extends StatelessWidget {
               color: Color(0xff1dbfc2),
             ),
           ),
-          Text(
-              'Testing Spacing...'
-          ),
+          Text('Testing Spacing...'),
         ],
       ),
     );

@@ -4,7 +4,6 @@ import 'file:///C:/Users/Crook/Documents/GitHub/uk-city-planner/lib/ui/registrat
 import '../user-access/navigation_bar.dart';
 
 class LoginPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -18,19 +17,20 @@ class LoginPage extends StatelessWidget {
             colors: [Colors.teal, Colors.cyan],
           ),
         ),
-        child: Stack( // stack used to be able to stack widgets
+        child: Stack(
+          // stack used to be able to stack widgets
           alignment: Alignment.center,
           children: <Widget>[
-
-            Positioned( // logo/banner at the top of the screen
+            Positioned(
+              // logo/banner at the top of the screen
               top: 0,
               width: size.width,
               child: Image.asset(
                 'assets/images/login-banner.png',
               ),
             ),
-
-            Positioned( // username/email input entry
+            Positioned(
+              // username/email input entry
               top: size.height * 0.5,
               width: size.width * 0.85,
               height: 50,
@@ -62,8 +62,8 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
             ),
-
-            Positioned( // password input entry
+            Positioned(
+              // password input entry
               top: size.height * 0.59,
               width: size.width * 0.85,
               height: 50,
@@ -90,29 +90,28 @@ class LoginPage extends StatelessWidget {
                     ),
                     hintText: "Password",
                     hintStyle: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                        height: 0,
+                      fontSize: 18,
+                      color: Colors.white,
+                      height: 0,
                     ),
                   ),
                 ),
               ),
             ),
-
-            Positioned( // 'forgot password?' text button
+            Positioned(
+                // 'forgot password?' text button
                 top: size.height * 0.655,
-              width: 160,
-              child: TextButton(
-                child: Text('Forgot Password?'),
-                style: TextButton.styleFrom(
-                  primary: Colors.white,
-                  shadowColor: Colors.black,
-                ),
-                onPressed: () => print ('Forgot password pressed...'),
-              )
-            ),
-
-            Positioned( // sign in button
+                width: 160,
+                child: TextButton(
+                  child: Text('Forgot Password?'),
+                  style: TextButton.styleFrom(
+                    primary: Colors.white,
+                    shadowColor: Colors.black,
+                  ),
+                  onPressed: () => print('Forgot password pressed...'),
+                )),
+            Positioned(
+              // sign in button
               top: size.height * 0.71,
               width: size.width * 0.85,
               height: 50,
@@ -121,52 +120,48 @@ class LoginPage extends StatelessWidget {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 4,
-                      offset: Offset(0, 5)
-                    )],
+                        color: Colors.black26,
+                        blurRadius: 4,
+                        offset: Offset(0, 5))
+                  ],
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(40),
                 ),
                 child: TextButton(
-                  child: Text("SIGN IN"),
-                  style: TextButton.styleFrom(
-                    primary: Colors.black54,
-                    minimumSize: Size(20,20),
-                  ),
-                    onPressed: () { // temporary page route to fake login
+                    child: Text("SIGN IN"),
+                    style: TextButton.styleFrom(
+                      primary: Colors.black54,
+                      minimumSize: Size(20, 20),
+                    ),
+                    onPressed: () {
+                      // temporary page route to fake login
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) =>
-                              NavBar(),
+                          builder: (context) => NavBar(),
                         ),
                       );
-                    }
-                ),
+                    }),
               ),
             ),
-
-            Positioned( // 'don't have an account?' text button
+            Positioned(
+                // 'don't have an account?' text button
                 top: size.height * 0.775,
                 width: 200,
                 child: TextButton(
-                  child: Text("Don't have an account?"),
-                  style: TextButton.styleFrom(
-                    primary: Colors.white,
-                    shadowColor: Colors.black,
-                  ),
+                    child: Text("Don't have an account?"),
+                    style: TextButton.styleFrom(
+                      primary: Colors.white,
+                      shadowColor: Colors.black,
+                    ),
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) =>
-                              RegisterPage(),
+                          builder: (context) => RegisterPage(),
                         ),
                       );
-                    }
-                )
-            ),
-
-            Positioned( // sign up button
+                    })),
+            Positioned(
+              // sign up button
               top: size.height * 0.84,
               width: size.width * 0.85,
               height: 50,
@@ -177,26 +172,24 @@ class LoginPage extends StatelessWidget {
                     BoxShadow(
                         color: Colors.black26,
                         blurRadius: 4,
-                        offset: Offset(0, 5)
-                    )],
+                        offset: Offset(0, 5))
+                  ],
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(40),
                 ),
                 child: TextButton(
-                  child: Text("SIGN UP"),
-                  style: TextButton.styleFrom(
-                    primary: Colors.black54,
-                    minimumSize: Size(20,20),
-                  ),
+                    child: Text("SIGN UP"),
+                    style: TextButton.styleFrom(
+                      primary: Colors.black54,
+                      minimumSize: Size(20, 20),
+                    ),
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) =>
-                              RegisterPage(),
+                          builder: (context) => RegisterPage(),
                         ),
                       );
-                    }
-                ),
+                    }),
               ),
             ),
           ],
@@ -205,4 +198,3 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
-

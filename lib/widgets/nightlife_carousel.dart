@@ -38,14 +38,14 @@ class NightlifeCarousel extends StatelessWidget {
             ],
           ),
         ),
-
         SizedBox(height: 10),
-
-        Container( // list view build for restaurants near user location
+        Container(
+          // list view build for restaurants near user location
           height: size.height * 0.6,
           child: GridView.builder(
             padding: EdgeInsets.only(bottom: 20, left: 10, right: 10),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:2, crossAxisSpacing: 0, mainAxisSpacing: 10),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, crossAxisSpacing: 0, mainAxisSpacing: 10),
             scrollDirection: Axis.vertical,
             itemCount: pointsOfInterest.length,
             itemBuilder: (BuildContext context, int index) {
@@ -61,8 +61,10 @@ class NightlifeCarousel extends StatelessWidget {
                 ),
                 child: Container(
                   margin: EdgeInsets.only(
-                      bottom: 5, top: 5,
-                      left: 5, right: 5,
+                    bottom: 5,
+                    top: 5,
+                    left: 5,
+                    right: 5,
                   ),
                   // color: Colors.red,
 
@@ -103,14 +105,16 @@ class NightlifeCarousel extends StatelessWidget {
                                   Text(
                                     pointOfInterest.name,
                                     style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 24.0,
-                                      fontWeight: FontWeight.w600,
-                                      letterSpacing: 1.2,
-                                      shadows: <Shadow>[
-                                        Shadow(color: CupertinoColors.black, blurRadius: 20,)
-                                      ]
-                                    ),
+                                        color: Colors.white,
+                                        fontSize: 24.0,
+                                        fontWeight: FontWeight.w600,
+                                        letterSpacing: 1.2,
+                                        shadows: <Shadow>[
+                                          Shadow(
+                                            color: CupertinoColors.black,
+                                            blurRadius: 20,
+                                          )
+                                        ]),
                                   ),
                                   Row(
                                     children: <Widget>[
@@ -123,11 +127,13 @@ class NightlifeCarousel extends StatelessWidget {
                                       Text(
                                         pointOfInterest.city,
                                         style: TextStyle(
-                                          color: Colors.white,
+                                            color: Colors.white,
                                             shadows: <Shadow>[
-                                              Shadow(color: CupertinoColors.black, blurRadius: 5,)
-                                            ]
-                                        ),
+                                              Shadow(
+                                                color: CupertinoColors.black,
+                                                blurRadius: 5,
+                                              )
+                                            ]),
                                       ),
                                     ],
                                   ),

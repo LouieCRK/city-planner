@@ -10,7 +10,7 @@ class PointOfInterest {
   String phoneNumber;
   String email;
   List<String> openingHours;
-  List<double>location;
+  List<double> location;
 
   PointOfInterest({
     this.imageUrl,
@@ -42,7 +42,7 @@ List<PointOfInterest> pointsOfInterest = [
     phoneNumber: '01225 517025',
     email: 'thaikun@hotmail.com',
     openingHours: ['1:00 pm', '11:00 pm'],
-    location: [51.384880,2.361970],
+    location: [51.384880, 2.361970],
   ),
   PointOfInterest(
     imageUrl: 'assets/images/bar-block.jpg',
@@ -57,7 +57,7 @@ List<PointOfInterest> pointsOfInterest = [
     phoneNumber: '01225 123425',
     email: 'bar-block@hotmail.com',
     openingHours: ['9:00 am', '10:30 pm'],
-    location: [51.452280,-2.593420],
+    location: [51.452280, -2.593420],
   ),
   PointOfInterest(
     imageUrl: 'assets/images/menu-gordon-jones.jpg',
@@ -72,7 +72,7 @@ List<PointOfInterest> pointsOfInterest = [
     phoneNumber: '01225 480871',
     email: 'menu-gordon-jones@hotmail.com',
     openingHours: ['12:30 pm', '9:30 pm'],
-    location: [51.374058,-2.366802],
+    location: [51.374058, -2.366802],
   ),
   PointOfInterest(
     imageUrl: 'assets/images/opa-bath.jpg',
@@ -87,7 +87,7 @@ List<PointOfInterest> pointsOfInterest = [
     phoneNumber: '01225 4560871',
     email: 'opabath@hotmail.com',
     openingHours: ['12:30 pm', '9:30 pm'],
-    location: [51.380656,-2.355705],
+    location: [51.380656, -2.355705],
   ),
   PointOfInterest(
     imageUrl: 'assets/images/sotto.jpg',
@@ -102,7 +102,7 @@ List<PointOfInterest> pointsOfInterest = [
     phoneNumber: '01225 4560871',
     email: 'sottosottobath@hotmail.com',
     openingHours: ['12:30 pm', '9:30 pm'],
-    location: [51.380671,2.356596],
+    location: [51.380671, 2.356596],
   ),
   PointOfInterest(
     imageUrl: 'assets/images/curry-garden.jpg',
@@ -117,6 +117,6 @@ List<PointOfInterest> pointsOfInterest = [
     phoneNumber: '01225 4560571',
     email: 'currygardenbath@hotmail.com',
     openingHours: ['12:30 pm', '9:30 pm'],
-    location: [51.357251,-2.381101],
+    location: [51.357251, -2.381101],
   ),
 ];
