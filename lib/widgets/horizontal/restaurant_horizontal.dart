@@ -16,7 +16,7 @@ class RestaurantHorizontal extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                'Recommended restaurants',
+                'Restaurants for you',
                 style: TextStyle(
                   fontSize: 22.0,
                   fontWeight: FontWeight.bold,
@@ -28,7 +28,6 @@ class RestaurantHorizontal extends StatelessWidget {
         ),
         SizedBox(height: 5),
         Container(padding: EdgeInsets.zero,
-
           // list view build for restaurants near user location
           height: size.height * 0.2,
           child: GridView.builder(

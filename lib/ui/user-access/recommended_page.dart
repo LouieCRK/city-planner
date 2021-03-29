@@ -88,7 +88,7 @@ class RecommendedPage extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 10,
+                height: 15,
                 child: Container(
                   // color: Color(0xff1dbfc2),
                 ),

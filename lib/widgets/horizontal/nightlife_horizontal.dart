@@ -16,7 +16,7 @@ class NightlifeHorizontal extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                'Recommended nightlife',
+                'Nightlife for you',
                 style: TextStyle(
                   fontSize: 22.0,
                   fontWeight: FontWeight.bold,
