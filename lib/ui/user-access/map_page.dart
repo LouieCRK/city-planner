@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uk_city_planner/models/point_of_interest_model.dart';
 
@@ -133,14 +134,108 @@ class _MapPageState extends State<MapPage> {
                   ],
                 ),
               ),
-              // todo - create a left app bar that has clickable icon buttons
               Container(
-                margin: const EdgeInsets.only(left: 10, top: 265),
-                height: size.height * 0.5,
-                width: 75,
-                color: Colors.red,
+                margin: const EdgeInsets.only(left: 13, top: 300),
+                height: size.height * 0.4,
+                width: 50,
+                // color: Colors.red,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Container( // restaurant button
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            offset: Offset(0.0, 5.0),
+                            blurRadius: 8.0,
+                          ),
+                        ],
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        color: Color(0xfffc9003),
+                      ),
+                      child: IconButton(
+                        icon: Icon(FontAwesomeIcons.utensils),
+                        color: Colors.white,
+                        onPressed: () => print('Restaurant filter pressed'),
+                      ),
+                    ),
+                    Container( // nightlife button
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            offset: Offset(0.0, 5.0),
+                            blurRadius: 8.0,
+                          ),
+                        ],
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        color: Color(0xff8c03fc),
+                      ),
+                      child: IconButton(
+                        icon: Icon(FontAwesomeIcons.cocktail),
+                        color: Colors.white,
+                        onPressed: () => print('Nightlife filter pressed'),
+                      ),
+                    ),
+                    Container( // entertainment button
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            offset: Offset(0.0, 5.0),
+                            blurRadius: 8.0,
+                          ),
+                        ],
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        color: Color(0xffe35bcf),
+                      ),
+                      child: IconButton(
+                        alignment: Alignment.center,
+                        icon: Icon(FontAwesomeIcons.dice),
+                        color: Colors.white,
+                        onPressed: () => print('Entertainment filter pressed'),
+                      ),
+                    ),
+                    Container( // sightseeing button
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            offset: Offset(0.0, 5.0),
+                            blurRadius: 8.0,
+                          ),
+                        ],
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        color: Color(0xff61c230),
+                      ),
+                      child: IconButton(
+                        alignment: Alignment.center,
+                        icon: Icon(FontAwesomeIcons.eye),
+                        color: Colors.white,
+                        onPressed: () => print('Sightseeing filter pressed'),
+                      ),
+                    ),
+                    Container( // shopping button
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            offset: Offset(0.0, 5.0),
+                            blurRadius: 8.0,
+                          ),
+                        ],
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        color: Color(0xff5bd5e3),
+                      ),
+                      child: IconButton(
+                        icon: Icon(FontAwesomeIcons.shoppingBag),
+                        color: Colors.white,
+                        onPressed: () => print('Shopping filter pressed'),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
