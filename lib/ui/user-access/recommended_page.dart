@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:uk_city_planner/ui/registration/login_page.dart';
+import 'package:uk_city_planner/widgets/horizontal/entertainment_horizontal.dart';
 import 'package:uk_city_planner/widgets/horizontal/nightlife_horizontal.dart';
-import 'package:uk_city_planner/widgets/restaurant_carousel.dart';
 import 'file:///C:/Users/Crook/Documents/GitHub/uk-city-planner/lib/widgets/horizontal/restaurant_horizontal.dart';
 
 class RecommendedPage extends StatelessWidget {
@@ -103,6 +102,13 @@ class RecommendedPage extends StatelessWidget {
               Container(
                   padding: EdgeInsets.only(left: 10),
                   child: NightlifeHorizontal()
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                  padding: EdgeInsets.only(left: 10),
+                  child: EntertainmentHorizontal()
               ),
             ],
           ),

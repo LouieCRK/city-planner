@@ -195,7 +195,9 @@ class _MapPageState extends State<MapPage> {
                         alignment: Alignment.center,
                         icon: Icon(FontAwesomeIcons.dice),
                         color: Colors.white,
-                        onPressed: () => print('Entertainment filter pressed'),
+                        onPressed: () =>
+                            print('Entertainment filter pressed'),
+                            splashColor: Colors.red,
                       ),
                     ),
                     Container( // sightseeing button
