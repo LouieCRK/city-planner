@@ -27,7 +27,7 @@ class _MapPageState extends State<MapPage> {
   // void setCustomMarker() async{
   //   mapMarker = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'assets/images/map-banner.png',);
   // }
-
+  //
   void _OnMapCreated(GoogleMapController controller) {
     setState(() {
       _markers.add(
