@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
         setState(() {
           _selectedIndex = index;
         });
-        // todo - use better logic
+        // todo - use better logic..
         if (_selectedIndex.isFinite) {
           if (_selectedIndex == 0) {
             print('(0) Restaurant selected...');

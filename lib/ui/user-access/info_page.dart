@@ -393,6 +393,7 @@ class _InfoPageState extends State<InfoPage> {
               SizedBox(
                 height: 15,
               ),
+              // ignore: deprecated_member_use
               FlatButton(
                   minWidth: size.width * 0.9,
                   height: 40,
