@@ -66,15 +66,15 @@ class _MapPageState extends State<MapPage> {
                     ),
                   )),
               Container(
-                height: size.height * 0.25,
+                height: size.height * 0.3,
                 width: size.width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30.0),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black45,
-                      offset: Offset(0.0, 2.0),
-                      blurRadius: 20.0,
+                      offset: Offset(2.0, 2.0),
+                      blurRadius: 5.0,
                     ),
                   ],
                 ),
