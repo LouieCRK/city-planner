@@ -219,21 +219,7 @@ class _InfoPageState extends State<InfoPage> {
                 height: 6,
               ),
 
-              Container(
-                // email
-                width: size.width * 0.9,
-                child: Text(
-                  widget.pointOfInterest.email,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  style: TextStyle(
-                    color: Color(0xff23adb0),
-                    fontSize: 15.5,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 0,
-                  ),
-                ),
-              ),
+
               SizedBox(height: 25),
 
               Row(
