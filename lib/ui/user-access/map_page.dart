@@ -18,16 +18,15 @@ class _MapPageState extends State<MapPage> {
   BitmapDescriptor mapMarker;
 
   // un comment to use custom marker images
-  @override
-  void initState() {
-    super.initState();
-    setCustomMarker();
-  }
-
-  void setCustomMarker() async{
-    mapMarker = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'assets/images/map-banner.png',);
-  }
-
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   setCustomMarker();
+  // }
+  //
+  // void setCustomMarker() async{
+  //   mapMarker = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'assets/images/map-markers/entertainment-marker.png',);
+  // }
 
   void _OnMapCreated(GoogleMapController controller) {
     setState(() {
@@ -35,7 +34,7 @@ class _MapPageState extends State<MapPage> {
         Marker(
           markerId: MarkerId('id-1'),
           position: LatLng(51.4538022, -2.5972985),
-           icon: mapMarker, // un comment to use custom marker images
+           // icon: mapMarker, // un comment to use custom marker images
           infoWindow: InfoWindow(
             title: 'Bristol City',
             snippet: 'Snippet...',
