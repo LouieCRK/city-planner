@@ -110,6 +110,9 @@ class RecommendedPage extends StatelessWidget {
                   padding: EdgeInsets.only(left: 10),
                   child: EntertainmentHorizontal()
               ),
+              SizedBox(
+                height: 20,
+              ),
             ],
           ),
       );

@@ -37,18 +37,18 @@ class NavState extends State<NavBar> {
         decoration: BoxDecoration(
           boxShadow: <BoxShadow>[
             BoxShadow(
-              color: CupertinoColors.darkBackgroundGray,
-              blurRadius: 20,
-              spreadRadius: 3,
+              color: Colors.black38,
+              blurRadius: 10,
+              spreadRadius: 2,
             ),
           ],
         ),
         child: BottomNavigationBar(
-          unselectedItemColor: Color(0xffe1fcfc),
+          unselectedItemColor: Color(0xffA0E4E1),
           selectedItemColor: Colors.white,
           iconSize: 30,
           showUnselectedLabels: false,
-          showSelectedLabels: true,
+          showSelectedLabels: false,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               // home page
