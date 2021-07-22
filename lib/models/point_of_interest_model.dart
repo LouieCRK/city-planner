@@ -8,7 +8,7 @@ class PointOfInterest {
   String description;
   String website; //
   String phoneNumber; //
-  List<String> openingHours;
+  List<String> openingHours; //
   List<double> location;
 
   PointOfInterest({

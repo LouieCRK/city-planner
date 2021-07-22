@@ -117,7 +117,7 @@ class _InfoPageState extends State<InfoPage> {
             ],
           ),
           SizedBox(
-            height: 11,
+            height: 20,
           ),
           Column(
             children: [
@@ -218,10 +218,7 @@ class _InfoPageState extends State<InfoPage> {
               SizedBox(
                 height: 6,
               ),
-
-
               SizedBox(height: 25),
-
               Row(
                 // bottom containers
                 verticalDirection: VerticalDirection.down,
