@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uk_city_planner/services/places_service.dart';
 import 'package:uk_city_planner/widgets/vertical/restaurant_carousel.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
@@ -26,6 +27,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     _getCurrentLocation();
+    HttpService();
     super.initState();
   }
 
