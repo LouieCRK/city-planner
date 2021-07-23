@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uk_city_planner/widgets/restaurant_carousel.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:geolocator/geolocator.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -8,6 +9,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // geolocator for user location
+  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+  Position _currentPosition;
+  String _currentAddress;
   int _selectedIndex = 0;
   var _widgetSelector; // todo - use variable to call corresponding widget classes
   List<IconData> _icons = [
@@ -17,6 +22,45 @@ class _HomePageState extends State<HomePage> {
     FontAwesomeIcons.eye,
     FontAwesomeIcons.shoppingBag,
   ];
+
+  @override
+  void initState() {
+    _getCurrentLocation();
+    super.initState();
+  }
+
+  _getCurrentLocation() {
+    geolocator
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+        .then((Position position) {
+      setState(() {
+        _currentPosition = position;
+      });
+
+      _getAddressFromLatLng();
+    }).catchError((e) {
+      print(e);
+    });
+  }
+
+  _getAddressFromLatLng() async {
+    try {
+      List<Placemark> p = await geolocator.placemarkFromCoordinates(
+          _currentPosition.latitude, _currentPosition.longitude);
+
+      Placemark place = p[0];
+
+      setState(() {
+        if (place.locality == ""){
+          _currentAddress = "${place.postalCode}, ${place.country}";
+        }else{
+          _currentAddress = "${place.locality}, ${place.postalCode}, ${place.country}";
+        }
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
 
   Widget _buildIcon(int index) {
     return GestureDetector(
