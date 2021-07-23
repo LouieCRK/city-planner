@@ -1,4 +1,4 @@
-package models.nightlife
+package model
 
 class NightlifeModel {
     List<Object> html_attributions;
@@ -7,7 +7,7 @@ class NightlifeModel {
     String status;
 
     NightlifeModel({this.html_attributions, this.next_page_token, this.results, this.status});
-
+4
     factory NightlifeModel.fromJson(Map<String, dynamic> json) {
         return NightlifeModel(
             html_attributions: json['html_attributions'] != null ? (json['html_attributions'] as List).map((i) => Object.fromJson(i)).toList() : null, 
