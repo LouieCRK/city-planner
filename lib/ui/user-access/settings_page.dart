@@ -44,7 +44,7 @@ class SettingsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      'Hello,',
+                      'Hello User,',
                       // widget.pointOfInterest.name,
                       style: TextStyle(
                           color: Color(0xff23adb0),
