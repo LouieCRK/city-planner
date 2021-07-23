@@ -15,7 +15,7 @@ class NavState extends State<NavBar> {
   int selectedIndex = 0;
   List<Widget> widgetOptions = <Widget>[
     HomePage(),
-    RecommendedPage(),
+    // RecommendedPage(),
     PlannerPage(),
     MapPage(),
     SettingsPage(),
@@ -62,12 +62,15 @@ class NavState extends State<NavBar> {
               label: ('Recommended'),
               backgroundColor: Color(0xff1dbfc2),
             ),
-            BottomNavigationBarItem(
-              // planner page button
-              icon: Icon(Icons.library_books_rounded),
-              label: ('Planner'),
-              backgroundColor: Color(0xff1dbfc2),
-            ),
+
+            // todo - uncomment to add 'planner page button to bottom navigation'
+            // BottomNavigationBarItem(
+            //   // planner page button
+            //   icon: Icon(Icons.library_books_rounded),
+            //   label: ('Planner'),
+            //   backgroundColor: Color(0xff1dbfc2),
+            // ),
+
             BottomNavigationBarItem(
               // map page button
               icon: Icon(Icons.location_on_rounded),

@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uk_city_planner/models/point_of_interest_model.dart';
+import 'package:http/http.dart' as http;
 
 class MapPage extends StatefulWidget {
   final PointOfInterest pointOfInterest;
@@ -16,6 +18,47 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   Set<Marker> _markers = {};
   BitmapDescriptor mapMarker;
+  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+  Position _currentPosition;
+  String _currentAddress;
+
+  @override
+  void initState() {
+    _getCurrentLocation();
+    super.initState();
+  }
+
+  _getCurrentLocation() {
+    geolocator
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+        .then((Position position) {
+      setState(() {
+        _currentPosition = position;
+      });
+      _getAddressFromLatLng();
+    }).catchError((e) {
+      print(e);
+    });
+  }
+
+  _getAddressFromLatLng() async {
+    try {
+      List<Placemark> p = await geolocator.placemarkFromCoordinates(
+          _currentPosition.latitude, _currentPosition.longitude);
+
+      Placemark place = p[0];
+
+      setState(() {
+        if (place.locality == ""){
+          _currentAddress = "${place.postalCode}, ${place.country}";
+        }else{
+          _currentAddress = "${place.locality}, ${place.postalCode}, ${place.country}";
+        }
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
 
   // un comment to use custom marker images
   // @override
@@ -28,15 +71,16 @@ class _MapPageState extends State<MapPage> {
   //   mapMarker = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'assets/images/map-markers/entertainment-marker.png',);
   // }
 
+
   void _OnMapCreated(GoogleMapController controller) {
     setState(() {
       _markers.add(
         Marker(
           markerId: MarkerId('id-1'),
-          position: LatLng(51.4538022, -2.5972985),
+          position: LatLng(_currentPosition.latitude, _currentPosition.longitude),
            // icon: mapMarker, // un comment to use custom marker images
           infoWindow: InfoWindow(
-            title: 'Bristol City',
+            title: _currentAddress,
             snippet: 'Snippet...',
           ),
         ),
@@ -61,7 +105,7 @@ class _MapPageState extends State<MapPage> {
                     markers: _markers,
                     mapType: MapType.normal,
                     initialCameraPosition: CameraPosition(
-                      target: LatLng(51.4538022, -2.5972985),
+                      target: LatLng(_currentPosition.latitude, _currentPosition.longitude),
                       zoom: 16,
                     ),
                   )),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uk_city_planner/widgets/restaurant_carousel.dart';
+import 'package:uk_city_planner/widgets/vertical/restaurant_carousel.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -72,8 +72,7 @@ class _HomePageState extends State<HomePage> {
         if (_selectedIndex.isFinite) {
           if (_selectedIndex == 0) {
             print('(0) Restaurant selected...');
-            _widgetSelector = RestaurantCarousel();
-            RestaurantCarousel();
+            // _widgetSelector = RestaurantCarousel();
             return;
           }
           if (_selectedIndex == 1) {
@@ -147,7 +146,6 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height: 20.0),
             // _widgetSelector, // todo - use variable to call corresponding widget classes
             RestaurantCarousel(),
-            // NightlifeCarousel(),
             // SizedBox(height: 20.0),
           ],
         ),
