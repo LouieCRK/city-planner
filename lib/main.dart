@@ -13,7 +13,7 @@ class CityPlannerApp extends StatelessWidget {
     Logger.logDebug("Application is in debug mode");
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'UK City Planner',
+      title: 'City Planner',
       theme: ThemeData(
         primaryColor: Color(0xffe1fcfc),
         accentColor: Color(0xff1dbfc2),
