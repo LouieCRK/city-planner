@@ -62,7 +62,6 @@ class NavState extends State<NavBar> {
               label: ('Recommended'),
               backgroundColor: Color(0xff1dbfc2),
             ),
-
             // todo - uncomment to add 'planner page button to bottom navigation'
             // BottomNavigationBarItem(
             //   // planner page button
@@ -70,7 +69,6 @@ class NavState extends State<NavBar> {
             //   label: ('Planner'),
             //   backgroundColor: Color(0xff1dbfc2),
             // ),
-
             BottomNavigationBarItem(
               // map page button
               icon: Icon(Icons.location_on_rounded),

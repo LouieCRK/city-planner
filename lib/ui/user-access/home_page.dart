@@ -17,11 +17,11 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   var _widgetSelector; // todo - use variable to call corresponding widget classes
   List<IconData> _icons = [
-    FontAwesomeIcons.utensils,
-    FontAwesomeIcons.cocktail,
-    FontAwesomeIcons.dice,
-    FontAwesomeIcons.eye,
-    FontAwesomeIcons.shoppingBag,
+    FontAwesomeIcons.utensils, // restaurant
+    FontAwesomeIcons.cocktail, // nightlife
+    FontAwesomeIcons.dice, // entertainment
+    FontAwesomeIcons.eye, // sightseeing
+    FontAwesomeIcons.shoppingBag, // shopping
   ];
 
   @override
