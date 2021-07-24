@@ -8,7 +8,6 @@ import 'package:http/http.dart' as http;
 
 class MapPage extends StatefulWidget {
   final PointOfInterest pointOfInterest;
-
   MapPage({this.pointOfInterest});
 
   @override
@@ -18,10 +17,11 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   Set<Marker> _markers = {};
   BitmapDescriptor mapMarker;
-  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+  Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
   Position _currentPosition;
   String _currentAddress;
 
+  // todo - work out why _getCurrentLocation returns an error, on second call it works???
   @override
   void initState() {
     _getCurrentLocation();
@@ -71,7 +71,6 @@ class _MapPageState extends State<MapPage> {
   //   mapMarker = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'assets/images/map-markers/entertainment-marker.png',);
   // }
 
-
   void _OnMapCreated(GoogleMapController controller) {
     setState(() {
       _markers.add(
@@ -88,7 +87,6 @@ class _MapPageState extends State<MapPage> {
     });
   }
 
-  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
