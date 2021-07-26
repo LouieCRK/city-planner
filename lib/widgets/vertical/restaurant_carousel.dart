@@ -123,13 +123,13 @@ class _RestaurantCarouselState extends State<RestaurantCarousel> {
                               child: Container(
                                 decoration: BoxDecoration(
                                   gradient : LinearGradient(
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
+                                    begin: Alignment.bottomCenter,
+                                    end: Alignment.topRight,
                                     colors: [
-                                      const Color(0xCC000000),
+                                      const Color(0xFF000000),
                                       const Color(0x00000000),
                                       const Color(0x00000000),
-                                      const Color(0xCC000000),
+                                      const Color(0xFF000000),
                                     ],
                                   )
                                 ),
