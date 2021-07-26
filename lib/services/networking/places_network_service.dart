@@ -9,12 +9,13 @@ class PlacesNetworkService {
   Future<List<Result>> findRestaurants(String latitude, String longitude) async {
     String url =
         'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
-        'location=$latitude,$longitude&radius=$radius&type=restaurant%20cafe%20&keyword=food&key=$key';
+        'location=$latitude,$longitude&radius=$radius&type=restaurant%20cafe%20establishment%20establishment&keyword=food&key=$key';
     final response = await get(
       Uri.parse(url),
     );
 
     FetchedData? responseList = fetchedDataFromJson(response.body);
+    print(responseList);
     final restaurantResults = responseList!.results!;
 
     return restaurantResults;

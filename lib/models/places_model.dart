@@ -4,10 +4,8 @@
 
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
-
-FetchedData? fetchedDataFromJson(String str) => FetchedData?.fromJson(json.decode(str));
-
+FetchedData? fetchedDataFromJson(String str) =>
+    FetchedData?.fromJson(json.decode(str));
 
 class FetchedData {
   FetchedData({
@@ -23,11 +21,13 @@ class FetchedData {
   final String? status;
 
   factory FetchedData.fromJson(Map<String, dynamic> json) => FetchedData(
-    htmlAttributions: List<dynamic>.from(json["html_attributions"].map((x) => x)),
-    nextPageToken: json["next_page_token"],
-    results: List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
-    status: json["status"],
-  );
+        htmlAttributions:
+            List<dynamic>.from(json["html_attributions"].map((x) => x)),
+        nextPageToken: json["next_page_token"],
+        results:
+            List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
+        status: json["status"],
+      );
 }
 
 class Result {
@@ -66,22 +66,22 @@ class Result {
   final String? vicinity;
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
-    businessStatus: json["business_status"],
-    geometry: Geometry.fromJson(json["geometry"]),
-    icon: json["icon"],
-    name: json["name"],
-    openingHours: OpeningHours.fromJson(json["opening_hours"]),
-    photos: List<Photo>.from(json["photos"].map((x) => Photo.fromJson(x))),
-    placeId: json["place_id"],
-    plusCode: PlusCode.fromJson(json["plus_code"]),
-    priceLevel: json["price_level"] == null ? null : json["price_level"],
-    rating: json["rating"].toDouble(),
-    reference: json["reference"],
-    scope: json["scope"],
-    types: List<String>.from(json["types"].map((x) => x)),
-    userRatingsTotal: json["user_ratings_total"],
-    vicinity: json["vicinity"],
-  );
+        businessStatus: json["business_status"],
+        geometry: Geometry.fromJson(json["geometry"]),
+        icon: json["icon"],
+        name: json["name"],
+        openingHours: OpeningHours.fromJson(json["opening_hours"]),
+        photos: List<Photo>.from(json["photos"].map((x) => Photo.fromJson(x))),
+        placeId: json["place_id"],
+        plusCode: PlusCode.fromJson(json["plus_code"]),
+        priceLevel: json["price_level"] == null ? null : json["price_level"],
+        rating: json["rating"].toDouble(),
+        reference: json["reference"],
+        scope: json["scope"],
+        types: List<String>.from(json["types"].map((x) => x)),
+        userRatingsTotal: json["user_ratings_total"],
+        vicinity: json["vicinity"],
+      );
 }
 
 class Geometry {
@@ -94,9 +94,9 @@ class Geometry {
   final Viewport? viewport;
 
   factory Geometry.fromJson(Map<String, dynamic> json) => Geometry(
-    location: Location.fromJson(json["location"]),
-    viewport: Viewport.fromJson(json["viewport"]),
-  );
+        location: Location.fromJson(json["location"]),
+        viewport: Viewport.fromJson(json["viewport"]),
+      );
 }
 
 class Location {
@@ -109,9 +109,9 @@ class Location {
   final double? lng;
 
   factory Location.fromJson(Map<String, dynamic> json) => Location(
-    lat: json["lat"].toDouble(),
-    lng: json["lng"].toDouble(),
-  );
+        lat: json["lat"].toDouble(),
+        lng: json["lng"].toDouble(),
+      );
 }
 
 class Viewport {
@@ -124,10 +124,9 @@ class Viewport {
   final Location? southwest;
 
   factory Viewport.fromJson(Map<String, dynamic> json) => Viewport(
-    northeast: Location.fromJson(json["northeast"]),
-    southwest: Location.fromJson(json["southwest"]),
-  );
-
+        northeast: Location.fromJson(json["northeast"]),
+        southwest: Location.fromJson(json["southwest"]),
+      );
 }
 
 class OpeningHours {
@@ -138,8 +137,8 @@ class OpeningHours {
   final bool? openNow;
 
   factory OpeningHours.fromJson(Map<String, dynamic> json) => OpeningHours(
-    openNow: json["open_now"],
-  );
+        openNow: json["open_now"],
+      );
 }
 
 class Photo {
@@ -156,11 +155,12 @@ class Photo {
   final int? width;
 
   factory Photo.fromJson(Map<String, dynamic> json) => Photo(
-    height: json["height"],
-    htmlAttributions: List<String>.from(json["html_attributions"].map((x) => x)),
-    photoReference: json["photo_reference"],
-    width: json["width"],
-  );
+        height: json["height"],
+        htmlAttributions:
+            List<String>.from(json["html_attributions"].map((x) => x)),
+        photoReference: json["photo_reference"],
+        width: json["width"],
+      );
 }
 
 class PlusCode {
@@ -173,8 +173,7 @@ class PlusCode {
   final String? globalCode;
 
   factory PlusCode.fromJson(Map<String, dynamic> json) => PlusCode(
-    compoundCode: json["compound_code"],
-    globalCode: json["global_code"],
-  );
-
+        compoundCode: json["compound_code"],
+        globalCode: json["global_code"],
+      );
 }

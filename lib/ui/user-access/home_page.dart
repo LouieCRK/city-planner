@@ -33,19 +33,19 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future _getRestaurants() async {
-    try{
+    try {
       final placesNetworkService = PlacesNetworkService();
-      _restaurants = await placesNetworkService.findRestaurants(_currentPosition.latitude.toString(), _currentPosition.longitude.toString());
-      setState(() {
-      });
-    } catch (ex){
+      _restaurants = await placesNetworkService.findRestaurants(
+          _currentPosition.latitude.toString(),
+          _currentPosition.longitude.toString());
+      setState(() {});
+    } catch (ex) {
       print("Could not retrieve restaurants $ex");
     }
   }
-  
+
   _getCurrentLocation() {
-    Geolocator
-        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+    Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
         .then((Position position) {
       setState(() async {
         _currentPosition = position;
@@ -88,7 +88,6 @@ class _HomePageState extends State<HomePage> {
           }
         }
       },
-
       child: Container(
         height: 60.0,
         width: 60.0,

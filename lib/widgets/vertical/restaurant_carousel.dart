@@ -64,7 +64,7 @@ class _RestaurantCarouselState extends State<RestaurantCarousel> {
             itemCount: widget._restaurants!.length,
             itemBuilder: (BuildContext context, int index) {
               Result test = widget._restaurants![index];
-              PointOfInterest pointOfInterest = pointsOfInterest[index];
+              PointOfInterest pointOfInterest = pointsOfInterest[1];
               var placesImage = test.photos![0].photoReference;
               return GestureDetector(
                 onTap: () => Navigator.push(
@@ -102,12 +102,20 @@ class _RestaurantCarouselState extends State<RestaurantCarousel> {
                           children: <Widget>[
                             ClipRRect(
                               borderRadius: BorderRadius.circular(20.0),
-                              child: Image(
-                                height: 195,
-                                width: 200,
-                                  image: true ? NetworkImage('https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=$placesImage&key=AIzaSyDqtrPbqvNbhfEtb273GQb4obuRd4-AUuo') : AssetImage('assets/images/noImageAvailable.png') as ImageProvider,
-                                fit: BoxFit.cover,
-                                // color: Colors.blue,
+                              child: Expanded(
+                                flex: 1,
+                                child: Image(
+                                  height: 195,
+                                  width: 200,
+                                  image: true
+                                      ? NetworkImage(
+                                          'https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=195&photoreference=$placesImage&key=AIzaSyDqtrPbqvNbhfEtb273GQb4obuRd4-AUuo')
+                                      : AssetImage(
+                                              "assets/images/noImageAvailable.png")
+                                          as ImageProvider,
+                                  fit: BoxFit.cover,
+                                  // color: Colors.blue,
+                                ),
                               ),
                             ),
                             Positioned(
@@ -118,7 +126,8 @@ class _RestaurantCarouselState extends State<RestaurantCarousel> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 0, right: 40),
+                                    padding: const EdgeInsets.only(
+                                        left: 0, right: 29),
                                     child: Text(
                                       test.name.toString(),
                                       style: TextStyle(
@@ -142,16 +151,24 @@ class _RestaurantCarouselState extends State<RestaurantCarousel> {
                                         color: Colors.white,
                                       ),
                                       SizedBox(width: 5.0),
-                                      Text(
-                                        test.vicinity.toString(),
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            shadows: <Shadow>[
-                                              Shadow(
-                                                color: CupertinoColors.black,
-                                                blurRadius: 5,
-                                              )
-                                            ]),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            right: 8,
+                                            left: 8,
+                                            top: 5,
+                                            bottom: 2),
+                                        child: Text(
+                                          test.vicinity.toString(),
+                                          maxLines: 1,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              shadows: <Shadow>[
+                                                Shadow(
+                                                  color: CupertinoColors.black,
+                                                  blurRadius: 5,
+                                                )
+                                              ]),
+                                        ),
                                       ),
                                     ],
                                   ),
