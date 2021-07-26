@@ -63,9 +63,9 @@ class _RestaurantCarouselState extends State<RestaurantCarousel> {
             scrollDirection: Axis.vertical,
             itemCount: widget._restaurants!.length,
             itemBuilder: (BuildContext context, int index) {
-              Result test = widget._restaurants![index];
+              Result restaurant = widget._restaurants![index];
               PointOfInterest pointOfInterest = pointsOfInterest[1];
-              var placesImage = test.photos![0].photoReference;
+              var placesImage = restaurant.photos![0].photoReference;
               return GestureDetector(
                 onTap: () => Navigator.push(
                   context,
@@ -129,7 +129,7 @@ class _RestaurantCarouselState extends State<RestaurantCarousel> {
                                     padding: const EdgeInsets.only(
                                         left: 0, right: 29),
                                     child: Text(
-                                      test.name.toString(),
+                                      restaurant.name.toString(),
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 24.0,
@@ -158,7 +158,7 @@ class _RestaurantCarouselState extends State<RestaurantCarousel> {
                                             top: 5,
                                             bottom: 2),
                                         child: Text(
-                                          test.vicinity.toString(),
+                                          restaurant.vicinity.toString(),
                                           maxLines: 1,
                                           style: TextStyle(
                                               color: Colors.white,

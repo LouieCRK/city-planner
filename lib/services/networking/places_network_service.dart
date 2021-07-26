@@ -15,11 +15,7 @@ class PlacesNetworkService {
     );
 
     FetchedData? responseList = fetchedDataFromJson(response.body);
-    if (responseList!.status == "ZERO_RESULTS"){
-      radius = 100000;
-      findRestaurants(latitude, longitude);
-    }
-
+    print(responseList);
     final restaurantResults = responseList!.results!;
 
     return restaurantResults;
