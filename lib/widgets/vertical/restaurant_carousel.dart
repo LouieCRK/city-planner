@@ -6,8 +6,8 @@ import 'file:///C:/Users/Crook/Documents/GitHub/uk-city-planner/lib/ui/user-acce
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class RestaurantCarousel extends StatefulWidget {
-  List<Result>? _restauarants;
-  RestaurantCarousel(this._restauarants);
+  List<Result>? _restaurants;
+  RestaurantCarousel(this._restaurants);
 
   @override
   _RestaurantCarouselState createState() => _RestaurantCarouselState();
@@ -16,7 +16,7 @@ class RestaurantCarousel extends StatefulWidget {
 class _RestaurantCarouselState extends State<RestaurantCarousel> {
   @override
   Widget build(BuildContext context) {
-    if (widget._restauarants == null) {
+    if (widget._restaurants == null) {
       return Container();
     }
 
@@ -61,9 +61,11 @@ class _RestaurantCarouselState extends State<RestaurantCarousel> {
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, crossAxisSpacing: 0, mainAxisSpacing: 10),
             scrollDirection: Axis.vertical,
-            itemCount: pointsOfInterest.length,
+            itemCount: widget._restaurants!.length,
             itemBuilder: (BuildContext context, int index) {
+              Result test = widget._restaurants![index];
               PointOfInterest pointOfInterest = pointsOfInterest[index];
+              var placesImage = test.photos![0].photoReference;
               return GestureDetector(
                 onTap: () => Navigator.push(
                   context,
@@ -103,7 +105,7 @@ class _RestaurantCarouselState extends State<RestaurantCarousel> {
                               child: Image(
                                 height: 195,
                                 width: 200,
-                                image: AssetImage(pointOfInterest.imageUrl),
+                                  image: true ? NetworkImage('https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=$placesImage&key=AIzaSyDqtrPbqvNbhfEtb273GQb4obuRd4-AUuo') : AssetImage('assets/images/noImageAvailable.png') as ImageProvider,
                                 fit: BoxFit.cover,
                                 // color: Colors.blue,
                               ),
@@ -115,19 +117,22 @@ class _RestaurantCarouselState extends State<RestaurantCarousel> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Text(
-                                    pointOfInterest.name,
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 24.0,
-                                        fontWeight: FontWeight.w600,
-                                        letterSpacing: 1.2,
-                                        shadows: <Shadow>[
-                                          Shadow(
-                                            color: CupertinoColors.black,
-                                            blurRadius: 20,
-                                          )
-                                        ]),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 0, right: 40),
+                                    child: Text(
+                                      test.name.toString(),
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 24.0,
+                                          fontWeight: FontWeight.w600,
+                                          letterSpacing: 1.2,
+                                          shadows: <Shadow>[
+                                            Shadow(
+                                              color: CupertinoColors.black,
+                                              blurRadius: 9,
+                                            )
+                                          ]),
+                                    ),
                                   ),
                                   Row(
                                     children: <Widget>[
@@ -138,7 +143,7 @@ class _RestaurantCarouselState extends State<RestaurantCarousel> {
                                       ),
                                       SizedBox(width: 5.0),
                                       Text(
-                                        pointOfInterest.city,
+                                        test.vicinity.toString(),
                                         style: TextStyle(
                                             color: Colors.white,
                                             shadows: <Shadow>[

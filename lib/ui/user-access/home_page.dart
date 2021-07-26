@@ -14,7 +14,7 @@ class _HomePageState extends State<HomePage> {
   // geolocator for user location
   final Geolocator geolocator = Geolocator();
   late Position _currentPosition;
-  List<Result>? _restauarants;
+  List<Result>? _restaurants;
   late String _currentAddress;
   int _selectedIndex = 0;
   var _widgetSelector; // todo - use variable to call corresponding widget classes
@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
   Future _getRestaurants() async {
     try{
       final placesNetworkService = PlacesNetworkService();
-      _restauarants = await placesNetworkService.findRestaurants(_currentPosition.latitude.toString(), _currentPosition.longitude.toString());
+      _restaurants = await placesNetworkService.findRestaurants(_currentPosition.latitude.toString(), _currentPosition.longitude.toString());
       setState(() {
       });
     } catch (ex){
@@ -139,7 +139,7 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(height: 20.0),
             // _widgetSelector, // todo - use variable to call corresponding widget classes
-            RestaurantCarousel(_restauarants),
+            RestaurantCarousel(_restaurants),
             // SizedBox(height: 20.0),
           ],
         ),
