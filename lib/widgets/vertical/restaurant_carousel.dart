@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:uk_city_planner/models/places_details_model.dart';
 import 'package:uk_city_planner/models/places_model.dart';
-import 'package:uk_city_planner/models/point_of_interest_model.dart';
 import 'file:///C:/Users/Crook/Documents/GitHub/uk-city-planner/lib/ui/user-access/info_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:uk_city_planner/services/networking/places_network_service.dart';
 
 class RestaurantCarousel extends StatefulWidget {
   List<Result>? _restaurants;
@@ -64,14 +65,30 @@ class _RestaurantCarouselState extends State<RestaurantCarousel> {
             itemCount: widget._restaurants!.length,
             itemBuilder: (BuildContext context, int index) {
               Result restaurant = widget._restaurants![index];
-              PointOfInterest pointOfInterest = pointsOfInterest[1];
               var restaurantImage = restaurant.photos![0].photoReference;
+
+              // todo - get details via placeID on every index loop
+              // Future _getDetails() async {
+              //   try {
+              //     final placesNetworkService = PlacesNetworkService();
+              //     Details details = (await placesNetworkService.findDetailsByID(
+              //         restaurant.placeId.toString()));
+              //     return details;
+              //   } catch (ex) {
+              //     print("Could not retrieve details $ex");
+              //   }
+              // }
+              //
+              // Details details = _getDetails() as Details;
+
               return GestureDetector(
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (_) => InfoPage(
-                      pointOfInterest: pointOfInterest,
+                      restaurant: restaurant,
+                      // todo - allow access to details data within info_page.dart
+                      // details: details,
                     ),
                   ),
                 ),
@@ -126,7 +143,7 @@ class _RestaurantCarouselState extends State<RestaurantCarousel> {
                                     begin: Alignment.bottomCenter,
                                     end: Alignment.topRight,
                                     colors: [
-                                      const Color(0xFF000000),
+                                      const Color(0xFF3F3F3F),
                                       const Color(0x00000000),
                                       const Color(0x00000000),
                                       const Color(0xFF000000),

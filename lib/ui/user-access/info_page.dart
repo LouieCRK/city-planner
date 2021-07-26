@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:uk_city_planner/models/point_of_interest_model.dart';
+import 'package:uk_city_planner/models/places_details_model.dart';
+import 'package:uk_city_planner/models/places_model.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class InfoPage extends StatefulWidget {
-  final PointOfInterest pointOfInterest;
-
-  InfoPage({required this.pointOfInterest});
+  final Result restaurant;
+  // todo - uncomment lines below when fixing details
+  // final Details details;
+  // InfoPage({required this.restaurant, required this.details});
+  InfoPage({required this.restaurant});
 
   @override
   _InfoPageState createState() => _InfoPageState();
@@ -16,6 +19,7 @@ class _InfoPageState extends State<InfoPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    var restaurantImage = widget.restaurant.photos![0].photoReference;
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -35,11 +39,16 @@ class _InfoPageState extends State<InfoPage> {
                   ],
                 ),
                 child: Hero(
-                  tag: widget.pointOfInterest.imageUrl,
+                  tag:  "info tag",
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(30.0),
                     child: Image(
-                      image: AssetImage(widget.pointOfInterest.imageUrl),
+                      image: true
+                          ? NetworkImage(
+                          'https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=195&photoreference=$restaurantImage&key=AIzaSyDqtrPbqvNbhfEtb273GQb4obuRd4-AUuo')
+                          : AssetImage(
+                          "assets/images/noImageAvailable.png")
+                      as ImageProvider,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -67,7 +76,7 @@ class _InfoPageState extends State<InfoPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      widget.pointOfInterest.name,
+                      widget.restaurant.name.toString(),
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 35.0,
@@ -80,27 +89,35 @@ class _InfoPageState extends State<InfoPage> {
                             )
                           ]),
                     ),
-                    Row(
-                      children: <Widget>[
-                        Icon(
-                          FontAwesomeIcons.locationArrow,
-                          size: 15.0,
-                          color: Color(0xff23adb0),
-                        ),
-                        SizedBox(width: 5.0),
-                        Text(
-                          widget.pointOfInterest.city,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20.0,
-                              shadows: <Shadow>[
-                                Shadow(
-                                  color: CupertinoColors.black,
-                                  blurRadius: 20,
-                                )
-                              ]),
-                        ),
-                      ],
+                    SizedBox(
+                      width: 20,
+
+                      child: Row(
+                        children: <Widget>[
+                          Icon(
+                            FontAwesomeIcons.locationArrow,
+                            size: 15.0,
+                            color: Color(0xff23adb0),
+                          ),
+                          SizedBox(width: 5.0),
+                          SizedBox(
+                            width: 200,
+                            child: Text(
+                              widget.restaurant.vicinity.toString(),
+                              maxLines: 1,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20.0,
+                                  shadows: <Shadow>[
+                                    Shadow(
+                                      color: CupertinoColors.black,
+                                      blurRadius: 20,
+                                    )
+                                  ]),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -125,7 +142,7 @@ class _InfoPageState extends State<InfoPage> {
                 // name
                 width: size.width * 0.9,
                 child: Text(
-                  widget.pointOfInterest.name,
+                  widget.restaurant.name.toString(),
                   style: TextStyle(
                       color: Color(0xff494949),
                       fontSize: 28.0,
@@ -147,7 +164,7 @@ class _InfoPageState extends State<InfoPage> {
                 // address
                 width: size.width * 0.9,
                 child: Text(
-                  widget.pointOfInterest.address,
+                  widget.restaurant.vicinity.toString(),
                   style: TextStyle(
                     color: Color(0xff494949),
                     fontSize: 15.0,
@@ -169,7 +186,7 @@ class _InfoPageState extends State<InfoPage> {
                   flex: 400,
                   fit: FlexFit.loose,
                   child: Text(
-                    widget.pointOfInterest.description,
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus sit amet volutpat consequat. Consectetur a erat nam at lectus urna. Sapien eget mi proin sed libero enim sed faucibus turpis. Dignissim enim sit amet venenatis urna cursus. A condimentum vitae sapien pellentesque habitant morbi tristique senectus et. Vel eros donec ac odio tempor. Mauris cursus mattis molestie a iaculis at erat. Amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et. Quam viverra orci sagittis eu volutpat odio facilisis mauris sit. A erat nam at lectus. Curabitur vitae nunc sed velit. Nibh cras pulvinar mattis nunc se",
                     overflow: TextOverflow.ellipsis,
                     maxLines: 9,
                     style: TextStyle(
@@ -183,38 +200,42 @@ class _InfoPageState extends State<InfoPage> {
               ),
               SizedBox(height: 10),
 
-              Container(
-                // website
-                width: size.width * 0.9,
-                child: Text(
-                  widget.pointOfInterest.website,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  style: TextStyle(
-                    color: Color(0xff23adb0),
-                    fontSize: 15.5,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 0,
-                  ),
-                ),
-              ),
+              // todo - uncomment when details data is accessible
+              // Container(
+              //   // website
+              //   width: size.width * 0.9,
+              //   child: Text(
+              //     widget.details.website,
+              //     overflow: TextOverflow.ellipsis,
+              //     maxLines: 1,
+              //     style: TextStyle(
+              //       color: Color(0xff23adb0),
+              //       fontSize: 15.5,
+              //       fontWeight: FontWeight.w600,
+              //       letterSpacing: 0,
+              //     ),
+              //   ),
+              // ),
+
               SizedBox(
                 height: 6,
               ),
 
-              Container(
-                // phone number
-                width: size.width * 0.9,
-                child: Text(
-                  widget.pointOfInterest.phoneNumber,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 15.5,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 0,
-                  ),
-                ),
-              ),
+              // todo - uncomment when details data is accessible
+              // Container(
+              //   // phone number
+              //   width: size.width * 0.9,
+              //   child: Text(
+              //     widget.pointOfInterest.phoneNumber,
+              //     style: TextStyle(
+              //       color: Colors.black,
+              //       fontSize: 15.5,
+              //       fontWeight: FontWeight.w600,
+              //       letterSpacing: 0,
+              //     ),
+              //   ),
+              // ),
+
               SizedBox(
                 height: 6,
               ),
@@ -259,7 +280,7 @@ class _InfoPageState extends State<InfoPage> {
                               borderRadius: BorderRadius.circular(10.0),
                             ),
                             child: _buildRatingStars(
-                                widget.pointOfInterest.rating.round()),
+                                widget.restaurant.rating!.round()),
                           ),
                         ],
                       ),
@@ -277,7 +298,7 @@ class _InfoPageState extends State<InfoPage> {
                           SizedBox(
                             height: 25,
                             child: Text(
-                              'Opening/Closing',
+                              'Open Now?',
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 16.0,
@@ -295,25 +316,7 @@ class _InfoPageState extends State<InfoPage> {
                             padding: EdgeInsets.only(
                                 left: 10, right: 10, top: 5, bottom: 5),
                             child: Text(
-                              widget.pointOfInterest.openingHours[0],
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w600,
-                                letterSpacing: 0,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(top: 3),
-                            decoration: BoxDecoration(
-                              color: Color(0xff23adb0),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            padding: EdgeInsets.only(
-                                left: 10, right: 10, top: 5, bottom: 5),
-                            child: Text(
-                              widget.pointOfInterest.openingHours[1],
+                              widget.restaurant.openingHours!.openNow.toString().toUpperCase(),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16.0,

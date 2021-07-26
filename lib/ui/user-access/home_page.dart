@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
   final Geolocator geolocator = Geolocator();
   late Position _currentPosition;
   List<Result>? _restaurants;
-  late String _currentAddress;
+
   int _selectedIndex = 0;
   var _widgetSelector; // todo - use variable to call corresponding widget classes
   List<IconData> _icons = [
@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  _getCurrentLocation() {
+  _getCurrentLocation() async{
     Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
         .then((Position position) {
       setState(() async {
@@ -88,6 +88,7 @@ class _HomePageState extends State<HomePage> {
           }
         }
       },
+
       child: Container(
         height: 60.0,
         width: 60.0,

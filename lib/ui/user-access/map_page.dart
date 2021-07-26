@@ -4,7 +4,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uk_city_planner/models/point_of_interest_model.dart';
-import 'package:http/http.dart' as http;
 
 class MapPage extends StatefulWidget {
   final PointOfInterest? pointOfInterest;
@@ -15,7 +14,9 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  Set<Marker> _markers = {};
+  Set<Marker> _markers = {
+
+  };
   late BitmapDescriptor mapMarker;
   Geolocator geolocator = Geolocator();
   late Position _currentPosition;
@@ -23,8 +24,8 @@ class _MapPageState extends State<MapPage> {
 
   // todo - work out why _getCurrentLocation returns an error, on second call it works???
   @override
-  void initState() {
-    _getCurrentLocation();
+  void initState() async {
+    await _getCurrentLocation();
     super.initState();
   }
 
@@ -39,8 +40,7 @@ class _MapPageState extends State<MapPage> {
       print(e);
     });
   }
-
-
+  
   // un comment to use custom marker images
   // @override
   // void initState() {
