@@ -1,12 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:uk_city_planner/models/places_model.dart';
 import 'package:uk_city_planner/models/point_of_interest_model.dart';
 import 'file:///C:/Users/Crook/Documents/GitHub/uk-city-planner/lib/ui/user-access/info_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class RestaurantCarousel extends StatelessWidget {
+class RestaurantCarousel extends StatefulWidget {
+  List<Result>? _restauarants;
+  RestaurantCarousel(this._restauarants);
+
+  @override
+  _RestaurantCarouselState createState() => _RestaurantCarouselState();
+}
+
+class _RestaurantCarouselState extends State<RestaurantCarousel> {
   @override
   Widget build(BuildContext context) {
+    if (widget._restauarants == null) {
+      return Container();
+    }
+
     Size size = MediaQuery.of(context).size;
     return Column(
       children: <Widget>[
@@ -68,7 +81,6 @@ class RestaurantCarousel extends StatelessWidget {
                     right: 5,
                   ),
                   // color: Colors.red,
-
                   child: Stack(
                     alignment: Alignment.center,
                     children: <Widget>[

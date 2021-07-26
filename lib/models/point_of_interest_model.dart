@@ -12,17 +12,17 @@ class PointOfInterest {
   List<double> location;
 
   PointOfInterest({
-    this.imageUrl,
-    this.type,
-    this.name,
-    this.city,
-    this.rating,
-    this.address,
-    this.description,
-    this.website,
-    this.phoneNumber,
-    this.openingHours,
-    this.location,
+    required this.imageUrl,
+    required this.type,
+    required this.name,
+    required this.city,
+    required this.rating,
+    required this.address,
+    required this.description,
+    required this.website,
+    required this.phoneNumber,
+    required this.openingHours,
+    required this.location,
   });
 }
 

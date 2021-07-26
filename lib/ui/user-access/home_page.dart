@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uk_city_planner/services/places_service.dart';
+import 'package:uk_city_planner/models/places_model.dart';
+import 'package:uk_city_planner/services/networking/places_network_service.dart';
 import 'package:uk_city_planner/widgets/vertical/restaurant_carousel.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
@@ -11,9 +12,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   // geolocator for user location
-  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
-  Position _currentPosition;
-  String _currentAddress;
+  final Geolocator geolocator = Geolocator();
+  late Position _currentPosition;
+  List<Result>? _restauarants;
+  late String _currentAddress;
   int _selectedIndex = 0;
   var _widgetSelector; // todo - use variable to call corresponding widget classes
   List<IconData> _icons = [
@@ -30,37 +32,28 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
+  Future _getRestaurants() async {
+    try{
+      final placesNetworkService = PlacesNetworkService();
+      _restauarants = await placesNetworkService.findRestaurants(_currentPosition.latitude.toString(), _currentPosition.longitude.toString());
+      setState(() {
+      });
+    } catch (ex){
+      print("Could not retrieve restaurants $ex");
+    }
+  }
+  
   _getCurrentLocation() {
-    geolocator
+    Geolocator
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
         .then((Position position) {
-      setState(() {
+      setState(() async {
         _currentPosition = position;
+        await _getRestaurants();
       });
-
-      _getAddressFromLatLng();
     }).catchError((e) {
       print(e);
     });
-  }
-
-  _getAddressFromLatLng() async {
-    try {
-      List<Placemark> p = await geolocator.placemarkFromCoordinates(
-          _currentPosition.latitude, _currentPosition.longitude);
-
-      Placemark place = p[0];
-
-      setState(() {
-        if (place.locality == ""){
-          _currentAddress = "${place.postalCode}, ${place.country}";
-        }else{
-          _currentAddress = "${place.locality}, ${place.postalCode}, ${place.country}";
-        }
-      });
-    } catch (e) {
-      print(e);
-    }
   }
 
   Widget _buildIcon(int index) {
@@ -146,7 +139,7 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(height: 20.0),
             // _widgetSelector, // todo - use variable to call corresponding widget classes
-            RestaurantCarousel(),
+            RestaurantCarousel(_restauarants),
             // SizedBox(height: 20.0),
           ],
         ),

@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class InfoPage extends StatefulWidget {
   final PointOfInterest pointOfInterest;
 
-  InfoPage({this.pointOfInterest});
+  InfoPage({required this.pointOfInterest});
 
   @override
   _InfoPageState createState() => _InfoPageState();

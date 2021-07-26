@@ -7,8 +7,8 @@ import 'package:uk_city_planner/models/point_of_interest_model.dart';
 import 'package:http/http.dart' as http;
 
 class MapPage extends StatefulWidget {
-  final PointOfInterest pointOfInterest;
-  MapPage({this.pointOfInterest});
+  final PointOfInterest? pointOfInterest;
+  MapPage({required this.pointOfInterest});
 
   @override
   _MapPageState createState() => _MapPageState();
@@ -16,10 +16,10 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   Set<Marker> _markers = {};
-  BitmapDescriptor mapMarker;
-  Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
-  Position _currentPosition;
-  String _currentAddress;
+  late BitmapDescriptor mapMarker;
+  Geolocator geolocator = Geolocator();
+  late Position _currentPosition;
+  late String _currentAddress;
 
   // todo - work out why _getCurrentLocation returns an error, on second call it works???
   @override
@@ -29,36 +29,17 @@ class _MapPageState extends State<MapPage> {
   }
 
   _getCurrentLocation() {
-    geolocator
+    Geolocator
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
         .then((Position position) {
       setState(() {
         _currentPosition = position;
       });
-      _getAddressFromLatLng();
     }).catchError((e) {
       print(e);
     });
   }
 
-  _getAddressFromLatLng() async {
-    try {
-      List<Placemark> p = await geolocator.placemarkFromCoordinates(
-          _currentPosition.latitude, _currentPosition.longitude);
-
-      Placemark place = p[0];
-
-      setState(() {
-        if (place.locality == ""){
-          _currentAddress = "${place.postalCode}, ${place.country}";
-        }else{
-          _currentAddress = "${place.locality}, ${place.postalCode}, ${place.country}";
-        }
-      });
-    } catch (e) {
-      print(e);
-    }
-  }
 
   // un comment to use custom marker images
   // @override
