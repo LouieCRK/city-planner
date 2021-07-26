@@ -44,7 +44,7 @@ class NavState extends State<NavBar> {
           ],
         ),
         child: BottomNavigationBar(
-          unselectedItemColor: Color(0xffA0E4E1),
+          unselectedItemColor: Color(0xffd6faf7),
           selectedItemColor: Colors.white,
           iconSize: 30,
           showUnselectedLabels: false,

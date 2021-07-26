@@ -65,7 +65,7 @@ class _RestaurantCarouselState extends State<RestaurantCarousel> {
             itemBuilder: (BuildContext context, int index) {
               Result restaurant = widget._restaurants![index];
               PointOfInterest pointOfInterest = pointsOfInterest[1];
-              var placesImage = restaurant.photos![0].photoReference;
+              var restaurantImage = restaurant.photos![0].photoReference;
               return GestureDetector(
                 onTap: () => Navigator.push(
                   context,
@@ -109,12 +109,29 @@ class _RestaurantCarouselState extends State<RestaurantCarousel> {
                                   width: 200,
                                   image: true
                                       ? NetworkImage(
-                                          'https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=195&photoreference=$placesImage&key=AIzaSyDqtrPbqvNbhfEtb273GQb4obuRd4-AUuo')
+                                          'https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=195&photoreference=$restaurantImage&key=AIzaSyDqtrPbqvNbhfEtb273GQb4obuRd4-AUuo')
                                       : AssetImage(
                                               "assets/images/noImageAvailable.png")
                                           as ImageProvider,
                                   fit: BoxFit.cover,
                                   // color: Colors.blue,
+                                ),
+                              ),
+                            ),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(20.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  gradient : LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    colors: [
+                                      const Color(0xCC000000),
+                                      const Color(0x00000000),
+                                      const Color(0x00000000),
+                                      const Color(0xCC000000),
+                                    ],
+                                  )
                                 ),
                               ),
                             ),
@@ -128,19 +145,23 @@ class _RestaurantCarouselState extends State<RestaurantCarousel> {
                                   Padding(
                                     padding: const EdgeInsets.only(
                                         left: 0, right: 29),
-                                    child: Text(
-                                      restaurant.name.toString(),
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 24.0,
-                                          fontWeight: FontWeight.w600,
-                                          letterSpacing: 1.2,
-                                          shadows: <Shadow>[
-                                            Shadow(
-                                              color: CupertinoColors.black,
-                                              blurRadius: 9,
-                                            )
-                                          ]),
+                                    child: SizedBox(
+                                      width: 160,
+                                      child: Text(
+                                        restaurant.name.toString(),
+                                        maxLines: 3,
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 24.0,
+                                            fontWeight: FontWeight.w600,
+                                            letterSpacing: 1.2,
+                                            shadows: <Shadow>[
+                                              Shadow(
+                                                color: CupertinoColors.black,
+                                                blurRadius: 9,
+                                              )
+                                            ]),
+                                      ),
                                     ),
                                   ),
                                   Row(
@@ -153,21 +174,26 @@ class _RestaurantCarouselState extends State<RestaurantCarousel> {
                                       SizedBox(width: 5.0),
                                       Padding(
                                         padding: const EdgeInsets.only(
-                                            right: 8,
-                                            left: 8,
-                                            top: 5,
-                                            bottom: 2),
-                                        child: Text(
-                                          restaurant.vicinity.toString(),
-                                          maxLines: 1,
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              shadows: <Shadow>[
-                                                Shadow(
-                                                  color: CupertinoColors.black,
-                                                  blurRadius: 5,
-                                                )
-                                              ]),
+                                            right: 0,
+                                            left: 0,
+                                            top: 0,
+                                            bottom: 0),
+                                        child: SizedBox(
+                                          width: 150,
+                                          child: Text(
+                                            restaurant.vicinity.toString(),
+                                            textAlign: TextAlign.left,
+                                            overflow: TextOverflow.clip,
+                                            maxLines: 1,
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                shadows: <Shadow>[
+                                                  Shadow(
+                                                    color: CupertinoColors.black,
+                                                    blurRadius: 5,
+                                                  )
+                                                ]),
+                                          ),
                                         ),
                                       ),
                                     ],
