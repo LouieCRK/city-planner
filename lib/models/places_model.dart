@@ -33,52 +33,34 @@ class FetchedData {
 class Result {
   Result({
     required this.businessStatus,
-    required this.geometry,
-    required this.icon,
     required this.name,
     required this.openingHours,
     required this.photos,
     required this.placeId,
-    required this.plusCode,
     required this.priceLevel,
     required this.rating,
-    required this.reference,
-    required this.scope,
-    required this.types,
     required this.userRatingsTotal,
     required this.vicinity,
   });
 
   final String? businessStatus;
-  final Geometry? geometry;
-  final String? icon;
   final String? name;
   final OpeningHours? openingHours;
   final List<Photo>? photos;
   final String? placeId;
-  final PlusCode? plusCode;
   final int? priceLevel;
   final double? rating;
-  final String? reference;
-  final String? scope;
-  final List<String>? types;
   final int? userRatingsTotal;
   final String? vicinity;
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
         businessStatus: json["business_status"],
-        geometry: Geometry.fromJson(json["geometry"]),
-        icon: json["icon"],
         name: json["name"],
         openingHours: OpeningHours.fromJson(json["opening_hours"]),
-        photos: List<Photo>.from(json["photos"].map((x) => Photo.fromJson(x))),
+        photos: (json["photos"] == null)? null : List<Photo>.from(json["photos"].map((x) => Photo.fromJson(x))),
         placeId: json["place_id"],
-        plusCode: PlusCode.fromJson(json["plus_code"]),
         priceLevel: json["price_level"] == null ? null : json["price_level"],
         rating: json["rating"].toDouble(),
-        reference: json["reference"],
-        scope: json["scope"],
-        types: List<String>.from(json["types"].map((x) => x)),
         userRatingsTotal: json["user_ratings_total"],
         vicinity: json["vicinity"],
       );
@@ -136,9 +118,14 @@ class OpeningHours {
 
   final bool? openNow;
 
-  factory OpeningHours.fromJson(Map<String, dynamic> json) => OpeningHours(
-        openNow: json["open_now"],
-      );
+  factory OpeningHours.fromJson(Map<String, dynamic>? json) {
+    if (json == null){
+      return OpeningHours(openNow: null);
+    }
+    return OpeningHours(
+      openNow: json["open_now"],
+    );
+  }
 }
 
 class Photo {
