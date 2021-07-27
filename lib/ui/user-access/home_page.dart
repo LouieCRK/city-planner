@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uk_city_planner/models/places_model.dart';
 import 'package:uk_city_planner/services/networking/places_network_service.dart';
-import 'package:uk_city_planner/widgets/vertical/restaurant_carousel.dart';
+import 'package:uk_city_planner/widgets/vertical/content_carousel.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -14,7 +14,9 @@ class _HomePageState extends State<HomePage> {
   // geolocator for user location
   final Geolocator geolocator = Geolocator();
   late Position _currentPosition;
-  List<Result>? _restaurants;
+  List<Result>? _places;
+  String _placeName = "";
+  final placesNetworkService = PlacesNetworkService();
 
   int _selectedIndex = 0;
   var _widgetSelector; // todo - use variable to call corresponding widget classes
@@ -35,7 +37,7 @@ class _HomePageState extends State<HomePage> {
   Future _getRestaurants() async {
     try {
       final placesNetworkService = PlacesNetworkService();
-      _restaurants = await placesNetworkService.findRestaurants(
+      _places = await placesNetworkService.findRestaurants(
           _currentPosition.latitude.toString(),
           _currentPosition.longitude.toString());
       setState(() {});
@@ -58,7 +60,8 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildIcon(int index) {
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
+        _places = null;
         setState(() {
           _selectedIndex = index;
         });
@@ -66,24 +69,34 @@ class _HomePageState extends State<HomePage> {
         if (_selectedIndex.isFinite) {
           if (_selectedIndex == 0) {
             print('(0) Restaurant selected...');
-            // _widgetSelector = RestaurantCarousel();
+            _widgetSelector = _selectedIndex;
+            _places = await placesNetworkService.findRestaurants(_currentPosition.latitude.toString(), _currentPosition.longitude.toString());
+            setState(() {
+            });
+            // todo - work out how to use this if statement to call different carousels
             return;
           }
           if (_selectedIndex == 1) {
             print('(1) Nightlife selected...');
-            // _widgetSelector = NightlifeCarousel();
+            _widgetSelector = _selectedIndex;
+            _places = await placesNetworkService.findNightlife(_currentPosition.latitude.toString(), _currentPosition.longitude.toString());
+            setState(() {
+            });
             return;
           }
           if (_selectedIndex == 2) {
             print('(2) Entertainment selected...');
+            _widgetSelector = _selectedIndex;
             return;
           }
           if (_selectedIndex == 3) {
             print('(3) Sightseeing selected...');
+            _widgetSelector = _selectedIndex;
             return;
           }
           if (_selectedIndex == 4) {
             print('(4) Shopping selected...');
+            _widgetSelector = _selectedIndex;
             return;
           }
         }
@@ -137,13 +150,19 @@ class _HomePageState extends State<HomePage> {
                   )
                   .toList(),
             ),
+            Container(
+              child: SizedBox(
+                  height: 20.0,
+              ),
+            ),
+              ContentCarousel(_places, _placeName),
+            // todo - call different carousels, dependent on _selectedIndex
             SizedBox(height: 20.0),
-            // _widgetSelector, // todo - use variable to call corresponding widget classes
-            RestaurantCarousel(_restaurants),
-            // SizedBox(height: 20.0),
           ],
         ),
       ),
     );
+
+
   }
 }

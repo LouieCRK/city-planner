@@ -17,7 +17,7 @@ class NavState extends State<NavBar> {
     HomePage(),
     // RecommendedPage(),
     PlannerPage(),
-    MapPage(pointOfInterest: null,),
+    MapPage(),
     SettingsPage(),
   ];
 

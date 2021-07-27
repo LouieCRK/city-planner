@@ -6,8 +6,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uk_city_planner/models/point_of_interest_model.dart';
 
 class MapPage extends StatefulWidget {
-  final PointOfInterest? pointOfInterest;
-  MapPage({required this.pointOfInterest});
 
   @override
   _MapPageState createState() => _MapPageState();
@@ -19,14 +17,12 @@ class _MapPageState extends State<MapPage> {
   };
   late BitmapDescriptor mapMarker;
   Geolocator geolocator = Geolocator();
-  late Position _currentPosition;
-  late String _currentAddress;
+  Position? _currentPosition;
 
   // todo - work out why _getCurrentLocation returns an error, on second call it works???
   @override
   void initState() {
     _getCurrentLocation();
-    setCustomMarker();
     super.initState();
   }
 
@@ -34,8 +30,8 @@ class _MapPageState extends State<MapPage> {
     Geolocator
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
         .then((Position position) {
+      _currentPosition = position;
       setState(() {
-        _currentPosition = position;
       });
     }).catchError((e) {
       print(e);
@@ -51,7 +47,7 @@ class _MapPageState extends State<MapPage> {
       _markers.add(
         Marker(
           markerId: MarkerId('id-1'),
-          position: LatLng(_currentPosition.latitude, _currentPosition.longitude),
+          position: LatLng(_currentPosition!.latitude, _currentPosition!.longitude),
           // icon: mapMarker,
           infoWindow: InfoWindow(
             title: "Title...",
@@ -64,6 +60,9 @@ class _MapPageState extends State<MapPage> {
 
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    if (_currentPosition == null){
+      return Container();
+    }
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -80,7 +79,7 @@ class _MapPageState extends State<MapPage> {
                       markers: _markers,
                       mapType: MapType.normal,
                       initialCameraPosition: CameraPosition(
-                        target: LatLng(_currentPosition.latitude, _currentPosition.longitude),
+                        target: LatLng(_currentPosition!.latitude, _currentPosition!.longitude),
                         zoom: 12.5,
                         tilt: 25,
                       ),

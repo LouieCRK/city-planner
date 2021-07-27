@@ -1,23 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:uk_city_planner/models/places_details_model.dart';
 import 'package:uk_city_planner/models/places_model.dart';
 import 'file:///C:/Users/Crook/Documents/GitHub/uk-city-planner/lib/ui/user-access/info_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:uk_city_planner/services/networking/places_network_service.dart';
 
-class RestaurantCarousel extends StatefulWidget {
-  List<Result>? _restaurants;
-  RestaurantCarousel(this._restaurants);
+class ContentCarousel extends StatefulWidget {
+  List<Result>? _places;
+  String placeName;
+  ContentCarousel(this._places, this.placeName);
 
   @override
-  _RestaurantCarouselState createState() => _RestaurantCarouselState();
+  _ContentCarouselState createState() => _ContentCarouselState();
 }
 
-class _RestaurantCarouselState extends State<RestaurantCarousel> {
+class _ContentCarouselState extends State<ContentCarousel> {
   @override
   Widget build(BuildContext context) {
-    if (widget._restaurants == null) {
+    if (widget._places == null) {
       return Container();
     }
 
@@ -30,7 +29,7 @@ class _RestaurantCarouselState extends State<RestaurantCarousel> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                'Restaurants near you',
+                '${widget.placeName} near you',
                 style: TextStyle(
                   fontSize: 22.0,
                   fontWeight: FontWeight.bold,
@@ -62,9 +61,9 @@ class _RestaurantCarouselState extends State<RestaurantCarousel> {
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, crossAxisSpacing: 0, mainAxisSpacing: 10),
             scrollDirection: Axis.vertical,
-            itemCount: widget._restaurants!.length,
+            itemCount: widget._places!.length,
             itemBuilder: (BuildContext context, int index) {
-              Result restaurant = widget._restaurants![index];
+              Result restaurant = widget._places![index];
               var restaurantImage = restaurant.photos![0].photoReference;
 
               // todo - get details via placeID on every index loop

@@ -192,6 +192,7 @@ class _InfoPageState extends State<InfoPage> {
                 width: size.width * 0.9,
                 child: Text(
                   widget.restaurant.name.toString(),
+                  maxLines: 1,
                   style: TextStyle(
                       color: Color(0xff494949),
                       fontSize: 28.0,
@@ -213,6 +214,7 @@ class _InfoPageState extends State<InfoPage> {
                 width: size.width * 0.9,
                 child: Text(
                   widget.restaurant.vicinity.toString(),
+                  maxLines: 1,
                   style: TextStyle(
                     color: Color(0xff494949),
                     fontSize: 16.0,

@@ -18,9 +18,9 @@ class SettingsPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30.0),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black45,
+                      color: Colors.black12,
                       offset: Offset(0.0, 2.0),
-                      blurRadius: 20.0,
+                      blurRadius: 15.0,
                     ),
                   ],
                 ),
