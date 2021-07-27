@@ -69,90 +69,108 @@ class _InfoPageState extends State<InfoPage> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30.0),
                 ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          gradient : LinearGradient(
-                            begin: Alignment.bottomLeft,
-                            end: Alignment.topRight,
-                            colors: [
-                              const Color(0xAB000000),
-                              const Color(0x00000000),
-                              const Color(0x00000000),
-                              const Color(0xEE000000),
-                            ],
-                          )
-                      ),
-                    ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                      begin: Alignment.bottomLeft,
+                      end: Alignment.topRight,
+                      colors: [
+                        const Color(0xAB000000),
+                        const Color(0x00000000),
+                        const Color(0x00000000),
+                        const Color(0xEE000000),
+                      ],
+                    )),
                   ),
                 ),
+              ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 40.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.arrow_back),
-                      iconSize: 35.0,
-                      color: Color(0xff23adb0),
-                      onPressed: () => Navigator.pop(context),
+                    Stack(
+                      children: <Widget>[
+                        Positioned(
+                          left: 1.5,
+                          top: 5,
+                          child: IconButton(
+                              icon: Icon(Icons.arrow_back),
+                              iconSize: 35.0,
+                              color: Colors.black54,
+                              onPressed: () => Navigator.pop(context)),
+                        ),
+                        IconButton(
+                            icon: Icon(Icons.arrow_back),
+                            iconSize: 35.0,
+                            color: Colors.white,
+                            onPressed: () => Navigator.pop(context)),
+                      ],
                     ),
                   ],
                 ),
               ),
-                Positioned(
-                  left: 20.0,
-                  bottom: 20.0,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(
-                        width: size.width * 0.7,
-                        child: Text(
-                          widget.restaurant.name.toString(),
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 35.0,
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: 1.2,
-                              shadows: <Shadow>[
-                                Shadow(
-                                  color: CupertinoColors.black,
-                                  blurRadius: 20,
-                                )
-                              ]),
-                        ),
+              Positioned(
+                left: 20.0,
+                bottom: 20.0,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(
+                      width: size.width * 0.7,
+                      child: Text(
+                        widget.restaurant.name.toString(),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 35.0,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 1.2,
+                            shadows: <Shadow>[
+                              Shadow(
+                                color: CupertinoColors.black,
+                                blurRadius: 20,
+                              )
+                            ]),
                       ),
-                      Row(
-                        children: <Widget>[
-                          Icon(
-                            FontAwesomeIcons.locationArrow,
-                            size: 15.0,
-                            color: Color(0xff23adb0),
-                          ),
-                          SizedBox(width: 10),
-                          SizedBox(
-                            width: size.width * 0.7,
-                            child: Text(
-                              widget.restaurant.vicinity.toString(),
-                              maxLines: 1,
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20.0,
-                                  shadows: <Shadow>[
-                                    Shadow(
-                                      color: CupertinoColors.black,
-                                      blurRadius: 20,
-                                    )
-                                  ]),
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Stack(
+                          children: <Widget>[
+                            Positioned(
+                              left: 1.5,
+                              top: 2.5,
+                              child: Icon(FontAwesomeIcons.locationArrow,
+                                  color: Colors.black54, size: 15.0),
                             ),
+                            Icon(FontAwesomeIcons.locationArrow,
+                                color: Color(0xff23adb0), size: 15.0),
+                          ],
+                        ),
+                        SizedBox(width: 10),
+                        SizedBox(
+                          width: size.width * 0.7,
+                          child: Text(
+                            widget.restaurant.vicinity.toString(),
+                            maxLines: 1,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,
+                                shadows: <Shadow>[
+                                  Shadow(
+                                    color: CupertinoColors.black,
+                                    blurRadius: 20,
+                                  )
+                                ]),
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
+              ),
               Positioned(
                 right: 20.0,
                 bottom: 20.0,
@@ -218,7 +236,7 @@ class _InfoPageState extends State<InfoPage> {
                   child: Text(
                     "Review:",
                     style: TextStyle(
-                      color: Color(0xff23adb0),
+                      color: Color(0xff474747),
                       fontSize: 18.0,
                       fontWeight: FontWeight.w600,
                       letterSpacing: 0.15,
@@ -240,7 +258,7 @@ class _InfoPageState extends State<InfoPage> {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 8,
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Color(0xff494949),
                       fontSize: 18.0,
                       fontWeight: FontWeight.w600,
                       letterSpacing: 0.1,

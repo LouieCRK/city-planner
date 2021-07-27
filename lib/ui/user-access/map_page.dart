@@ -52,9 +52,9 @@ class _MapPageState extends State<MapPage> {
         Marker(
           markerId: MarkerId('id-1'),
           position: LatLng(_currentPosition.latitude, _currentPosition.longitude),
-          icon: mapMarker,
+          // icon: mapMarker,
           infoWindow: InfoWindow(
-            title: "title...",
+            title: "Title...",
             snippet: 'Snippet...',
           ),
         ),
@@ -69,20 +69,23 @@ class _MapPageState extends State<MapPage> {
         children: <Widget>[
           Stack(
             children: <Widget>[
-              Container(
-                  // container for google map
-                  height: size.height * 0.926,
-                  width: size.width,
-                  child: GoogleMap(
-                    onMapCreated: _OnMapCreated,
-                    markers: _markers,
-                    mapType: MapType.normal,
-                    initialCameraPosition: CameraPosition(
-                      target: LatLng(_currentPosition.latitude, _currentPosition.longitude),
-                      zoom: 12.5,
-                      tilt: 25,
-                    ),
-                  )),
+              ClipRect(
+                clipBehavior: Clip.hardEdge,
+                child: Container(
+                    // container for google map
+                    height: size.height * 0.926,
+                    width: size.width,
+                    child: GoogleMap(
+                      onMapCreated: _OnMapCreated,
+                      markers: _markers,
+                      mapType: MapType.normal,
+                      initialCameraPosition: CameraPosition(
+                        target: LatLng(_currentPosition.latitude, _currentPosition.longitude),
+                        zoom: 12.5,
+                        tilt: 25,
+                      ),
+                    )),
+              ),
               Container(
                 height: size.height * 0.235,
                 width: size.width,
