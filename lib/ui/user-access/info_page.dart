@@ -67,28 +67,28 @@ class _InfoPageState extends State<InfoPage> {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(15),
-                child: Positioned(
+                Positioned(
                   left: 20.0,
                   bottom: 20.0,
-                  width: 250,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(
-                        widget.restaurant.name.toString(),
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 35.0,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 1.2,
-                            shadows: <Shadow>[
-                              Shadow(
-                                color: CupertinoColors.black,
-                                blurRadius: 20,
-                              )
-                            ]),
+                      SizedBox(
+                        width: size.width * 0.7,
+                        child: Text(
+                          widget.restaurant.name.toString(),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 35.0,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 1.2,
+                              shadows: <Shadow>[
+                                Shadow(
+                                  color: CupertinoColors.black,
+                                  blurRadius: 20,
+                                )
+                              ]),
+                        ),
                       ),
                       Row(
                         children: <Widget>[
@@ -97,8 +97,9 @@ class _InfoPageState extends State<InfoPage> {
                             size: 15.0,
                             color: Color(0xff23adb0),
                           ),
-                          // SizedBox(width: 5.0),
+                          SizedBox(width: 10),
                           SizedBox(
+                            width: size.width * 0.7,
                             child: Text(
                               widget.restaurant.vicinity.toString(),
                               maxLines: 1,
@@ -118,7 +119,6 @@ class _InfoPageState extends State<InfoPage> {
                     ],
                   ),
                 ),
-              ),
               Positioned(
                 right: 20.0,
                 bottom: 20.0,
