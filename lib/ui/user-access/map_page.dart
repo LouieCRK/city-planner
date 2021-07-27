@@ -26,6 +26,7 @@ class _MapPageState extends State<MapPage> {
   @override
   void initState() {
     _getCurrentLocation();
+    setCustomMarker();
     super.initState();
   }
 
@@ -41,16 +42,9 @@ class _MapPageState extends State<MapPage> {
     });
   }
 
-  // un comment to use custom marker images
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   setCustomMarker();
-  // }
-  //
-  // void setCustomMarker() async{
-  //   mapMarker = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'assets/images/map-markers/entertainment-marker.png',);
-  // }
+  void setCustomMarker() async{
+    mapMarker = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'assets/images/map-markers/entertainment-marker.png',);
+  }
 
   void _OnMapCreated(GoogleMapController controller) {
     setState(() {
@@ -58,7 +52,7 @@ class _MapPageState extends State<MapPage> {
         Marker(
           markerId: MarkerId('id-1'),
           position: LatLng(_currentPosition.latitude, _currentPosition.longitude),
-           // icon: mapMarker, // un comment to use custom marker images
+          icon: mapMarker,
           infoWindow: InfoWindow(
             title: "title...",
             snippet: 'Snippet...',
@@ -85,7 +79,8 @@ class _MapPageState extends State<MapPage> {
                     mapType: MapType.normal,
                     initialCameraPosition: CameraPosition(
                       target: LatLng(_currentPosition.latitude, _currentPosition.longitude),
-                      zoom: 16,
+                      zoom: 12.5,
+                      tilt: 25,
                     ),
                   )),
               Container(
@@ -96,8 +91,8 @@ class _MapPageState extends State<MapPage> {
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black45,
-                      offset: Offset(2.0, 2.0),
-                      blurRadius: 5.0,
+                      offset: Offset(0.0, 2.0),
+                      blurRadius: 6.0,
                     ),
                   ],
                 ),
@@ -167,36 +162,42 @@ class _MapPageState extends State<MapPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Container( // restaurant button
+                      height: 40,
+                      width: 40,
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black26,
-                            offset: Offset(0.0, 5.0),
-                            blurRadius: 8.0,
+                            color: Colors.black54,
+                            offset: Offset(0.0, 2.0),
+                            blurRadius: 6.0,
                           ),
                         ],
                         borderRadius: BorderRadius.all(Radius.circular(50)),
                         color: Color(0xfffc9003),
                       ),
                       child: IconButton(
+                        iconSize: 20,
                         icon: Icon(FontAwesomeIcons.utensils),
                         color: Colors.white,
                         onPressed: () => print('Restaurant filter pressed'),
                       ),
                     ),
                     Container( // nightlife button
+                      height: 40,
+                      width: 40,
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black26,
-                            offset: Offset(0.0, 5.0),
-                            blurRadius: 8.0,
+                            color: Colors.black54,
+                            offset: Offset(0.0, 2.0),
+                            blurRadius: 6.0,
                           ),
                         ],
                         borderRadius: BorderRadius.all(Radius.circular(50)),
                         color: Color(0xff8c03fc),
                       ),
                       child: IconButton(
+                        iconSize: 20,
                         icon: Icon(FontAwesomeIcons.cocktail),
                         color: Colors.white,
                         onPressed: () => print('Nightlife filter pressed'),
@@ -208,9 +209,9 @@ class _MapPageState extends State<MapPage> {
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black26,
-                            offset: Offset(0.0, 5.0),
-                            blurRadius: 8.0,
+                            color: Colors.black54,
+                            offset: Offset(0.0, 2.0),
+                            blurRadius: 6.0,
                           ),
                         ],
                         borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -218,7 +219,7 @@ class _MapPageState extends State<MapPage> {
                       ),
                       child: IconButton(
                         iconSize: 20,
-                        alignment: Alignment.center,
+                        alignment: Alignment.centerLeft,
                         icon: Icon(FontAwesomeIcons.dice),
                         color: Colors.white,
                         onPressed: () =>
@@ -227,37 +228,43 @@ class _MapPageState extends State<MapPage> {
                       ),
                     ),
                     Container( // sightseeing button
+                      height: 40,
+                      width: 40,
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black26,
-                            offset: Offset(0.0, 5.0),
-                            blurRadius: 8.0,
+                            color: Colors.black54,
+                            offset: Offset(0.0, 2.0),
+                            blurRadius: 6.0,
                           ),
                         ],
                         borderRadius: BorderRadius.all(Radius.circular(50)),
                         color: Color(0xff61c230),
                       ),
                       child: IconButton(
-                        alignment: Alignment.center,
+                        iconSize: 20,
+                        alignment: Alignment.centerLeft,
                         icon: Icon(FontAwesomeIcons.eye),
                         color: Colors.white,
                         onPressed: () => print('Sightseeing filter pressed'),
                       ),
                     ),
                     Container( // shopping button
+                      height: 40,
+                      width: 40,
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black26,
-                            offset: Offset(0.0, 5.0),
-                            blurRadius: 8.0,
+                            color: Colors.black54,
+                            offset: Offset(0.0, 2.0),
+                            blurRadius: 6.0,
                           ),
                         ],
                         borderRadius: BorderRadius.all(Radius.circular(50)),
                         color: Color(0xff5bd5e3),
                       ),
                       child: IconButton(
+                        iconSize: 20,
                         icon: Icon(FontAwesomeIcons.shoppingBag),
                         color: Colors.white,
                         onPressed: () => print('Shopping filter pressed'),

@@ -15,6 +15,16 @@ class InfoPage extends StatefulWidget {
   _InfoPageState createState() => _InfoPageState();
 }
 
+// function made to create rating stars out of ascii
+Text _buildRatingStars(int rating) {
+  String stars = '';
+  for (int i = 0; i < rating; i++) {
+    stars += '★';
+  }
+  stars.trim();
+  return Text(stars, style: TextStyle(fontSize: 20, color: Colors.white));
+}
+
 class _InfoPageState extends State<InfoPage> {
   @override
   Widget build(BuildContext context) {
@@ -53,6 +63,30 @@ class _InfoPageState extends State<InfoPage> {
                   ),
                 ),
               ),
+              Container(
+                height: size.height * 0.35,
+                width: size.width,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          gradient : LinearGradient(
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topRight,
+                            colors: [
+                              const Color(0xFF3F3F3F),
+                              const Color(0x00000000),
+                              const Color(0x00000000),
+                              const Color(0xFF000000),
+                            ],
+                          )
+                      ),
+                    ),
+                  ),
+                ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 40.0),
                 child: Row(
@@ -60,8 +94,8 @@ class _InfoPageState extends State<InfoPage> {
                   children: <Widget>[
                     IconButton(
                       icon: Icon(Icons.arrow_back),
-                      iconSize: 30.0,
-                      color: Colors.white,
+                      iconSize: 35.0,
+                      color: Color(0xff23adb0),
                       onPressed: () => Navigator.pop(context),
                     ),
                   ],
@@ -173,7 +207,26 @@ class _InfoPageState extends State<InfoPage> {
               SizedBox(
                 height: 10,
               ),
-
+              Container(
+                // description
+                alignment: Alignment.centerLeft,
+                width: size.width * 0.8,
+                margin: EdgeInsets.only(right: 50, left: 10),
+                child: Flexible(
+                  flex: 400,
+                  fit: FlexFit.loose,
+                  child: Text(
+                    "Review:",
+                    style: TextStyle(
+                      color: Color(0xff23adb0),
+                      fontSize: 19.0,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 0.15,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 10),
               Container(
                 // description
                 alignment: Alignment.centerLeft,
@@ -185,9 +238,9 @@ class _InfoPageState extends State<InfoPage> {
                   child: Text(
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus sit amet volutpat consequat. Consectetur a erat nam at lectus urna. Sapien eget mi proin sed libero enim sed faucibus turpis. Dignissim enim sit amet venenatis urna cursus. A condimentum vitae sapien pellentesque habitant morbi tristique senectus et. Vel eros donec ac odio tempor. Mauris cursus mattis molestie a iaculis at erat. Amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et. Quam viverra orci sagittis eu volutpat odio facilisis mauris sit. A erat nam at lectus. Curabitur vitae nunc sed velit. Nibh cras pulvinar mattis nunc se",
                     overflow: TextOverflow.ellipsis,
-                    maxLines: 9,
+                    maxLines: 8,
                     style: TextStyle(
-                      color: Color(0xff494949),
+                      color: Colors.black,
                       fontSize: 18.0,
                       fontWeight: FontWeight.w600,
                       letterSpacing: 0.1,
@@ -195,7 +248,6 @@ class _InfoPageState extends State<InfoPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 10),
 
               // todo - uncomment when details data is accessible
               // Container(
@@ -305,7 +357,6 @@ class _InfoPageState extends State<InfoPage> {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.only(bottom: 3),
                             decoration: BoxDecoration(
                               color: Color(0xff23adb0),
                               borderRadius: BorderRadius.circular(10.0),
@@ -404,15 +455,5 @@ class _InfoPageState extends State<InfoPage> {
         ],
       ),
     );
-  }
-
-  // function made to create rating stars out of ascii
-  Text _buildRatingStars(int rating) {
-    String stars = '';
-    for (int i = 0; i < rating; i++) {
-      stars += '★';
-    }
-    stars.trim();
-    return Text(stars, style: TextStyle(fontSize: 20, color: Colors.white));
   }
 }
