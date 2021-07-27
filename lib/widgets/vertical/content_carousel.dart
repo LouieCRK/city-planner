@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ContentCarousel extends StatefulWidget {
   List<Result>? _places;
-  String placeName;
+  String placeName = "";
   ContentCarousel(this._places, this.placeName);
 
   @override
@@ -17,7 +17,14 @@ class _ContentCarouselState extends State<ContentCarousel> {
   @override
   Widget build(BuildContext context) {
     if (widget._places == null) {
-      return Container();
+      return Padding(
+        padding: const EdgeInsets.only(top: 190),
+        child: Center(
+          child: CircularProgressIndicator(
+            color: Color(0xff5bd5e3),
+          ),
+        ),
+      );
     }
 
     Size size = MediaQuery.of(context).size;

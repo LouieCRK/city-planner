@@ -13,13 +13,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   // geolocator for user location
   final Geolocator geolocator = Geolocator();
+  final placesNetworkService = PlacesNetworkService();
   late Position _currentPosition;
   List<Result>? _places;
-  String _placeName = "";
-  final placesNetworkService = PlacesNetworkService();
-
+  String _placeName = 'Restaurants';
   int _selectedIndex = 0;
-  var _widgetSelector; // todo - use variable to call corresponding widget classes
+
   List<IconData> _icons = [
     FontAwesomeIcons.utensils, // restaurant
     FontAwesomeIcons.cocktail, // nightlife
@@ -34,7 +33,19 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  Future _getRestaurants() async {
+  _getCurrentLocation() async{
+    Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+        .then((Position position) {
+      setState(() async {
+        _currentPosition = position;
+        await _getPlaces();
+      });
+    }).catchError((e) {
+      print(e);
+    });
+  }
+
+  Future _getPlaces() async {
     try {
       final placesNetworkService = PlacesNetworkService();
       _places = await placesNetworkService.findRestaurants(
@@ -46,18 +57,6 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  _getCurrentLocation() async{
-    Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
-        .then((Position position) {
-      setState(() async {
-        _currentPosition = position;
-        await _getRestaurants();
-      });
-    }).catchError((e) {
-      print(e);
-    });
-  }
-
   Widget _buildIcon(int index) {
     return GestureDetector(
       onTap: () async {
@@ -65,38 +64,32 @@ class _HomePageState extends State<HomePage> {
         setState(() {
           _selectedIndex = index;
         });
-        // todo - use better logic..
+
         if (_selectedIndex.isFinite) {
           if (_selectedIndex == 0) {
-            print('(0) Restaurant selected...');
-            _widgetSelector = _selectedIndex;
+            _placeName = "Restaurants";
             _places = await placesNetworkService.findRestaurants(_currentPosition.latitude.toString(), _currentPosition.longitude.toString());
             setState(() {
             });
-            // todo - work out how to use this if statement to call different carousels
             return;
           }
           if (_selectedIndex == 1) {
-            print('(1) Nightlife selected...');
-            _widgetSelector = _selectedIndex;
+            _placeName = "Nightlife";
             _places = await placesNetworkService.findNightlife(_currentPosition.latitude.toString(), _currentPosition.longitude.toString());
             setState(() {
             });
             return;
           }
           if (_selectedIndex == 2) {
-            print('(2) Entertainment selected...');
-            _widgetSelector = _selectedIndex;
+            _placeName = "Entertainment";
             return;
           }
           if (_selectedIndex == 3) {
-            print('(3) Sightseeing selected...');
-            _widgetSelector = _selectedIndex;
+            _placeName = "Sightseeing";
             return;
           }
           if (_selectedIndex == 4) {
-            print('(4) Shopping selected...');
-            _widgetSelector = _selectedIndex;
+            _placeName = "Shopping";
             return;
           }
         }
