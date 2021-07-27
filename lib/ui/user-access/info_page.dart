@@ -74,13 +74,13 @@ class _InfoPageState extends State<InfoPage> {
                     child: Container(
                       decoration: BoxDecoration(
                           gradient : LinearGradient(
-                            begin: Alignment.bottomCenter,
+                            begin: Alignment.bottomLeft,
                             end: Alignment.topRight,
                             colors: [
-                              const Color(0xFF3F3F3F),
+                              const Color(0xAB000000),
                               const Color(0x00000000),
                               const Color(0x00000000),
-                              const Color(0xFF000000),
+                              const Color(0xEE000000),
                             ],
                           )
                       ),
@@ -219,7 +219,7 @@ class _InfoPageState extends State<InfoPage> {
                     "Review:",
                     style: TextStyle(
                       color: Color(0xff23adb0),
-                      fontSize: 19.0,
+                      fontSize: 18.0,
                       fontWeight: FontWeight.w600,
                       letterSpacing: 0.15,
                     ),
