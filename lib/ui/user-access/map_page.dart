@@ -24,8 +24,8 @@ class _MapPageState extends State<MapPage> {
 
   // todo - work out why _getCurrentLocation returns an error, on second call it works???
   @override
-  void initState() async {
-    await _getCurrentLocation();
+  void initState() {
+    _getCurrentLocation();
     super.initState();
   }
 
@@ -40,7 +40,7 @@ class _MapPageState extends State<MapPage> {
       print(e);
     });
   }
-  
+
   // un comment to use custom marker images
   // @override
   // void initState() {
@@ -60,7 +60,7 @@ class _MapPageState extends State<MapPage> {
           position: LatLng(_currentPosition.latitude, _currentPosition.longitude),
            // icon: mapMarker, // un comment to use custom marker images
           infoWindow: InfoWindow(
-            title: _currentAddress,
+            title: "title...",
             snippet: 'Snippet...',
           ),
         ),
@@ -89,7 +89,7 @@ class _MapPageState extends State<MapPage> {
                     ),
                   )),
               Container(
-                height: size.height * 0.3,
+                height: size.height * 0.235,
                 width: size.width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30.0),
@@ -203,6 +203,8 @@ class _MapPageState extends State<MapPage> {
                       ),
                     ),
                     Container( // entertainment button
+                      height: 40,
+                      width: 40,
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
@@ -211,10 +213,11 @@ class _MapPageState extends State<MapPage> {
                             blurRadius: 8.0,
                           ),
                         ],
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
                         color: Color(0xffe35bcf),
                       ),
                       child: IconButton(
+                        iconSize: 20,
                         alignment: Alignment.center,
                         icon: Icon(FontAwesomeIcons.dice),
                         color: Colors.white,

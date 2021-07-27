@@ -39,16 +39,15 @@ class _InfoPageState extends State<InfoPage> {
                   ],
                 ),
                 child: Hero(
-                  tag:  "info tag",
+                  tag: "info tag",
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(30.0),
                     child: Image(
                       image: true
                           ? NetworkImage(
-                          'https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=195&photoreference=$restaurantImage&key=AIzaSyDqtrPbqvNbhfEtb273GQb4obuRd4-AUuo')
-                          : AssetImage(
-                          "assets/images/noImageAvailable.png")
-                      as ImageProvider,
+                              'https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&maxheight=1000&photoreference=$restaurantImage&key=AIzaSyDqtrPbqvNbhfEtb273GQb4obuRd4-AUuo')
+                          : AssetImage("assets/images/noImageAvailable.png")
+                              as ImageProvider,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -68,40 +67,38 @@ class _InfoPageState extends State<InfoPage> {
                   ],
                 ),
               ),
-              Positioned(
-                left: 20.0,
-                bottom: 20.0,
-                width: 250,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      widget.restaurant.name.toString(),
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 35.0,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 1.2,
-                          shadows: <Shadow>[
-                            Shadow(
-                              color: CupertinoColors.black,
-                              blurRadius: 20,
-                            )
-                          ]),
-                    ),
-                    SizedBox(
-                      width: 20,
-
-                      child: Row(
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: Positioned(
+                  left: 20.0,
+                  bottom: 20.0,
+                  width: 250,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        widget.restaurant.name.toString(),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 35.0,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 1.2,
+                            shadows: <Shadow>[
+                              Shadow(
+                                color: CupertinoColors.black,
+                                blurRadius: 20,
+                              )
+                            ]),
+                      ),
+                      Row(
                         children: <Widget>[
                           Icon(
                             FontAwesomeIcons.locationArrow,
                             size: 15.0,
                             color: Color(0xff23adb0),
                           ),
-                          SizedBox(width: 5.0),
+                          // SizedBox(width: 5.0),
                           SizedBox(
-                            width: 200,
                             child: Text(
                               widget.restaurant.vicinity.toString(),
                               maxLines: 1,
@@ -118,8 +115,8 @@ class _InfoPageState extends State<InfoPage> {
                           ),
                         ],
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               Positioned(
@@ -316,7 +313,9 @@ class _InfoPageState extends State<InfoPage> {
                             padding: EdgeInsets.only(
                                 left: 10, right: 10, top: 5, bottom: 5),
                             child: Text(
-                              widget.restaurant.openingHours!.openNow.toString().toUpperCase(),
+                              widget.restaurant.openingHours!.openNow
+                                  .toString()
+                                  .toUpperCase(),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16.0,
