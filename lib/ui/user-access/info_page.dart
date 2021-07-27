@@ -39,12 +39,12 @@ class _InfoPageState extends State<InfoPage> {
                 height: size.height * 0.35,
                 width: size.width,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30.0),
+                  borderRadius: BorderRadius.circular(45.0),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black45,
+                      color: Colors.black12,
                       offset: Offset(0.0, 2.0),
-                      blurRadius: 20.0,
+                      blurRadius: 15.0,
                     ),
                   ],
                 ),
@@ -74,7 +74,7 @@ class _InfoPageState extends State<InfoPage> {
                   child: Container(
                     decoration: BoxDecoration(
                         gradient: LinearGradient(
-                      begin: Alignment.bottomLeft,
+                      begin: Alignment.bottomCenter,
                       end: Alignment.topRight,
                       colors: [
                         const Color(0xAB000000),
@@ -95,11 +95,11 @@ class _InfoPageState extends State<InfoPage> {
                       children: <Widget>[
                         Positioned(
                           left: 1.5,
-                          top: 5,
+                          top: 3,
                           child: IconButton(
                               icon: Icon(Icons.arrow_back),
                               iconSize: 35.0,
-                              color: Colors.black54,
+                              color: Colors.black45,
                               onPressed: () => Navigator.pop(context)),
                         ),
                         IconButton(
@@ -143,7 +143,7 @@ class _InfoPageState extends State<InfoPage> {
                               left: 1.5,
                               top: 2.5,
                               child: Icon(FontAwesomeIcons.locationArrow,
-                                  color: Colors.black54, size: 15.0),
+                                  color: Colors.black45, size: 15.0),
                             ),
                             Icon(FontAwesomeIcons.locationArrow,
                                 color: Color(0xff23adb0), size: 15.0),
@@ -182,9 +182,9 @@ class _InfoPageState extends State<InfoPage> {
               ),
             ],
           ),
-          SizedBox(
-            height: 20,
-          ),
+
+          SizedBox(height: 20),
+
           Column(
             children: [
               Container(
@@ -205,9 +205,8 @@ class _InfoPageState extends State<InfoPage> {
                       ]),
                 ),
               ),
-              SizedBox(
-                height: 4,
-              ),
+
+              SizedBox(height: 2),
 
               Container(
                 // address
@@ -216,15 +215,15 @@ class _InfoPageState extends State<InfoPage> {
                   widget.restaurant.vicinity.toString(),
                   style: TextStyle(
                     color: Color(0xff494949),
-                    fontSize: 15.0,
+                    fontSize: 16.0,
                     fontWeight: FontWeight.w600,
                     letterSpacing: 0.2,
                   ),
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
+
+              SizedBox(height: 8),
+
               Container(
                 // description
                 alignment: Alignment.centerLeft,
@@ -236,7 +235,7 @@ class _InfoPageState extends State<InfoPage> {
                   child: Text(
                     "Review:",
                     style: TextStyle(
-                      color: Color(0xff474747),
+                      color: Color(0xff23adb0),
                       fontSize: 18.0,
                       fontWeight: FontWeight.w600,
                       letterSpacing: 0.15,
@@ -244,7 +243,9 @@ class _InfoPageState extends State<InfoPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 10),
+
+              SizedBox(height: 2),
+
               Container(
                 // description
                 alignment: Alignment.centerLeft,
@@ -254,7 +255,7 @@ class _InfoPageState extends State<InfoPage> {
                   flex: 400,
                   fit: FlexFit.loose,
                   child: Text(
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus sit amet volutpat consequat. Consectetur a erat nam at lectus urna. Sapien eget mi proin sed libero enim sed faucibus turpis. Dignissim enim sit amet venenatis urna cursus. A condimentum vitae sapien pellentesque habitant morbi tristique senectus et. Vel eros donec ac odio tempor. Mauris cursus mattis molestie a iaculis at erat. Amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et. Quam viverra orci sagittis eu volutpat odio facilisis mauris sit. A erat nam at lectus. Curabitur vitae nunc sed velit. Nibh cras pulvinar mattis nunc se",
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus sit amet volutpat consequat. Consectetur a erat nam at lectus urna. Sapien eget mi proin sed libero enim sed faucibus turpis. Dignissim enim sit amet venenatis urna cursus. A condimentum vitae sapien pellentesque habitant morbi tristique senectus et. Vel eros donec ac odio tempor. Mauris cursus mattis molestie a iaculis at erat. Amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et. Quam viverra orci sagittis eu volutpat odio facilisis mauris sit. A erat nam at lectus. Curabitur vitae nunc sed velit. Nibh cras pulvinar mattis nunc sesssssssssssssssssssssassssssssssssssssssssssssssssssssssssssssssssssssssssssssssss",
                     overflow: TextOverflow.ellipsis,
                     maxLines: 8,
                     style: TextStyle(
@@ -267,46 +268,47 @@ class _InfoPageState extends State<InfoPage> {
                 ),
               ),
 
-              // todo - uncomment when details data is accessible
-              // Container(
-              //   // website
-              //   width: size.width * 0.9,
-              //   child: Text(
-              //     widget.details.website,
-              //     overflow: TextOverflow.ellipsis,
-              //     maxLines: 1,
-              //     style: TextStyle(
-              //       color: Color(0xff23adb0),
-              //       fontSize: 15.5,
-              //       fontWeight: FontWeight.w600,
-              //       letterSpacing: 0,
-              //     ),
-              //   ),
-              // ),
+              SizedBox(height: 15),
+
+              Container(
+                // website
+                width: size.width * 0.9,
+                child: Text(
+                  // todo - uncomment when details data is accessible
+                  // widget.details.website,
+                  "www.placeswebsitehere.com - dummy data",
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                  style: TextStyle(
+                    color: Color(0xff23adb0),
+                    fontSize: 15.5,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 0,
+                  ),
+                ),
+              ),
 
               SizedBox(
                 height: 6,
               ),
 
-              // todo - uncomment when details data is accessible
-              // Container(
-              //   // phone number
-              //   width: size.width * 0.9,
-              //   child: Text(
-              //     widget.pointOfInterest.phoneNumber,
-              //     style: TextStyle(
-              //       color: Colors.black,
-              //       fontSize: 15.5,
-              //       fontWeight: FontWeight.w600,
-              //       letterSpacing: 0,
-              //     ),
-              //   ),
-              // ),
-
-              SizedBox(
-                height: 6,
+              Container(
+                // phone number
+                width: size.width * 0.9,
+                child: Text(
+                  // todo - uncomment when details data is accessible
+                  // widget.details.formatted_phone_number,
+                  "01225 483945 - dummy data",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15.5,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 0,
+                  ),
+                ),
               ),
-              SizedBox(height: 25),
+
+              SizedBox(height: 40),
               Row(
                 // bottom containers
                 verticalDirection: VerticalDirection.down,
@@ -443,10 +445,11 @@ class _InfoPageState extends State<InfoPage> {
                   ),
                 ],
               ),
-              // todo - (not priority) - add distance from poi in kms
+
               SizedBox(
-                height: 15,
+                height: 20,
               ),
+
               // ignore: deprecated_member_use
               FlatButton(
                   minWidth: size.width * 0.9,
