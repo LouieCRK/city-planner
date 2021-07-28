@@ -154,7 +154,6 @@ class _MapPageState extends State<MapPage> {
     }
   }
 
-  @override
   void _onMapCreated(GoogleMapController controller) async {
     await _getMarkers('user');
     await _getMarkers("restaurant");

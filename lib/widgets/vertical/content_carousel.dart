@@ -72,7 +72,13 @@ class _ContentCarouselState extends State<ContentCarousel> {
             itemCount: widget._places!.length,
             itemBuilder: (BuildContext context, int index) {
               Result place = widget._places![index];
-              var restaurantImage = place.photos![0].photoReference;
+              var placePhotos = place.photos!.length;
+              var placeImageRef;
+              if (placePhotos.toString() == "0"){
+                placeImageRef = 'CnRvAAAAwMpdHeWlXl-lH0vp7lez4znKPIWSWvgvZFISdKx45AwJVP1Qp37YOrH7sqHMJ8C-vBDC546decipPHchJhHZL94RcTUfPa1jWzo-rSHaTlbNtjh-N68RkcToUCuY9v2HNpo5mziqkir37WU8FJEqVBIQ4k938TI3e7bf8xq-uwDZcxoUbO_ZJzPxremiQurAYzCTwRhE_V0';
+              } else {
+                placeImageRef = place.photos![0].photoReference;
+              }
 
               // todo - get details via placeID on every index loop
               // Future _getDetails() async {
@@ -133,7 +139,7 @@ class _ContentCarouselState extends State<ContentCarousel> {
                                   width: 200,
                                   image: true
                                       ? NetworkImage(
-                                          'https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=195&photoreference=$restaurantImage&key=AIzaSyDqtrPbqvNbhfEtb273GQb4obuRd4-AUuo')
+                                          'https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=195&photoreference=$placeImageRef&key=AIzaSyDqtrPbqvNbhfEtb273GQb4obuRd4-AUuo')
                                       : AssetImage(
                                               "assets/images/noImageAvailable.png")
                                           as ImageProvider,
