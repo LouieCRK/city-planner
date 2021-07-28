@@ -33,7 +33,8 @@ class PlannerPage extends StatelessWidget {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(30.0),
                           child: Image(
-                            image: AssetImage('assets/images/planner-banner.png'),
+                            image:
+                                AssetImage('assets/images/planner-banner.png'),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -106,8 +107,9 @@ class PlannerPage extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 25),
-
-                SizedBox(height: size.height * 0.175, width: size.width * 0.9,
+                SizedBox(
+                  height: size.height * 0.175,
+                  width: size.width * 0.9,
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20.0),
@@ -123,7 +125,9 @@ class PlannerPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 20),
-                SizedBox(height: size.height * 0.175, width: size.width * 0.9,
+                SizedBox(
+                  height: size.height * 0.175,
+                  width: size.width * 0.9,
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20.0),
@@ -139,7 +143,9 @@ class PlannerPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 20),
-                SizedBox(height: size.height * 0.175, width: size.width * 0.9,
+                SizedBox(
+                  height: size.height * 0.175,
+                  width: size.width * 0.9,
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20.0),
@@ -155,7 +161,9 @@ class PlannerPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 20),
-                SizedBox(height: size.height * 0.175, width: size.width * 0.9,
+                SizedBox(
+                  height: size.height * 0.175,
+                  width: size.width * 0.9,
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20.0),
@@ -171,7 +179,9 @@ class PlannerPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 20),
-                SizedBox(height: size.height * 0.175, width: size.width * 0.9,
+                SizedBox(
+                  height: size.height * 0.175,
+                  width: size.width * 0.9,
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20.0),

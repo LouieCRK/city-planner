@@ -57,7 +57,9 @@ class Result {
         businessStatus: json["business_status"],
         name: json["name"],
         openingHours: OpeningHours.fromJson(json["opening_hours"]),
-        photos: (json["photos"] == null)? null : List<Photo>.from(json["photos"].map((x) => Photo.fromJson(x))),
+        photos: (json["photos"] == null)
+            ? null
+            : List<Photo>.from(json["photos"].map((x) => Photo.fromJson(x))),
         placeId: json["place_id"],
         priceLevel: json["price_level"] == null ? null : json["price_level"],
         rating: json["rating"].toDouble(),
@@ -119,7 +121,7 @@ class OpeningHours {
   final bool? openNow;
 
   factory OpeningHours.fromJson(Map<String, dynamic>? json) {
-    if (json == null){
+    if (json == null) {
       return OpeningHours(openNow: null);
     }
     return OpeningHours(

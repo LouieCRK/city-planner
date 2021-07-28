@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class ContentCarousel extends StatefulWidget {
   List<Result>? _places;
   String placeName = "";
+
   ContentCarousel(this._places, this.placeName);
 
   @override
@@ -145,17 +146,16 @@ class _ContentCarouselState extends State<ContentCarousel> {
                               borderRadius: BorderRadius.circular(20.0),
                               child: Container(
                                 decoration: BoxDecoration(
-                                  gradient : LinearGradient(
-                                    begin: Alignment.bottomCenter,
-                                    end: Alignment.topRight,
-                                    colors: [
-                                      const Color(0xFF3F3F3F),
-                                      const Color(0x00000000),
-                                      const Color(0x00000000),
-                                      const Color(0xFF000000),
-                                    ],
-                                  )
-                                ),
+                                    gradient: LinearGradient(
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topRight,
+                                  colors: [
+                                    const Color(0xFF3F3F3F),
+                                    const Color(0x00000000),
+                                    const Color(0x00000000),
+                                    const Color(0xFF000000),
+                                  ],
+                                )),
                               ),
                             ),
                             Positioned(
@@ -212,7 +212,8 @@ class _ContentCarouselState extends State<ContentCarousel> {
                                                 color: Colors.white,
                                                 shadows: <Shadow>[
                                                   Shadow(
-                                                    color: CupertinoColors.black,
+                                                    color:
+                                                        CupertinoColors.black,
                                                     blurRadius: 5,
                                                   )
                                                 ]),

@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  _getCurrentLocation() async{
+  _getCurrentLocation() async {
     Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
         .then((Position position) {
       setState(() async {
@@ -68,42 +68,46 @@ class _HomePageState extends State<HomePage> {
         if (_selectedIndex.isFinite) {
           if (_selectedIndex == 0) {
             _placeName = "Restaurants";
-            _places = await placesNetworkService.findRestaurants(_currentPosition.latitude.toString(), _currentPosition.longitude.toString());
-            setState(() {
-            });
+            _places = await placesNetworkService.findRestaurants(
+                _currentPosition.latitude.toString(),
+                _currentPosition.longitude.toString());
+            setState(() {});
             return;
           }
           if (_selectedIndex == 1) {
             _placeName = "Nightlife";
-            _places = await placesNetworkService.findNightlife(_currentPosition.latitude.toString(), _currentPosition.longitude.toString());
-            setState(() {
-            });
+            _places = await placesNetworkService.findNightlife(
+                _currentPosition.latitude.toString(),
+                _currentPosition.longitude.toString());
+            setState(() {});
             return;
           }
           if (_selectedIndex == 2) {
             _placeName = "Entertainment";
-            _places = await placesNetworkService.findEntertainment(_currentPosition.latitude.toString(), _currentPosition.longitude.toString());
-            setState(() {
-            });
+            _places = await placesNetworkService.findEntertainment(
+                _currentPosition.latitude.toString(),
+                _currentPosition.longitude.toString());
+            setState(() {});
             return;
           }
           if (_selectedIndex == 3) {
             _placeName = "Sightseeing";
-            _places = await placesNetworkService.findSightseeing(_currentPosition.latitude.toString(), _currentPosition.longitude.toString());
-            setState(() {
-            });
+            _places = await placesNetworkService.findSightseeing(
+                _currentPosition.latitude.toString(),
+                _currentPosition.longitude.toString());
+            setState(() {});
             return;
           }
           if (_selectedIndex == 4) {
             _placeName = "Shopping";
-            _places = await placesNetworkService.findShopping(_currentPosition.latitude.toString(), _currentPosition.longitude.toString());
-            setState(() {
-            });
+            _places = await placesNetworkService.findShopping(
+                _currentPosition.latitude.toString(),
+                _currentPosition.longitude.toString());
+            setState(() {});
             return;
           }
         }
       },
-
       child: Container(
         height: 60.0,
         width: 60.0,
@@ -154,17 +158,15 @@ class _HomePageState extends State<HomePage> {
             ),
             Container(
               child: SizedBox(
-                  height: 20.0,
+                height: 20.0,
               ),
             ),
-              ContentCarousel(_places, _placeName),
+            ContentCarousel(_places, _placeName),
             // todo - call different carousels, dependent on _selectedIndex
             SizedBox(height: 20.0),
           ],
         ),
       ),
     );
-
-
   }
 }

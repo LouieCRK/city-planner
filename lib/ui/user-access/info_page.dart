@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class InfoPage extends StatefulWidget {
   final Result restaurant;
+
   // todo - uncomment lines below when fixing details
   // final Details details;
   // InfoPage({required this.restaurant, required this.details});
@@ -182,9 +183,7 @@ class _InfoPageState extends State<InfoPage> {
               ),
             ],
           ),
-
           SizedBox(height: 20),
-
           Column(
             children: [
               Container(
