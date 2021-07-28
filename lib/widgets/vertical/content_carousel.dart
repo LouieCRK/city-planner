@@ -71,8 +71,8 @@ class _ContentCarouselState extends State<ContentCarousel> {
             scrollDirection: Axis.vertical,
             itemCount: widget._places!.length,
             itemBuilder: (BuildContext context, int index) {
-              Result restaurant = widget._places![index];
-              var restaurantImage = restaurant.photos![0].photoReference;
+              Result place = widget._places![index];
+              var restaurantImage = place.photos![0].photoReference;
 
               // todo - get details via placeID on every index loop
               // Future _getDetails() async {
@@ -93,7 +93,7 @@ class _ContentCarouselState extends State<ContentCarousel> {
                   context,
                   MaterialPageRoute(
                     builder: (_) => InfoPage(
-                      restaurant: restaurant,
+                      place: place,
                       // todo - allow access to details data within info_page.dart
                       // details: details,
                     ),
@@ -171,7 +171,7 @@ class _ContentCarouselState extends State<ContentCarousel> {
                                     child: SizedBox(
                                       width: 160,
                                       child: Text(
-                                        restaurant.name.toString(),
+                                        place.name.toString(),
                                         maxLines: 3,
                                         style: TextStyle(
                                             color: Colors.white,
@@ -204,7 +204,7 @@ class _ContentCarouselState extends State<ContentCarousel> {
                                         child: SizedBox(
                                           width: 150,
                                           child: Text(
-                                            restaurant.vicinity.toString(),
+                                            place.vicinity.toString(),
                                             textAlign: TextAlign.left,
                                             overflow: TextOverflow.clip,
                                             maxLines: 1,

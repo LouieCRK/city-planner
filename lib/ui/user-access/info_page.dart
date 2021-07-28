@@ -5,12 +5,12 @@ import 'package:uk_city_planner/models/places_model.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class InfoPage extends StatefulWidget {
-  final Result restaurant;
+  final Result place;
 
   // todo - uncomment lines below when fixing details
   // final Details details;
   // InfoPage({required this.restaurant, required this.details});
-  InfoPage({required this.restaurant});
+  InfoPage({required this.place});
 
   @override
   _InfoPageState createState() => _InfoPageState();
@@ -30,7 +30,7 @@ class _InfoPageState extends State<InfoPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var restaurantImage = widget.restaurant.photos![0].photoReference;
+    var restaurantImage = widget.place.photos![0].photoReference;
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -122,7 +122,7 @@ class _InfoPageState extends State<InfoPage> {
                     SizedBox(
                       width: size.width * 0.7,
                       child: Text(
-                        widget.restaurant.name.toString(),
+                        widget.place.name.toString(),
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 35.0,
@@ -154,7 +154,7 @@ class _InfoPageState extends State<InfoPage> {
                         SizedBox(
                           width: size.width * 0.7,
                           child: Text(
-                            widget.restaurant.vicinity.toString(),
+                            widget.place.vicinity.toString(),
                             maxLines: 1,
                             style: TextStyle(
                                 color: Colors.white,
@@ -190,7 +190,7 @@ class _InfoPageState extends State<InfoPage> {
                 // name
                 width: size.width * 0.9,
                 child: Text(
-                  widget.restaurant.name.toString(),
+                  widget.place.name.toString(),
                   maxLines: 1,
                   style: TextStyle(
                       color: Color(0xff494949),
@@ -212,7 +212,7 @@ class _InfoPageState extends State<InfoPage> {
                 // address
                 width: size.width * 0.9,
                 child: Text(
-                  widget.restaurant.vicinity.toString(),
+                  widget.place.vicinity.toString(),
                   maxLines: 1,
                   style: TextStyle(
                     color: Color(0xff494949),
@@ -350,7 +350,7 @@ class _InfoPageState extends State<InfoPage> {
                               borderRadius: BorderRadius.circular(10.0),
                             ),
                             child: _buildRatingStars(
-                                widget.restaurant.rating!.round()),
+                                widget.place.rating!.round()),
                           ),
                         ],
                       ),
@@ -385,7 +385,7 @@ class _InfoPageState extends State<InfoPage> {
                             padding: EdgeInsets.only(
                                 left: 10, right: 10, top: 5, bottom: 5),
                             child: Text(
-                              widget.restaurant.openingHours!.openNow
+                              widget.place.openingHours!.openNow
                                   .toString()
                                   .toUpperCase(),
                               style: TextStyle(

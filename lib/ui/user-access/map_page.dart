@@ -6,6 +6,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uk_city_planner/models/places_model.dart';
 import 'package:uk_city_planner/services/networking/places_network_service.dart';
 
+import 'info_page.dart';
+
 class MapPage extends StatefulWidget {
   @override
   _MapPageState createState() => _MapPageState();
@@ -14,14 +16,15 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   final Geolocator geolocator = Geolocator();
   final placesNetworkService = PlacesNetworkService();
-  late Position _currentPosition;
-  late BitmapDescriptor mapMarker;
+  late BitmapDescriptor customMarker;
+  Position ?_currentPosition;
   List<Result>? _places;
-  Set<Marker> _markers = Set();
+  Set<Marker>? _markers = Set();
 
   @override
   void initState() {
     _getCurrentLocation();
+    // customMarker = await BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(48,48)), 'assets/images/map-markers/restaurant-marker.png');
     super.initState();
   }
 
@@ -39,41 +42,65 @@ class _MapPageState extends State<MapPage> {
 
   Future _getPlaces() async {
     try {
-      final placesNetworkService = PlacesNetworkService();
       _places = await placesNetworkService.findRestaurants(
-          _currentPosition.latitude.toString(),
-          _currentPosition.longitude.toString());
+          _currentPosition!.latitude.toString(),
+          _currentPosition!.longitude.toString());
       setState(() {});
     } catch (ex) {
       print("Could not retrieve places $ex");
     }
   }
 
-  // todo - work out how to use custom markers for each type of place
-  // void setCustomMarker() async{
-  //   mapMarker = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'assets/images/map-markers/entertainment-marker.png',);
-  // }
+  Future _getMarkers() async {
+    _places = await placesNetworkService.findRestaurants(_currentPosition!.latitude.toString(), _currentPosition!.longitude.toString());
+    int i = 0;
+    while (i < _places!.length){
+      Result? place = _places![i];
+      _markers!.add(
+          Marker(
+            markerId: MarkerId('id $i'),
+            position:
+            LatLng(_places![i].geometry!.location!.lat!.toDouble(), _places![i].geometry!.location!.lng!.toDouble()),
+            // icon: customMarker,
+            infoWindow: InfoWindow(
+              title: _places![i].name,
+              snippet: _places![i].vicinity,
+              // on marker tap - navigate to information page
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => InfoPage(
+                    place: place,
+                  ),
+                ),
+              ),
+            ),
+          ));
+      i ++;
+    }
+  }
 
-  void _OnMapCreated(GoogleMapController controller) {
+  @override
+  void _onMapCreated(GoogleMapController controller) async {
+    await _getMarkers();
     setState(() {
-      _markers.add(
-        Marker(
-          markerId: MarkerId('id-1'),
-          position:
-              LatLng(_currentPosition.latitude, _currentPosition.longitude),
-          // icon: mapMarker,
-          infoWindow: InfoWindow(
-            title: "Title...",
-            snippet: 'Snippet...',
-          ),
-        ),
-      );
     });
   }
+
 
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     if (_currentPosition == null) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 80),
+        child: Center(
+          child: CircularProgressIndicator(
+            color: Color(0xff5bd5e3),
+          ),
+        ),
+      );
+    }
+    if (_markers == null) {
       return Padding(
         padding: const EdgeInsets.only(top: 80),
         child: Center(
@@ -96,12 +123,12 @@ class _MapPageState extends State<MapPage> {
                     height: size.height * 0.926,
                     width: size.width,
                     child: GoogleMap(
-                      onMapCreated: _OnMapCreated,
-                      markers: _markers,
+                      onMapCreated: _onMapCreated,
+                      markers: _markers!,
                       mapType: MapType.terrain,
                       initialCameraPosition: CameraPosition(
-                        target: LatLng(_currentPosition.latitude,
-                            _currentPosition.longitude),
+                        target: LatLng(_currentPosition!.latitude,
+                            _currentPosition!.longitude),
                         zoom: 14.5,
                         tilt: 40,
                       ),
