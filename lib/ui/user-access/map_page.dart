@@ -24,7 +24,6 @@ class _MapPageState extends State<MapPage> {
   @override
   void initState() {
     _getCurrentLocation();
-    // customMarker = await BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(48,48)), 'assets/images/map-markers/restaurant-marker.png');
     super.initState();
   }
 
@@ -51,31 +50,49 @@ class _MapPageState extends State<MapPage> {
     }
   }
 
-  Future _getMarkers() async {
-    _places = await placesNetworkService.findRestaurants(
-        _currentPosition!.latitude.toString(),
-        _currentPosition!.longitude.toString());
-    // todo - get customMarker to work
-    // customMarker = await BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(48,48)), 'assets/images/map-markers/restaurant-marker.png');
+  Future _getMarkers(String placeType) async {
+    // switch case to check placeType
+    switch (placeType) {
+      case 'restaurant':
+        _places = await placesNetworkService.findRestaurants(_currentPosition!.latitude.toString(), _currentPosition!.longitude.toString());
+        await BitmapDescriptor.fromAssetImage(
+            ImageConfiguration(size: Size(48, 48)), 'assets/images/map-markers/restaurant-marker.png')
+            .then((onValue) {
+          customMarker = onValue;
+        });
+        break;
+      case 'nightlife':
+        _places = await placesNetworkService.findNightlife(_currentPosition!.latitude.toString(), _currentPosition!.longitude.toString());
+        break;
+      case 'entertainment':
+        _places = await placesNetworkService.findEntertainment(_currentPosition!.latitude.toString(), _currentPosition!.longitude.toString());
+        break;
+      case 'sightseeing':
+        _places = await placesNetworkService.findSightseeing(_currentPosition!.latitude.toString(), _currentPosition!.longitude.toString());
+        break;
+      case 'shopping':
+        _places = await placesNetworkService.findShopping(_currentPosition!.latitude.toString(), _currentPosition!.longitude.toString());
+        break;
+    }
+
     int i = 0;
     while (i < _places!.length) {
-      Result? place = _places![i];
+      Result? places = _places![i];
       _markers!.add(Marker(
         // todo - get customMarker to work
-        // icon: customMarker,
-        markerId: MarkerId('id $i'),
+        icon: customMarker,
+        markerId: MarkerId('$placeType, $i'),
         position: LatLng(_places![i].geometry!.location!.lat!.toDouble(),
             _places![i].geometry!.location!.lng!.toDouble()),
-        // icon: customMarker,
         infoWindow: InfoWindow(
-          title: _places![i].name,
-          snippet: _places![i].vicinity,
+          title: _places?[i].name,
+          snippet: _places?[i].vicinity,
           // on marker tap - navigate to information page
           onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
               builder: (_) => InfoPage(
-                place: place,
+                place: places,
               ),
             ),
           ),
@@ -85,9 +102,12 @@ class _MapPageState extends State<MapPage> {
     }
   }
 
-  @override
   void _onMapCreated(GoogleMapController controller) async {
-    await _getMarkers();
+    await _getMarkers("restaurant");
+    // await _getMarkers("nightlife");
+    // await _getMarkers("entertainment");
+    // await _getMarkers("sightseeing");
+    // await _getMarkers("shopping");
     setState(() {});
   }
 
@@ -132,7 +152,7 @@ class _MapPageState extends State<MapPage> {
                       initialCameraPosition: CameraPosition(
                         target: LatLng(_currentPosition!.latitude,
                             _currentPosition!.longitude),
-                        zoom: 14.5,
+                        zoom: 12,
                         tilt: 40,
                       ),
                     )),
@@ -151,7 +171,7 @@ class _MapPageState extends State<MapPage> {
                   ],
                 ),
                 child: Hero(
-                  tag: 'planner-banner',
+                  tag: 'assets/images/map-banner.png',
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(30.0),
                     child: Image(
