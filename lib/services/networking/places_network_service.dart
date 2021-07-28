@@ -26,15 +26,72 @@ class PlacesNetworkService {
       String longitude) async {
     String url =
         'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
-        'location=$latitude,$longitude&radius=$radius&type=restaurant%20point_of_interest&keyword=nightclub%20bar%20drinks%20music&key=$key&rankby=prominence';
+        'location=$latitude,$longitude'
+        '&radius=15000'
+        '&type=point_of_interest'
+        '&keyword=club|night_club|bar|drinks|music''&key=$key&rankby=prominence';
     final response = await get(
       Uri.parse(url),
     );
 
     FetchedData? responseList = fetchedDataFromJson(response.body);
-    final restaurantResults = responseList!.results!;
+    final nightlifeResults = responseList!.results!;
 
-    return restaurantResults;
+    return nightlifeResults;
+  }
+
+  Future<List<Result>> findEntertainment(String latitude,
+      String longitude) async {
+    String url =
+        'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
+        'location=$latitude,$longitude'
+        '&radius=15000'
+        '&type=tourist_attraction'
+        '&keyword=leisure|fun|cinema|zoo|movie_theater''&key=$key&rankby=prominence';
+    final response = await get(
+      Uri.parse(url),
+    );
+
+    FetchedData? responseList = fetchedDataFromJson(response.body);
+    final entertainmentResults = responseList!.results!;
+
+    return entertainmentResults;
+  }
+
+  Future<List<Result>> findSightseeing(String latitude,
+      String longitude) async {
+    String url =
+        'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
+        'location=$latitude,$longitude'
+        '&radius=20000'
+        '&type=tourist_attraction'
+        '&keyword=nature|art_gallery|outdoors|museum|history|tour''&key=$key&rankby=prominence';
+    final response = await get(
+      Uri.parse(url),
+    );
+
+    FetchedData? responseList = fetchedDataFromJson(response.body);
+    final sightseeingResults = responseList!.results!;
+
+    return sightseeingResults;
+  }
+
+  Future<List<Result>> findShopping(String latitude,
+      String longitude) async {
+    String url =
+        'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
+        'location=$latitude,$longitude'
+        '&radius=$radius'
+        '&type=point_of_interest'
+        '&keyword=shopping_mall|store|clothes|fashion|department_store''&key=$key&rankby=prominence';
+    final response = await get(
+      Uri.parse(url),
+    );
+
+    FetchedData? responseList = fetchedDataFromJson(response.body);
+    final shoppingResults = responseList!.results!;
+
+    return shoppingResults;
   }
 
   // todo - fix details fetch

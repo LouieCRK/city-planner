@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
           _currentPosition.longitude.toString());
       setState(() {});
     } catch (ex) {
-      print("Could not retrieve restaurants $ex");
+      print("Could not retrieve places $ex");
     }
   }
 
@@ -82,14 +82,23 @@ class _HomePageState extends State<HomePage> {
           }
           if (_selectedIndex == 2) {
             _placeName = "Entertainment";
+            _places = await placesNetworkService.findEntertainment(_currentPosition.latitude.toString(), _currentPosition.longitude.toString());
+            setState(() {
+            });
             return;
           }
           if (_selectedIndex == 3) {
             _placeName = "Sightseeing";
+            _places = await placesNetworkService.findSightseeing(_currentPosition.latitude.toString(), _currentPosition.longitude.toString());
+            setState(() {
+            });
             return;
           }
           if (_selectedIndex == 4) {
             _placeName = "Shopping";
+            _places = await placesNetworkService.findShopping(_currentPosition.latitude.toString(), _currentPosition.longitude.toString());
+            setState(() {
+            });
             return;
           }
         }
