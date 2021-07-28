@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uk_city_planner/models/places_details_model.dart';
 import 'package:uk_city_planner/models/places_model.dart';
 import 'package:uk_city_planner/services/networking/places_network_service.dart';
-import 'package:uk_city_planner/widgets/vertical/content_carousel.dart';
+import 'package:uk_city_planner/widgets/content_carousel.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 
