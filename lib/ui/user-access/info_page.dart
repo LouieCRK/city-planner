@@ -349,8 +349,8 @@ class _InfoPageState extends State<InfoPage> {
                               color: Color(0xff23adb0),
                               borderRadius: BorderRadius.circular(10.0),
                             ),
-                            child: _buildRatingStars(
-                                widget.place.rating!.round()),
+                            child:
+                                _buildRatingStars(widget.place.rating!.round()),
                           ),
                         ],
                       ),

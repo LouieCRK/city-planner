@@ -17,7 +17,7 @@ class _MapPageState extends State<MapPage> {
   final Geolocator geolocator = Geolocator();
   final placesNetworkService = PlacesNetworkService();
   late BitmapDescriptor customMarker;
-  Position ?_currentPosition;
+  Position? _currentPosition;
   List<Result>? _places;
   Set<Marker>? _markers = Set();
 
@@ -52,41 +52,44 @@ class _MapPageState extends State<MapPage> {
   }
 
   Future _getMarkers() async {
-    _places = await placesNetworkService.findRestaurants(_currentPosition!.latitude.toString(), _currentPosition!.longitude.toString());
+    _places = await placesNetworkService.findRestaurants(
+        _currentPosition!.latitude.toString(),
+        _currentPosition!.longitude.toString());
+    // todo - get customMarker to work
+    // customMarker = await BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(48,48)), 'assets/images/map-markers/restaurant-marker.png');
     int i = 0;
-    while (i < _places!.length){
+    while (i < _places!.length) {
       Result? place = _places![i];
-      _markers!.add(
-          Marker(
-            markerId: MarkerId('id $i'),
-            position:
-            LatLng(_places![i].geometry!.location!.lat!.toDouble(), _places![i].geometry!.location!.lng!.toDouble()),
-            // icon: customMarker,
-            infoWindow: InfoWindow(
-              title: _places![i].name,
-              snippet: _places![i].vicinity,
-              // on marker tap - navigate to information page
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => InfoPage(
-                    place: place,
-                  ),
-                ),
+      _markers!.add(Marker(
+        // todo - get customMarker to work
+        // icon: customMarker,
+        markerId: MarkerId('id $i'),
+        position: LatLng(_places![i].geometry!.location!.lat!.toDouble(),
+            _places![i].geometry!.location!.lng!.toDouble()),
+        // icon: customMarker,
+        infoWindow: InfoWindow(
+          title: _places![i].name,
+          snippet: _places![i].vicinity,
+          // on marker tap - navigate to information page
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => InfoPage(
+                place: place,
               ),
             ),
-          ));
-      i ++;
+          ),
+        ),
+      ));
+      i++;
     }
   }
 
   @override
   void _onMapCreated(GoogleMapController controller) async {
     await _getMarkers();
-    setState(() {
-    });
+    setState(() {});
   }
-
 
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
