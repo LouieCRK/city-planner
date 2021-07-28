@@ -205,8 +205,8 @@ class _MapPageState extends State<MapPage> {
                       initialCameraPosition: CameraPosition(
                         target: LatLng(_currentPosition!.latitude,
                             _currentPosition!.longitude),
-                        zoom: 15.5,
-                        tilt: 20,
+                        zoom: 12.5,
+                        tilt: 60,
                       ),
                     )),
               ),
