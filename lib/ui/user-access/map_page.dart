@@ -54,34 +54,86 @@ class _MapPageState extends State<MapPage> {
     // switch case to check placeType
     switch (placeType) {
       case 'restaurant':
-        _places = await placesNetworkService.findRestaurants(_currentPosition!.latitude.toString(), _currentPosition!.longitude.toString());
+        _places = await placesNetworkService.findRestaurants(
+            _currentPosition!.latitude.toString(),
+            _currentPosition!.longitude.toString());
         await BitmapDescriptor.fromAssetImage(
-            ImageConfiguration(size: Size(48, 48)), 'assets/images/map-markers/restaurant-marker.png')
+                ImageConfiguration(size: Size(128, 128)),
+                'assets/images/map-markers/restaurant-marker.png')
             .then((onValue) {
           customMarker = onValue;
         });
         break;
       case 'nightlife':
-        _places = await placesNetworkService.findNightlife(_currentPosition!.latitude.toString(), _currentPosition!.longitude.toString());
+        _places = await placesNetworkService.findNightlife(
+            _currentPosition!.latitude.toString(),
+            _currentPosition!.longitude.toString());
+        await BitmapDescriptor.fromAssetImage(
+                ImageConfiguration(size: Size(128, 128)),
+                'assets/images/map-markers/nightlife-marker.png')
+            .then((onValue) {
+          customMarker = onValue;
+        });
         break;
       case 'entertainment':
-        _places = await placesNetworkService.findEntertainment(_currentPosition!.latitude.toString(), _currentPosition!.longitude.toString());
+        _places = await placesNetworkService.findEntertainment(
+            _currentPosition!.latitude.toString(),
+            _currentPosition!.longitude.toString());
+        await BitmapDescriptor.fromAssetImage(
+                ImageConfiguration(size: Size(128, 128)),
+                'assets/images/map-markers/entertainment-marker.png')
+            .then((onValue) {
+          customMarker = onValue;
+        });
         break;
       case 'sightseeing':
-        _places = await placesNetworkService.findSightseeing(_currentPosition!.latitude.toString(), _currentPosition!.longitude.toString());
+        _places = await placesNetworkService.findSightseeing(
+            _currentPosition!.latitude.toString(),
+            _currentPosition!.longitude.toString());
+        await BitmapDescriptor.fromAssetImage(
+                ImageConfiguration(size: Size(128, 128)),
+                'assets/images/map-markers/sightseeing-marker.png')
+            .then((onValue) {
+          customMarker = onValue;
+        });
         break;
       case 'shopping':
-        _places = await placesNetworkService.findShopping(_currentPosition!.latitude.toString(), _currentPosition!.longitude.toString());
+        _places = await placesNetworkService.findShopping(
+            _currentPosition!.latitude.toString(),
+            _currentPosition!.longitude.toString());
+        await BitmapDescriptor.fromAssetImage(
+                ImageConfiguration(size: Size(128, 128)),
+                'assets/images/map-markers/shopping-marker.png')
+            .then((onValue) {
+          customMarker = onValue;
+        });
         break;
+      case 'user':
+        await BitmapDescriptor.fromAssetImage(
+                ImageConfiguration(size: Size(128, 128)),
+                'assets/images/map-markers/user-marker.png')
+            .then((onValue) {
+          customMarker = onValue;
+        });
+        _markers!.add(Marker(
+          icon: customMarker,
+          markerId: MarkerId('user location'),
+          position:
+              LatLng(_currentPosition!.latitude, _currentPosition!.longitude),
+          infoWindow: InfoWindow(
+              title: "You are here!", snippet: "This is your current location"),
+        ));
     }
 
     int i = 0;
     while (i < _places!.length) {
+      if (placeType == 'user') {break;} // avoid looping over _places
       Result? places = _places![i];
       _markers!.add(Marker(
         // todo - get customMarker to work
         icon: customMarker,
-        markerId: MarkerId('$placeType, $i'),
+        markerId: MarkerId(
+            '$placeType, $i'), // assign unique marker id to each marker
         position: LatLng(_places![i].geometry!.location!.lat!.toDouble(),
             _places![i].geometry!.location!.lng!.toDouble()),
         infoWindow: InfoWindow(
@@ -102,12 +154,14 @@ class _MapPageState extends State<MapPage> {
     }
   }
 
+  @override
   void _onMapCreated(GoogleMapController controller) async {
+    await _getMarkers('user');
     await _getMarkers("restaurant");
-    // await _getMarkers("nightlife");
-    // await _getMarkers("entertainment");
-    // await _getMarkers("sightseeing");
-    // await _getMarkers("shopping");
+    await _getMarkers("nightlife");
+    await _getMarkers("entertainment");
+    await _getMarkers("sightseeing");
+    await _getMarkers("shopping");
     setState(() {});
   }
 
@@ -152,8 +206,8 @@ class _MapPageState extends State<MapPage> {
                       initialCameraPosition: CameraPosition(
                         target: LatLng(_currentPosition!.latitude,
                             _currentPosition!.longitude),
-                        zoom: 12,
-                        tilt: 40,
+                        zoom: 15.5,
+                        tilt: 20,
                       ),
                     )),
               ),
