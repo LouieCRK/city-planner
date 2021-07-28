@@ -121,7 +121,7 @@ class _MapPageState extends State<MapPage> {
           position:
               LatLng(_currentPosition!.latitude, _currentPosition!.longitude),
           infoWindow: InfoWindow(
-              title: "You are here!", snippet: "This is your current location"),
+              title: "You are here!"),
         ));
     }
 
@@ -205,13 +205,13 @@ class _MapPageState extends State<MapPage> {
                       initialCameraPosition: CameraPosition(
                         target: LatLng(_currentPosition!.latitude,
                             _currentPosition!.longitude),
-                        zoom: 12.5,
+                        zoom: 13.5,
                         tilt: 60,
                       ),
                     )),
               ),
               Container(
-                height: size.height * 0.235,
+                height: size.height * 0.24,
                 width: size.width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30.0),
@@ -234,6 +234,23 @@ class _MapPageState extends State<MapPage> {
                   ),
                 ),
               ),
+              Container(
+                height: size.height * 0.24,
+                width: size.width,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30.0),
+                    gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topRight,
+                      colors: [
+                        const Color(0x75000000),
+                        const Color(0x00000000),
+                        const Color(0x00000000),
+                        const Color(0x32000000),
+                      ],
+                    )
+                ),
+                ),
               Positioned(
                 left: 15.0,
                 bottom: 20.0,
@@ -242,20 +259,53 @@ class _MapPageState extends State<MapPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      'Hello User,',
-                      // widget.pointOfInterest.name,
-                      style: TextStyle(
-                          color: Color(0xff23adb0),
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 1.2,
-                          shadows: <Shadow>[
-                            Shadow(
-                              color: CupertinoColors.black,
-                              blurRadius: 10,
-                            )
-                          ]),
+                    Row(
+                      children: [
+                        Text(
+                          'Hello ',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 22.0,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 1.2,
+                              shadows: <Shadow>[
+                                Shadow(
+                                  color: CupertinoColors.black,
+                                  blurRadius: 15,
+                                )
+                              ]),
+                        ),
+                        Text(
+                          'User',
+                          // widget.pointOfInterest.name,
+                          style: TextStyle(
+                              color: Color(0xff5bd5e3),
+                              fontSize: 22.0,
+                              fontWeight: FontWeight.w900,
+                              letterSpacing: 1.2,
+                              shadows: <Shadow>[
+                                Shadow(
+                                  color: CupertinoColors.black,
+                                  blurRadius: 10,
+                                )
+                              ]),
+                        ),
+                        Text(
+                          ',',
+                          // widget.pointOfInterest.name,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 22.0,
+                              fontWeight: FontWeight.w900,
+                              letterSpacing: 1.2,
+                              shadows: <Shadow>[
+                                Shadow(
+                                  color: CupertinoColors.black,
+                                  blurRadius: 10,
+                                )
+                              ]),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: 3,
@@ -280,7 +330,7 @@ class _MapPageState extends State<MapPage> {
                 ),
               ),
               Container(
-                margin: const EdgeInsets.only(left: 13, top: 300),
+                margin: const EdgeInsets.only(left: 5, top: 300),
                 height: size.height * 0.4,
                 width: 50,
                 // color: Colors.red,

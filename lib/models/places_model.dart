@@ -60,7 +60,7 @@ class Result {
         geometry: Geometry.fromJson(json["geometry"]),
         name: json["name"],
         openingHours: OpeningHours.fromJson(json["opening_hours"]),
-        photos: json["photos"] != null ? new List<Photo>.from(json["photos"].map((x) => Photo.fromJson(x))) : <Photo>[],
+        photos: List<Photo>.from(json["photos"].map((x) => Photo.fromJson(x))),
         placeId: json["place_id"],
         priceLevel: json["price_level"] == null ? null : json["price_level"],
         rating: json["rating"].toDouble(),

@@ -1,14 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:uk_city_planner/models/places_details_model.dart';
 import 'package:uk_city_planner/models/places_model.dart';
 import 'file:///C:/Users/Crook/Documents/GitHub/uk-city-planner/lib/ui/user-access/info_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:uk_city_planner/services/networking/places_network_service.dart';
 
 class ContentCarousel extends StatefulWidget {
   List<Result>? _places;
+  List<DetailsResult>? _details;
   String placeName = "";
 
-  ContentCarousel(this._places, this.placeName);
+  ContentCarousel(this._places, this.placeName, this._details);
 
   @override
   _ContentCarouselState createState() => _ContentCarouselState();
@@ -72,27 +75,15 @@ class _ContentCarouselState extends State<ContentCarousel> {
             itemCount: widget._places!.length,
             itemBuilder: (BuildContext context, int index) {
               Result place = widget._places![index];
+              DetailsResult details = widget._details![index];
               var placePhotos = place.photos!.length;
               var placeImageRef;
+
               if (placePhotos.toString() == "0"){
-                placeImageRef = 'CnRvAAAAwMpdHeWlXl-lH0vp7lez4znKPIWSWvgvZFISdKx45AwJVP1Qp37YOrH7sqHMJ8C-vBDC546decipPHchJhHZL94RcTUfPa1jWzo-rSHaTlbNtjh-N68RkcToUCuY9v2HNpo5mziqkir37WU8FJEqVBIQ4k938TI3e7bf8xq-uwDZcxoUbO_ZJzPxremiQurAYzCTwRhE_V0';
+                placeImageRef = details.photos![0].photoReference;
               } else {
                 placeImageRef = place.photos![0].photoReference;
               }
-
-              // todo - get details via placeID on every index loop
-              // Future _getDetails() async {
-              //   try {
-              //     final placesNetworkService = PlacesNetworkService();
-              //     Details details = (await placesNetworkService.findDetailsByID(
-              //         restaurant.placeId.toString()));
-              //     return details;
-              //   } catch (ex) {
-              //     print("Could not retrieve details $ex");
-              //   }
-              // }
-              //
-              // Details details = _getDetails() as Details;
 
               return GestureDetector(
                 onTap: () => Navigator.push(
@@ -161,7 +152,8 @@ class _ContentCarouselState extends State<ContentCarousel> {
                                     const Color(0x00000000),
                                     const Color(0xFF000000),
                                   ],
-                                )),
+                                )
+                                ),
                               ),
                             ),
                             Positioned(

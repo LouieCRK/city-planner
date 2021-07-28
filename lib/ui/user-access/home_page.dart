@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uk_city_planner/models/places_details_model.dart';
 import 'package:uk_city_planner/models/places_model.dart';
 import 'package:uk_city_planner/services/networking/places_network_service.dart';
 import 'package:uk_city_planner/widgets/vertical/content_carousel.dart';
@@ -16,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   final placesNetworkService = PlacesNetworkService();
   late Position _currentPosition;
   List<Result>? _places;
+  List<DetailsResult>? _details;
   String _placeName = 'Restaurants';
   int _selectedIndex = 0;
 
@@ -51,11 +53,43 @@ class _HomePageState extends State<HomePage> {
       _places = await placesNetworkService.findRestaurants(
           _currentPosition.latitude.toString(),
           _currentPosition.longitude.toString());
-      setState(() {});
     } catch (ex) {
       print("Could not retrieve places $ex");
     }
+
+      int i = 0;
+      while (i < _places!.length) {
+        // loop over _places.length
+        String place = _places![i].placeId.toString();
+        try {
+          DetailsResult details = (await placesNetworkService
+              .findDetailsByID(place));
+          _details!.add(details);
+          return _details!;
+        } catch (ex) {
+          print("Could not retrieve details $ex");
+        }
+        setState(() {});
+        i++;
+      }
   }
+
+  // Future _getDetails() async {}
+
+  // // todo - get details via placeID on every index loop
+  // Future _getDetails() async {
+  //   while () {
+  //     try {
+  //       final placesNetworkService = PlacesNetworkService();
+  //       DetailsResult details = (await placesNetworkService.findDetailsByID(
+  //           place.placeId.toString()));
+  //       print(details.toString());
+  //       return details;
+  //     } catch (ex) {
+  //       print("Could not retrieve details $ex");
+  //     }
+  //   }
+  // }
 
   Widget _buildIcon(int index) {
     return GestureDetector(
@@ -161,7 +195,7 @@ class _HomePageState extends State<HomePage> {
                 height: 20.0,
               ),
             ),
-            ContentCarousel(_places, _placeName),
+            ContentCarousel(_places, _placeName, _details),
             // todo - call different carousels, dependent on _selectedIndex
             SizedBox(height: 20.0),
           ],

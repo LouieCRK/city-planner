@@ -78,10 +78,10 @@ class _InfoPageState extends State<InfoPage> {
                       begin: Alignment.bottomCenter,
                       end: Alignment.topRight,
                       colors: [
-                        const Color(0xAB000000),
+                        const Color(0x45000000),
                         const Color(0x00000000),
                         const Color(0x00000000),
-                        const Color(0xEE000000),
+                        const Color(0x8D000000),
                       ],
                     )),
                   ),

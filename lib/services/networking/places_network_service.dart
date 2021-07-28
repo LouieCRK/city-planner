@@ -1,4 +1,5 @@
 import 'package:http/http.dart';
+import 'package:uk_city_planner/models/places_details_model.dart';
 import 'package:uk_city_planner/models/places_model.dart';
 
 class PlacesNetworkService {
@@ -92,17 +93,18 @@ class PlacesNetworkService {
   }
 
 // todo - fix details fetch
-// Future<Details> findDetailsByID(String placeID) async {
-//   String url =
-//       'https://maps.googleapis.com/maps/api/place/details/json?place_id=$placeID&fields=formatted_phone_number,website&key=$key';
-//   final response = await get(
-//     Uri.parse(url),
-//   );
-//
-//   PlaceDetails? responseList = placeDetailsFromJson(response.body);
-//   final detailsResults = responseList!.details!;
-//   print(detailsResults);
-//
-//   return detailsResults;
-// }
+Future<DetailsResult> findDetailsByID(String placeID) async {
+  String url =
+      'https://maps.googleapis.com/maps/api/place/details/json?place_id=$placeID&fields=formatted_phone_number,website&key=$key';
+  final response = await get(
+    Uri.parse(url),
+  );
+
+  PlaceDetails? responseList = placeDetailsFromJson(response.body);
+  final detailsResults = responseList.result;
+  print(detailsResults);
+
+  return detailsResults;
+}
+
 }
