@@ -53,43 +53,28 @@ class _HomePageState extends State<HomePage> {
       _places = await placesNetworkService.findRestaurants(
           _currentPosition.latitude.toString(),
           _currentPosition.longitude.toString());
+      setState(() {});
     } catch (ex) {
       print("Could not retrieve places $ex");
     }
 
-      int i = 0;
-      while (i < _places!.length) {
-        // loop over _places.length
-        String place = _places![i].placeId.toString();
-        try {
-          DetailsResult details = (await placesNetworkService
-              .findDetailsByID(place));
-          _details!.add(details);
-          return _details!;
-        } catch (ex) {
-          print("Could not retrieve details $ex");
-        }
-        setState(() {});
-        i++;
-      }
+
+      // int i = 0;
+      // while (i < _places!.length) {
+      //   // loop over _places.length
+      //   String placeID = _places![i].placeId.toString();
+      //   try {
+      //     DetailsResult details = (await placesNetworkService
+      //         .findDetailsByID(placeID));
+      //     _details!.add(details);
+      //     return _details!;
+      //   } catch (ex) {
+      //     print("Could not retrieve details $ex");
+      //   }
+      //   setState(() {});
+      //   i++;
+      // }
   }
-
-  // Future _getDetails() async {}
-
-  // // todo - get details via placeID on every index loop
-  // Future _getDetails() async {
-  //   while () {
-  //     try {
-  //       final placesNetworkService = PlacesNetworkService();
-  //       DetailsResult details = (await placesNetworkService.findDetailsByID(
-  //           place.placeId.toString()));
-  //       print(details.toString());
-  //       return details;
-  //     } catch (ex) {
-  //       print("Could not retrieve details $ex");
-  //     }
-  //   }
-  // }
 
   Widget _buildIcon(int index) {
     return GestureDetector(
@@ -195,8 +180,8 @@ class _HomePageState extends State<HomePage> {
                 height: 20.0,
               ),
             ),
-            ContentCarousel(_places, _placeName, _details),
-            // todo - call different carousels, dependent on _selectedIndex
+            ContentCarousel(_places, _placeName),
+            // _details // todo add to ContentCarousel when fixed
             SizedBox(height: 20.0),
           ],
         ),

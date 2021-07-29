@@ -329,6 +329,8 @@ class _MapPageState extends State<MapPage> {
                   ],
                 ),
               ),
+
+              // side bar for place type selection
               Container(
                 margin: const EdgeInsets.only(left: 5, top: 300),
                 height: size.height * 0.4,

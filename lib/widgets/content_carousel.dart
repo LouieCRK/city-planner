@@ -11,7 +11,8 @@ class ContentCarousel extends StatefulWidget {
   List<DetailsResult>? _details;
   String placeName = "";
 
-  ContentCarousel(this._places, this.placeName, this._details);
+  ContentCarousel(this._places, this.placeName);
+  // this._details // todo - add to constructor when fixed
 
   @override
   _ContentCarouselState createState() => _ContentCarouselState();
@@ -75,12 +76,13 @@ class _ContentCarouselState extends State<ContentCarousel> {
             itemCount: widget._places!.length,
             itemBuilder: (BuildContext context, int index) {
               Result place = widget._places![index];
-              DetailsResult details = widget._details![index];
+              // DetailsResult details = widget._details![index]; // todo when fixed uncomment
               var placePhotos = place.photos!.length;
               var placeImageRef;
 
               if (placePhotos.toString() == "0"){
-                placeImageRef = details.photos![0].photoReference;
+                placeImageRef = 'CnRtAAAATLZNl354RwP_9UKbQ_5Psy40texXePv4oAlgP4qNEkdIrkyse7rPXYGd9D_Uj1rVsQdWT4oRz4QrYAJNpFX7rzqqMlZw2h2E2y5IKMUZ7ouD_SlcHxYq1yL4KbKUv3qtWgTK0A6QbGh87GB3sscrHRIQiG2RrmU_jF4tENr9wGS_YxoUSSDrYjWmrNfeEHSGSc3FyhNLlBU';
+                // placeImageRef = details.photos![0].photoReference; // todo - when fixed uncomment
               } else {
                 placeImageRef = place.photos![0].photoReference;
               }
@@ -91,7 +93,7 @@ class _ContentCarouselState extends State<ContentCarousel> {
                   MaterialPageRoute(
                     builder: (_) => InfoPage(
                       place: place,
-                      // todo - allow access to details data within info_page.dart
+                      // todo - when fixed - allow access to details data within info_page.dart
                       // details: details,
                     ),
                   ),
