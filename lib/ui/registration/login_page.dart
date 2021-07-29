@@ -1,9 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:uk_city_planner/services/networking/authentication_service.dart';
 import 'file:///C:/Users/Crook/Documents/GitHub/uk-city-planner/lib/ui/registration/register_page.dart';
 import '../user-access/navigation_bar.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -45,6 +50,7 @@ class LoginPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(40),
                 ),
                 child: TextField(
+                  controller: emailController,
                   style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     border: InputBorder.none,
@@ -52,7 +58,7 @@ class LoginPage extends StatelessWidget {
                       Icons.person,
                       color: Colors.white,
                     ),
-                    hintText: "Username or Email",
+                    hintText: "Email",
                     hintStyle: TextStyle(
                       fontSize: 18,
                       color: Colors.white,
@@ -78,6 +84,7 @@ class LoginPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(40),
                 ),
                 child: TextField(
+                  controller: passwordController,
                   obscureText: true,
                   enableSuggestions: false,
                   autocorrect: false,
@@ -134,13 +141,18 @@ class LoginPage extends StatelessWidget {
                       minimumSize: Size(20, 20),
                     ),
                     onPressed: () {
-                      // temporary page route to fake login
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => NavBar(),
                         ),
                       );
-                    }),
+                      // todo - uncomment when firebase has been initialised
+                      // context.read<AuthenticationService>().signIn(
+                      //   email: emailController.text.trim(),
+                      //   password: passwordController.text.trim(),
+                      // );
+                    },
+                    ),
               ),
             ),
             Positioned(
