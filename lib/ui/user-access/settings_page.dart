@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:uk_city_planner/ui/registration/login_page.dart';
+import 'package:uk_city_planner/services/networking/authentication_service.dart';
+import 'package:provider/provider.dart';
 
 class SettingsPage extends StatelessWidget {
   @override
@@ -103,13 +104,8 @@ class SettingsPage extends StatelessWidget {
               child: IconButton(
                 icon: Icon(Icons.logout),
                 color: Colors.white,
-                onPressed: () {
-                  // temporary page route to fake logout
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => LoginPage(),
-                    ),
-                  );
+                onPressed: () { // on login button pressed, send credentials to service
+                  context.read<AuthenticationService>().signOut();
                 },
               ),
             ),

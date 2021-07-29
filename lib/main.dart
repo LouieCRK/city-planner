@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uk_city_planner/services/networking/authentication_service.dart';
 import 'package:uk_city_planner/ui/registration/login_page.dart';
-import 'package:uk_city_planner/ui/user-access/home_page.dart';
 import 'package:uk_city_planner/ui/user-access/navigation_bar.dart';
 
 Future<void> main() async {
@@ -34,9 +33,7 @@ class CityPlannerApp extends StatelessWidget {
           scaffoldBackgroundColor: Color(0xFFF3F5F7),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        // todo - uncomment when firebase has been initialised
-        home: AuthenticationWrapper(),
-        // home: LoginPage(),
+        home: AuthenticationWrapper(), // load authentication wrapper
       ),
     );
   }
@@ -47,7 +44,7 @@ class AuthenticationWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final firebaseUser = context.watch<User?>();
 
-    if (firebaseUser != null) {
+    if (firebaseUser != null) { // if user is in firebase db return the homepage
       return NavBar();
     }
     return LoginPage();
