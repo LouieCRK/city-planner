@@ -21,24 +21,17 @@ class RegisterPage extends StatelessWidget {
           alignment: Alignment.center,
           children: <Widget>[
             Positioned(
-              // logo/banner at the top of the screen
-              top: 0,
-              width: size.width,
-              child: Image.asset(
-                'assets/images/login-banner.png',
-              ),
-            ),
-            Positioned(
               // back button - direct back to login page
-              top: size.height * 0.07,
-              left: -4,
+              top: size.height * 0.1,
+              left: 22,
               child: IconButton(
-                  // icon: Icon(Icons.keyboard_backspace_rounded),
-                  icon: Icon(Icons.keyboard_arrow_left_rounded),
+                  icon: Icon(Icons.keyboard_backspace_rounded),
+                  // icon: Icon(Icons.keyboard_arrow_left_rounded),
                   hoverColor: Colors.grey,
                   iconSize: 50,
-                  color: Colors.cyan,
+                  color: Colors.white,
                   onPressed: () {
+                    print("Register Page - Back button pressed");
                     Navigator.of(context).pop(
                       MaterialPageRoute(
                         builder: (context) => LoginPage(),
@@ -48,7 +41,7 @@ class RegisterPage extends StatelessWidget {
             ),
             Positioned(
               // first name input entry
-              top: size.height * 0.48,
+              top: size.height * 0.25,
               width: size.width * 0.85,
               height: 50,
               child: Container(
@@ -80,41 +73,8 @@ class RegisterPage extends StatelessWidget {
               ),
             ),
             Positioned(
-              // username input entry
-              top: size.height * 0.565,
-              width: size.width * 0.85,
-              height: 50,
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.white,
-                    width: 2.3,
-                  ),
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(40),
-                ),
-                child: TextField(
-                  style: TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    icon: Icon(
-                      Icons.person,
-                      color: Colors.white,
-                    ),
-                    hintText: "Username",
-                    hintStyle: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                      height: 0,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
               // email address input entry
-              top: size.height * 0.65,
+              top: size.height * 0.35,
               width: size.width * 0.85,
               height: 50,
               child: Container(
@@ -147,7 +107,7 @@ class RegisterPage extends StatelessWidget {
             ),
             Positioned(
               // password input entry
-              top: size.height * 0.735,
+              top: size.height * 0.45,
               width: size.width * 0.85,
               height: 50,
               child: Container(
@@ -183,7 +143,7 @@ class RegisterPage extends StatelessWidget {
             ),
             Positioned(
               // confirm password input entry
-              top: size.height * 0.82,
+              top: size.height * 0.55,
               width: size.width * 0.85,
               height: 50,
               child: Container(
@@ -219,7 +179,7 @@ class RegisterPage extends StatelessWidget {
             ),
             Positioned(
               // registration button
-              top: size.height * 0.905,
+              top: size.height * 0.65,
               width: size.width * 0.85,
               height: 50,
               child: Container(
