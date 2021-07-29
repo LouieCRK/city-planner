@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uk_city_planner/models/places_model.dart';
+import 'package:uk_city_planner/services/business_logic/places_service.dart';
 import 'package:uk_city_planner/services/networking/places_network_service.dart';
 
 import 'info_page.dart';
@@ -15,35 +16,19 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   final Geolocator geolocator = Geolocator();
-  final placesNetworkService = PlacesNetworkService();
   late BitmapDescriptor customMarker;
-  Position? _currentPosition;
   List<Result>? _places;
   Set<Marker>? _markers = Set();
 
   @override
   void initState() {
-    _getCurrentLocation();
+    _getPlaces();
     super.initState();
-  }
-
-  _getCurrentLocation() async {
-    Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
-        .then((Position position) {
-      setState(() async {
-        _currentPosition = position;
-        await _getPlaces();
-      });
-    }).catchError((e) {
-      print(e);
-    });
   }
 
   Future _getPlaces() async {
     try {
-      _places = await placesNetworkService.findRestaurants(
-          _currentPosition!.latitude.toString(),
-          _currentPosition!.longitude.toString());
+      _places = await PlacesService().getPlace(TypeOfPlace.restaurants);
       setState(() {});
     } catch (ex) {
       print("Could not retrieve places $ex");
@@ -54,9 +39,7 @@ class _MapPageState extends State<MapPage> {
     // switch case to check placeType
     switch (placeType) {
       case 'restaurant':
-        _places = await placesNetworkService.findRestaurants(
-            _currentPosition!.latitude.toString(),
-            _currentPosition!.longitude.toString());
+        _places = await PlacesService().getPlace(TypeOfPlace.restaurants);
         await BitmapDescriptor.fromAssetImage(
                 ImageConfiguration(size: Size(128, 128)),
                 'assets/images/map-markers/restaurant-marker.png')
@@ -65,9 +48,7 @@ class _MapPageState extends State<MapPage> {
         });
         break;
       case 'nightlife':
-        _places = await placesNetworkService.findNightlife(
-            _currentPosition!.latitude.toString(),
-            _currentPosition!.longitude.toString());
+        _places = await PlacesService().getPlace(TypeOfPlace.nightlife);
         await BitmapDescriptor.fromAssetImage(
                 ImageConfiguration(size: Size(128, 128)),
                 'assets/images/map-markers/nightlife-marker.png')
@@ -76,9 +57,7 @@ class _MapPageState extends State<MapPage> {
         });
         break;
       case 'entertainment':
-        _places = await placesNetworkService.findEntertainment(
-            _currentPosition!.latitude.toString(),
-            _currentPosition!.longitude.toString());
+        _places = await PlacesService().getPlace(TypeOfPlace.entertainment);
         await BitmapDescriptor.fromAssetImage(
                 ImageConfiguration(size: Size(128, 128)),
                 'assets/images/map-markers/entertainment-marker.png')
@@ -87,9 +66,7 @@ class _MapPageState extends State<MapPage> {
         });
         break;
       case 'sightseeing':
-        _places = await placesNetworkService.findSightseeing(
-            _currentPosition!.latitude.toString(),
-            _currentPosition!.longitude.toString());
+        _places = await PlacesService().getPlace(TypeOfPlace.sightseeing);
         await BitmapDescriptor.fromAssetImage(
                 ImageConfiguration(size: Size(128, 128)),
                 'assets/images/map-markers/sightseeing-marker.png')
@@ -98,9 +75,7 @@ class _MapPageState extends State<MapPage> {
         });
         break;
       case 'shopping':
-        _places = await placesNetworkService.findShopping(
-            _currentPosition!.latitude.toString(),
-            _currentPosition!.longitude.toString());
+        _places = await PlacesService().getPlace(TypeOfPlace.shopping);
         await BitmapDescriptor.fromAssetImage(
                 ImageConfiguration(size: Size(128, 128)),
                 'assets/images/map-markers/shopping-marker.png')
@@ -119,7 +94,7 @@ class _MapPageState extends State<MapPage> {
           icon: customMarker,
           markerId: MarkerId('user location'),
           position:
-              LatLng(_currentPosition!.latitude, _currentPosition!.longitude),
+              LatLng(PlacesService().latitude! , PlacesService().longitude!),
           infoWindow: InfoWindow(
               title: "You are here!"),
         ));
@@ -166,7 +141,7 @@ class _MapPageState extends State<MapPage> {
 
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    if (_currentPosition == null) {
+    if (_places == null) {
       return Padding(
         padding: const EdgeInsets.only(top: 80),
         child: Center(
@@ -203,9 +178,9 @@ class _MapPageState extends State<MapPage> {
                       markers: _markers!,
                       mapType: MapType.terrain,
                       initialCameraPosition: CameraPosition(
-                        target: LatLng(_currentPosition!.latitude,
-                            _currentPosition!.longitude),
-                        zoom: 13.5,
+                        target: LatLng(PlacesService().latitude!,
+                            PlacesService().longitude!),
+                        zoom: 12,
                         tilt: 60,
                       ),
                     )),

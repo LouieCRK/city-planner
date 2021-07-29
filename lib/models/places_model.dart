@@ -56,17 +56,19 @@ class Result {
   final String? vicinity;
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
-        businessStatus: json["business_status"],
-        geometry: Geometry.fromJson(json["geometry"]),
-        name: json["name"],
-        openingHours: OpeningHours.fromJson(json["opening_hours"]),
-        photos: List<Photo>.from(json["photos"].map((x) => Photo.fromJson(x))),
-        placeId: json["place_id"],
-        priceLevel: json["price_level"] == null ? null : json["price_level"],
-        rating: json["rating"].toDouble(),
-        userRatingsTotal: json["user_ratings_total"],
-        vicinity: json["vicinity"],
-      );
+    businessStatus: json["business_status"],
+    geometry: Geometry.fromJson(json["geometry"]),
+    name: json["name"],
+    openingHours: OpeningHours.fromJson(json["opening_hours"]),
+    photos: (json["photos"] == null)
+        ? null
+        : List<Photo>.from(json["photos"].map((x) => Photo.fromJson(x))),
+    placeId: json["place_id"],
+    priceLevel: json["price_level"] == null ? null : json["price_level"],
+    rating: json["rating"].toDouble(),
+    userRatingsTotal: json["user_ratings_total"],
+    vicinity: json["vicinity"],
+  );
 }
 
 class Geometry {

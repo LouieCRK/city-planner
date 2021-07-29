@@ -4,7 +4,7 @@ import 'package:uk_city_planner/models/places_model.dart';
 
 class PlacesNetworkService {
   final key =
-      'AIzaSyDqtrPbqvNbhfEtb273GQb4obuRd4-AUuo'; // google places api key - used within url as $key
+      'AIzaSyDPFVBgZDnp7Ee-6y8K5vPK_8kTOGfYAZ4'; // google places api key - used within url as $key
   var radius = 7500; // just over 4.6 miles radius
 
   // fetch restaurant data via google places api
@@ -18,7 +18,6 @@ class PlacesNetworkService {
 
     FetchedData? responseList = fetchedDataFromJson(response.body);
     final restaurantResults = responseList!.results!;
-
     return restaurantResults;
   }
 

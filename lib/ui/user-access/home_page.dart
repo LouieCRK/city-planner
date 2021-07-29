@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uk_city_planner/models/places_details_model.dart';
 import 'package:uk_city_planner/models/places_model.dart';
-import 'package:uk_city_planner/services/networking/places_network_service.dart';
+import 'package:uk_city_planner/services/business_logic/places_service.dart';
 import 'package:uk_city_planner/widgets/content_carousel.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
@@ -14,8 +14,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   // geolocator for user location
   final Geolocator geolocator = Geolocator();
-  final placesNetworkService = PlacesNetworkService();
-  late Position _currentPosition;
   List<Result>? _places;
   List<DetailsResult>? _details;
   String _placeName = 'Restaurants';
@@ -39,7 +37,7 @@ class _HomePageState extends State<HomePage> {
     Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
         .then((Position position) {
       setState(() async {
-        _currentPosition = position;
+        PlacesService().setCurrentLocation(position.latitude, position.longitude);
         await _getPlaces();
       });
     }).catchError((e) {
@@ -49,19 +47,14 @@ class _HomePageState extends State<HomePage> {
 
   Future _getPlaces() async {
     try {
-      final placesNetworkService = PlacesNetworkService();
-      _places = await placesNetworkService.findRestaurants(
-          _currentPosition.latitude.toString(),
-          _currentPosition.longitude.toString());
+      _places = await PlacesService().getPlace(TypeOfPlace.restaurants);
       setState(() {});
     } catch (ex) {
       print("Could not retrieve places $ex");
     }
 
-
       // int i = 0;
-      // while (i < _places!.length) {
-      //   // loop over _places.length
+      // while (i < _places!.length) { // loop over _places.length
       //   String placeID = _places![i].placeId.toString();
       //   try {
       //     DetailsResult details = (await placesNetworkService
@@ -84,49 +77,33 @@ class _HomePageState extends State<HomePage> {
           _selectedIndex = index;
         });
 
-        if (_selectedIndex.isFinite) {
-          if (_selectedIndex == 0) {
+        switch(_selectedIndex) {
+          case 0:
             _placeName = "Restaurants";
-            _places = await placesNetworkService.findRestaurants(
-                _currentPosition.latitude.toString(),
-                _currentPosition.longitude.toString());
-            setState(() {});
-            return;
-          }
-          if (_selectedIndex == 1) {
+            _places = await PlacesService().getPlace(TypeOfPlace.restaurants);
+            break;
+          case 1:
             _placeName = "Nightlife";
-            _places = await placesNetworkService.findNightlife(
-                _currentPosition.latitude.toString(),
-                _currentPosition.longitude.toString());
-            setState(() {});
-            return;
-          }
-          if (_selectedIndex == 2) {
+            _places = await PlacesService().getPlace(TypeOfPlace.nightlife);
+            break;
+          case 2:
             _placeName = "Entertainment";
-            _places = await placesNetworkService.findEntertainment(
-                _currentPosition.latitude.toString(),
-                _currentPosition.longitude.toString());
-            setState(() {});
-            return;
-          }
-          if (_selectedIndex == 3) {
+            _places = await PlacesService().getPlace(TypeOfPlace.entertainment);
+            break;
+          case 3:
             _placeName = "Sightseeing";
-            _places = await placesNetworkService.findSightseeing(
-                _currentPosition.latitude.toString(),
-                _currentPosition.longitude.toString());
-            setState(() {});
-            return;
-          }
-          if (_selectedIndex == 4) {
+            _places = await PlacesService().getPlace(TypeOfPlace.sightseeing);
+            break;
+          case 4:
             _placeName = "Shopping";
-            _places = await placesNetworkService.findShopping(
-                _currentPosition.latitude.toString(),
-                _currentPosition.longitude.toString());
-            setState(() {});
-            return;
-          }
+            _places = await PlacesService().getPlace(TypeOfPlace.shopping);
+            break;
+          default:
+            throw 'Tab index does not exist.';
         }
+        setState(() { });
       },
+
       child: Container(
         height: 60.0,
         width: 60.0,
@@ -181,7 +158,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             ContentCarousel(_places, _placeName),
-            // _details // todo add to ContentCarousel when fixed
             SizedBox(height: 20.0),
           ],
         ),

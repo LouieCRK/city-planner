@@ -12,7 +12,7 @@ class ContentCarousel extends StatefulWidget {
   String placeName = "";
 
   ContentCarousel(this._places, this.placeName);
-  // this._details // todo - add to constructor when fixed
+  // this._details // todo - add to constructor when details fixed
 
   @override
   _ContentCarouselState createState() => _ContentCarouselState();
@@ -76,38 +76,37 @@ class _ContentCarouselState extends State<ContentCarousel> {
             itemCount: widget._places!.length,
             itemBuilder: (BuildContext context, int index) {
               Result place = widget._places![index];
-              // DetailsResult details = widget._details![index]; // todo when fixed uncomment
+              // DetailsResult details = widget._details![index]; // todo when details fixed uncomment
               var placePhotos = place.photos!.length;
-              var placeImageRef;
+              var placeImageRef = place.photos![0].photoReference;
 
               if (placePhotos.toString() == "0"){
-                placeImageRef = 'CnRtAAAATLZNl354RwP_9UKbQ_5Psy40texXePv4oAlgP4qNEkdIrkyse7rPXYGd9D_Uj1rVsQdWT4oRz4QrYAJNpFX7rzqqMlZw2h2E2y5IKMUZ7ouD_SlcHxYq1yL4KbKUv3qtWgTK0A6QbGh87GB3sscrHRIQiG2RrmU_jF4tENr9wGS_YxoUSSDrYjWmrNfeEHSGSc3FyhNLlBU';
-                // placeImageRef = details.photos![0].photoReference; // todo - when fixed uncomment
+                // placeImageRef = details.photos![0].photoReference; // todo - when details fixed uncomment
               } else {
                 placeImageRef = place.photos![0].photoReference;
               }
 
-              return GestureDetector(
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => InfoPage(
-                      place: place,
-                      // todo - when fixed - allow access to details data within info_page.dart
-                      // details: details,
-                    ),
-                  ),
-                ),
-                child: Container(
-                  margin: EdgeInsets.only(
-                    bottom: 5,
-                    top: 5,
-                    left: 5,
-                    right: 5,
-                  ),
-                  // color: Colors.red,
-                  child: Stack(
-                    alignment: Alignment.center,
+             return GestureDetector(
+               onTap: () => Navigator.push(
+                 context,
+                 MaterialPageRoute(
+                   builder: (_) => InfoPage(
+                     place: place,
+                     // todo - when details fixed - allow access to details data within info_page.dart
+                     // details: details,
+                   ),
+                 ),
+               ),
+               child: Container(
+                 margin: EdgeInsets.only(
+                   bottom: 5,
+                   top: 5,
+                   left: 5,
+                   right: 5,
+                 ),
+                 // color: Colors.red,
+                 child: Stack(
+                   alignment: Alignment.center,
                     children: <Widget>[
                       Container(
                         decoration: BoxDecoration(
@@ -132,7 +131,7 @@ class _ContentCarouselState extends State<ContentCarousel> {
                                   width: 200,
                                   image: true
                                       ? NetworkImage(
-                                          'https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=195&photoreference=$placeImageRef&key=AIzaSyDqtrPbqvNbhfEtb273GQb4obuRd4-AUuo')
+                                          'https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=195&photoreference=$placeImageRef&key=AIzaSyDPFVBgZDnp7Ee-6y8K5vPK_8kTOGfYAZ4')
                                       : AssetImage(
                                               "assets/images/noImageAvailable.png")
                                           as ImageProvider,

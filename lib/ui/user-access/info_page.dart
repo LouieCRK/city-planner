@@ -56,7 +56,7 @@ class _InfoPageState extends State<InfoPage> {
                     child: Image(
                       image: true
                           ? NetworkImage(
-                              'https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&maxheight=1000&photoreference=$restaurantImage&key=AIzaSyDqtrPbqvNbhfEtb273GQb4obuRd4-AUuo')
+                              'https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&maxheight=1000&photoreference=$restaurantImage&key=AIzaSyDPFVBgZDnp7Ee-6y8K5vPK_8kTOGfYAZ4')
                           : AssetImage("assets/images/noImageAvailable.png")
                               as ImageProvider,
                       fit: BoxFit.cover,
