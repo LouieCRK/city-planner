@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1027071259045",
+    "project_id": "uk-city-planner",
+    "storage_bucket": "uk-city-planner.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1027071259045:android:af86a301bc7e61a6b1b84c",
+        "android_client_info": {
+          "package_name": "com.louiecrook.uk_city_planner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1027071259045-m0dh75uu5tlbrmc2a5t1bb513s26m860.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcFkY_9xBeafseLZzz8zZ5VGpW7y3Ne-0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1027071259045-m0dh75uu5tlbrmc2a5t1bb513s26m860.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

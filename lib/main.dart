@@ -5,11 +5,11 @@ import 'package:provider/provider.dart';
 import 'package:uk_city_planner/services/networking/authentication_service.dart';
 import 'package:uk_city_planner/ui/registration/login_page.dart';
 import 'package:uk_city_planner/ui/user-access/home_page.dart';
+import 'package:uk_city_planner/ui/user-access/navigation_bar.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // todo - uncomment when firebase has been initialised
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp(); // initialize firebase / ensure initialization
   runApp(CityPlannerApp());
 }
 
@@ -35,8 +35,8 @@ class CityPlannerApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         // todo - uncomment when firebase has been initialised
-        // home: AuthenticationWrapper(),
-        home: LoginPage(),
+        home: AuthenticationWrapper(),
+        // home: LoginPage(),
       ),
     );
   }
@@ -48,7 +48,7 @@ class AuthenticationWrapper extends StatelessWidget {
     final firebaseUser = context.watch<User?>();
 
     if (firebaseUser != null) {
-      return HomePage();
+      return NavBar();
     }
     return LoginPage();
   }

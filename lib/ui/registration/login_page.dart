@@ -141,16 +141,16 @@ class LoginPage extends StatelessWidget {
                       minimumSize: Size(20, 20),
                     ),
                     onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => NavBar(),
-                        ),
-                      );
-                      // todo - uncomment when firebase has been initialised
-                      // context.read<AuthenticationService>().signIn(
-                      //   email: emailController.text.trim(),
-                      //   password: passwordController.text.trim(),
+                      // Navigator.of(context).push(
+                      //   MaterialPageRoute(
+                      //     builder: (context) => NavBar(),
+                      //   ),
                       // );
+                      // todo - uncomment when firebase has been initialised
+                      context.read<AuthenticationService>().signIn(
+                        email: emailController.text.trim(),
+                        password: passwordController.text.trim(),
+                      );
                     },
                     ),
               ),
