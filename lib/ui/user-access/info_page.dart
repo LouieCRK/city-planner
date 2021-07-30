@@ -123,6 +123,8 @@ class _InfoPageState extends State<InfoPage> {
                       width: size.width * 0.7,
                       child: Text(
                         widget.place.name.toString(),
+                        overflow: TextOverflow.fade,
+                        maxLines: 3,
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 35.0,

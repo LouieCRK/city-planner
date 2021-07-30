@@ -48,18 +48,6 @@ class _ContentCarouselState extends State<ContentCarousel> {
                   letterSpacing: 1,
                 ),
               ),
-              GestureDetector(
-                onTap: () => print('See All'),
-                child: Text(
-                  'See All',
-                  style: TextStyle(
-                    color: Theme.of(context).accentColor,
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 1.0,
-                  ),
-                ),
-              ),
             ],
           ),
         ),
@@ -80,7 +68,8 @@ class _ContentCarouselState extends State<ContentCarousel> {
               var placePhotos = place.photos!.length;
               var placeImageRef = place.photos![0].photoReference;
 
-              if (placePhotos.toString() == "0"){
+              if (placePhotos == 0){
+                placeImageRef = 'CnRvAAAAwMpdHeWlXl-lH0vp7lez4znKPIWSWvgvZFISdKx45AwJVP1Qp37YOrH7sqHMJ8C-vBDC546decipPHchJhHZL94RcTUfPa1jWzo-rSHaTlbNtjh-N68RkcToUCuY9v2HNpo5mziqkir37WU8FJEqVBIQ4k938TI3e7bf8xq-uwDZcxoUbO_ZJzPxremiQurAYzCTwRhE_V0';
                 // placeImageRef = details.photos![0].photoReference; // todo - when details fixed uncomment
               } else {
                 placeImageRef = place.photos![0].photoReference;
@@ -172,6 +161,7 @@ class _ContentCarouselState extends State<ContentCarousel> {
                                       child: Text(
                                         place.name.toString(),
                                         maxLines: 3,
+                                        overflow: TextOverflow.fade,
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 24.0,

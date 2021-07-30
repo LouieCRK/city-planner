@@ -38,6 +38,7 @@ class PlacesNetworkService {
     return nightlifeResults;
   }
 
+  // todo - update api call to retrieve more relevant poi's
   Future<List<Result>> findEntertainment(
       String latitude, String longitude) async {
     String url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'

@@ -29,6 +29,7 @@ class PlacesService {
     longitude = lon;
   }
 
+  // todo - user function to add poi to planner
   void addToPlannedPlaces(Result place) => plannedPlaces.add(place);
 
   Future<List<Result>?> getPlace(TypeOfPlace typeOfPlace) async {
