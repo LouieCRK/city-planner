@@ -6,6 +6,7 @@ class PlacesService {
 
   static final PlacesService _singleton = PlacesService._internal();
 
+  // singleton design pattern to only have one instance of places service and results
   factory PlacesService() {
     return _singleton;
   }
@@ -23,7 +24,7 @@ class PlacesService {
   // used for storing responses to prevent multi-requests to places api
   final _placesMemoryStore = <TypeOfPlace, List<Result>>{};
   final plannedPlaces = <Result>[];
-
+  // set user current location into lat/long vars
   void setCurrentLocation(double lat, double lon) {
     latitude = lat;
     longitude = lon;
@@ -42,7 +43,7 @@ class PlacesService {
     }
     // call the network for new places if we have not retrieved them.
     List<Result>? result;
-    try {
+    try { // try catch to handle errors
       switch (typeOfPlace) {
         case TypeOfPlace.restaurants:
           result = await _placesNetworkService.findRestaurants(
@@ -72,11 +73,13 @@ class PlacesService {
       print('Exception is: $ex');
       return null;
     }
+    // store places data within our memory store
     _placesMemoryStore[typeOfPlace] = result;
     return result;
   }
 }
 
+// enum use for neat coding practice
 enum TypeOfPlace{
   restaurants,
   nightlife,

@@ -13,10 +13,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   // geolocator for user location
-  final Geolocator geolocator = Geolocator();
-  List<Result>? _places;
-  List<DetailsResult>? _details;
-  String _placeName = 'Restaurants';
+  final Geolocator geolocator = Geolocator(); // geolocator to get user coordinates
+  List<Result>? _places; // list of 'result' which is our place_model.dart class to parse json results
+  List<DetailsResult>? _details; // list of 'detailsResult' which is our place_details_model.dart class to parse json results
+  String _placeType = 'Restaurants'; // placeholder for _placeType (restaurants is first to render)
   int _selectedIndex = 0;
 
   List<IconData> _icons = [
@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    _getCurrentLocation();
+    _getCurrentLocation(); // call getLocation on screen initialisation
     super.initState();
   }
 
@@ -37,6 +37,7 @@ class _HomePageState extends State<HomePage> {
     Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
         .then((Position position) {
       setState(() async {
+        //
         PlacesService().setCurrentLocation(position.latitude, position.longitude);
         await _getPlaces();
       });
@@ -48,6 +49,7 @@ class _HomePageState extends State<HomePage> {
   Future _getPlaces() async {
     try {
       _places = await PlacesService().getPlace(TypeOfPlace.restaurants);
+      _details;
       setState(() {});
     } catch (ex) {
       print("Could not retrieve places $ex");
@@ -79,23 +81,23 @@ class _HomePageState extends State<HomePage> {
 
         switch(_selectedIndex) {
           case 0:
-            _placeName = "Restaurants";
+            _placeType = "Restaurants";
             _places = await PlacesService().getPlace(TypeOfPlace.restaurants);
             break;
           case 1:
-            _placeName = "Nightlife";
+            _placeType = "Nightlife";
             _places = await PlacesService().getPlace(TypeOfPlace.nightlife);
             break;
           case 2:
-            _placeName = "Entertainment";
+            _placeType = "Entertainment";
             _places = await PlacesService().getPlace(TypeOfPlace.entertainment);
             break;
           case 3:
-            _placeName = "Sightseeing";
+            _placeType = "Sightseeing";
             _places = await PlacesService().getPlace(TypeOfPlace.sightseeing);
             break;
           case 4:
-            _placeName = "Shopping";
+            _placeType = "Shopping";
             _places = await PlacesService().getPlace(TypeOfPlace.shopping);
             break;
           default:
@@ -157,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                 height: 20.0,
               ),
             ),
-            ContentCarousel(_places, _placeName),
+            ContentCarousel(_places, _placeType),
             SizedBox(height: 20.0),
           ],
         ),

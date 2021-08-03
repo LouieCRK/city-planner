@@ -15,12 +15,12 @@ Future<void> main() async {
 class CityPlannerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
+    return MultiProvider( // provide both authentication class and user stream we get from authentication class
       providers: [
         Provider<AuthenticationService>(
-          create: (_) => AuthenticationService(FirebaseAuth.instance),
+          create: (_) => AuthenticationService(FirebaseAuth.instance), // pass firebase authentication instance
         ),
-        StreamProvider(
+        StreamProvider( // the create provides us with auth service, which allows us to use our getter 'authStateChanges'
           create: (context) => context.read<AuthenticationService>().authStateChanges, initialData: null,
         )
       ],
@@ -42,7 +42,7 @@ class CityPlannerApp extends StatelessWidget {
 class AuthenticationWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final firebaseUser = context.watch<User?>();
+    final firebaseUser = context.watch<User?>(); // context watch listens for user
 
     if (firebaseUser != null) { // if user is in firebase db return the homepage
       return NavBar(); // navbar is the home screen, it initialises with the home screen as default

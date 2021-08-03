@@ -5,7 +5,7 @@ class AuthenticationService {
 
   AuthenticationService(this._firebaseAuth);
 
-  /// Changed to idTokenChanges as it updates depending on more cases
+  /// changed to idTokenChanges as it updates depending on more cases
   Stream<User?> get authStateChanges => _firebaseAuth.idTokenChanges();
 
 /// signs user out
@@ -13,6 +13,7 @@ class AuthenticationService {
     await _firebaseAuth.signOut();
   }
 
+  /// signs user in
   Future<String?> signIn({required String email, required String password}) async {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
@@ -22,6 +23,7 @@ class AuthenticationService {
     }
   }
 
+  /// registers user
   Future<String?> signUp({required String email, required String password}) async {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);

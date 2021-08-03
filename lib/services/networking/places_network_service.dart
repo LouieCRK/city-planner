@@ -5,20 +5,25 @@ import 'package:uk_city_planner/models/places_model.dart';
 class PlacesNetworkService {
   final key =
       'AIzaSyDPFVBgZDnp7Ee-6y8K5vPK_8kTOGfYAZ4'; // google places api key - used within url as $key
-  var radius = 7500; // just over 4.6 miles radius
+  var radius = 10000; // just over 6.2 miles radius
 
   // fetch restaurant data via google places api
   Future<List<Result>> findRestaurants(
       String latitude, String longitude) async {
     String url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
-        'location=$latitude,$longitude&radius=$radius&type=restaurant%20point_of_interest&keyword=food%20dinner%20dining&key=$key&rankby=prominence';
+        'location=$latitude,$longitude' // user location
+        '&radius=$radius' // radius from users location to produce results with their proximity
+        '&type=restaurant%20point_of_interest' // type specification
+        '&keyword=food%20dinner%20dining' // keywords for tailored results
+        '&key=$key&' // google places API key
+        'rankby=prominence'; // ranks POIs by order of prominence
     final response = await get(
       Uri.parse(url),
     );
 
-    FetchedData? responseList = fetchedDataFromJson(response.body);
+    FetchedData? responseList = fetchedDataFromJson(response.body); // parse JSON via places model
     final restaurantResults = responseList!.results!;
-    return restaurantResults;
+    return restaurantResults; // return our list of results
   }
 
   Future<List<Result>> findNightlife(String latitude, String longitude) async {
