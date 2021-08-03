@@ -45,8 +45,8 @@ class AuthenticationWrapper extends StatelessWidget {
     final firebaseUser = context.watch<User?>();
 
     if (firebaseUser != null) { // if user is in firebase db return the homepage
-      return NavBar();
+      return NavBar(); // navbar is the home screen, it initialises with the home screen as default
     }
-    return LoginPage();
+    return LoginPage();  // else stay within login page
   }
 }
