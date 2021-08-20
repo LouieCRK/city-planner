@@ -4,7 +4,6 @@ import 'package:uk_city_planner/models/places_details_model.dart';
 import 'package:uk_city_planner/models/places_model.dart';
 import 'file:///C:/Users/Crook/Documents/GitHub/uk-city-planner/lib/ui/user-access/info_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:uk_city_planner/services/networking/places_network_service.dart';
 
 class ContentCarousel extends StatefulWidget {
   List<Result>? _places;
@@ -227,4 +226,7 @@ class _ContentCarouselState extends State<ContentCarousel> {
       ],
     );
   }
+
+
+
 }

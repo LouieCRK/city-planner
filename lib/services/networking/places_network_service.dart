@@ -100,14 +100,13 @@ class PlacesNetworkService {
 // todo - fix details fetch
 Future<DetailsResult> findDetailsByID(String placeID) async {
   String url =
-      'https://maps.googleapis.com/maps/api/place/details/json?place_id=$placeID&fields=formatted_phone_number,website&key=$key';
+      'https://maps.googleapis.com/maps/api/place/details/json?place_id=$placeID&fields=formatted_phone_number,website,review,photo&key=$key';
   final response = await get(
     Uri.parse(url),
   );
 
   PlaceDetails? responseList = placeDetailsFromJson(response.body);
   final detailsResults = responseList.result;
-  print(detailsResults);
 
   return detailsResults;
 }

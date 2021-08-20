@@ -49,26 +49,10 @@ class _HomePageState extends State<HomePage> {
   Future _getPlaces() async {
     try {
       _places = await PlacesService().getPlace(TypeOfPlace.restaurants);
-      _details;
       setState(() {});
     } catch (ex) {
       print("Could not retrieve places $ex");
     }
-
-      // int i = 0;
-      // while (i < _places!.length) { // loop over _places.length
-      //   String placeID = _places![i].placeId.toString();
-      //   try {
-      //     DetailsResult details = (await placesNetworkService
-      //         .findDetailsByID(placeID));
-      //     _details!.add(details);
-      //     return _details!;
-      //   } catch (ex) {
-      //     print("Could not retrieve details $ex");
-      //   }
-      //   setState(() {});
-      //   i++;
-      // }
   }
 
   Widget _buildIcon(int index) {

@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:uk_city_planner/services/networking/authentication_service.dart';
-import 'file:///C:/Users/Crook/Documents/GitHub/uk-city-planner/lib/ui/registration/register_page.dart';
-import '../user-access/navigation_bar.dart';
+import 'package:uk_city_planner/ui/authentication/register_page.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {

@@ -41,8 +41,10 @@ class DetailsResult {
   factory DetailsResult.fromJson(Map<String, dynamic> json) => DetailsResult(
     formattedPhoneNumber: json["formatted_phone_number"],
     // todo - work out why i'm getting error: Null check operator used on a null value here...
-    photos: List<Photo>.from(json["photos"].map((x) => Photo.fromJson(x))),
-    reviews: List<Review>.from(json["reviews"].map((x) => Review.fromJson(x))),
+    photos: (json["photos"] == null)
+        ? null
+        : List<Photo>.from(json["photos"].map((x) => Photo.fromJson(x))),
+    reviews: List<Review>.from(json["reviews"].map!((x) => Review.fromJson(x))),
     website: json["website"],
   );
 }

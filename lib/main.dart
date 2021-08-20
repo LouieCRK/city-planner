@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uk_city_planner/services/networking/authentication_service.dart';
-import 'package:uk_city_planner/ui/registration/login_page.dart';
+import 'package:uk_city_planner/ui/authentication/login_page.dart';
 import 'package:uk_city_planner/ui/user-access/navigation_bar.dart';
 
 Future<void> main() async {
