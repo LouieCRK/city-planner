@@ -12,43 +12,7 @@ class PlannerPage extends StatefulWidget {
 }
 
 class _PlannerPageState extends State<PlannerPage> {
-  // geolocator for user location
-  final Geolocator geolocator = Geolocator(); // geolocator to get user coordinates
-  final _plannedPlaces = <Result>[];
-  List<Result>? _places; // list of 'result' which is our place_model.dart class to parse json results
-
-
-  @override
-  void initState() {
-    _getCurrentLocation(); // call getLocation on screen initialisation
-    super.initState();
-  }
-
-  _getPlannedPlaces(Result place) {
-    _plannedPlaces.add(place);
-  }
-
-  _getCurrentLocation() async {
-    Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
-        .then((Position position) {
-      setState(() async {
-        //
-        PlacesService().setCurrentLocation(position.latitude, position.longitude);
-        await _getPlaces();
-      });
-    }).catchError((e) {
-      print(e);
-    });
-  }
-
-  Future _getPlaces() async {
-    try {
-      _places = await PlacesService().getPlace(TypeOfPlace.restaurants);
-      setState(() {});
-    } catch (ex) {
-      print("Could not retrieve places $ex");
-    }
-  }
+  List<Result>? _plannedPlaces = PlacesService().getPlanner();
 
   @override
   Widget build(BuildContext context) {
@@ -153,7 +117,7 @@ class _PlannerPageState extends State<PlannerPage> {
               ],
             ),
             SizedBox(height: 15),
-            PlannerCarousel(_places),
+            PlannerCarousel(_plannedPlaces),
 
           ],
         ),

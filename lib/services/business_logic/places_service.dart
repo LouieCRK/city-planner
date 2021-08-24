@@ -23,7 +23,8 @@ class PlacesService {
 
   // used for storing responses to prevent multi-requests to places api
   final _placesMemoryStore = <TypeOfPlace, List<Result>>{};
-  final plannedPlaces = <Result>[];
+  var _plannedPlaces = <Result>[];
+
   // set user current location into lat/long vars
   void setCurrentLocation(double lat, double lon) {
     latitude = lat;
@@ -31,7 +32,13 @@ class PlacesService {
   }
 
   // todo - user function to add poi to planner
-  void addToPlannedPlaces(Result place) => plannedPlaces.add(place);
+  void addToPlannedPlaces(Result place) => _plannedPlaces.add(place);
+
+  List<Result> getPlanner() {
+    return _plannedPlaces;
+  }
+
+  void removePlannedPlace(Result place) => _plannedPlaces.remove(place);
 
   Future<List<Result>?> getPlace(TypeOfPlace typeOfPlace) async {
     if(!_isLocationSet) {

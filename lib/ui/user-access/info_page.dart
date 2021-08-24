@@ -9,6 +9,7 @@ import 'package:uk_city_planner/services/business_logic/places_service.dart';
 import 'package:uk_city_planner/ui/user-access/planner_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:uk_city_planner/widgets/snack_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class InfoPage extends StatefulWidget {
@@ -22,8 +23,6 @@ class InfoPage extends StatefulWidget {
 class _InfoPageState extends State<InfoPage> {
   DetailsResult? _details;
   var _selectedReview;
-
-  get _plannedPlaces => <Result>[];
 
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -476,7 +475,6 @@ class _InfoPageState extends State<InfoPage> {
                 SizedBox(
                   height: 20,
                 ),
-
                 // ignore: deprecated_member_use
                 FlatButton(
                     minWidth: size.width * 0.9,
@@ -494,11 +492,9 @@ class _InfoPageState extends State<InfoPage> {
                       ),
                     ),
                     onPressed: () {
-                      addToPlannedPlaces(widget.place);
+                      ScaffoldMessenger.of(context).showSnackBar(PlannerMessages().addedToPlanner());
+                      PlacesService().addToPlannedPlaces(widget.place);
                       print('Add to Planner button pressed...');
-                      MaterialPageRoute(
-                        builder: (_) => PlannerPage(),
-                      );
                     },
                     shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(30.0))),
@@ -520,7 +516,6 @@ class _InfoPageState extends State<InfoPage> {
     return Text(stars, style: TextStyle(fontSize: 20, color: Colors.white));
   }
 
-  void addToPlannedPlaces(Result place) => _plannedPlaces.add(place);
 
   // function to call place phone number
   _launchCaller(String phoneNumber) async {

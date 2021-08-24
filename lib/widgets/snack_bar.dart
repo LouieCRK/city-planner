@@ -1,4 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+class PlannerMessages {
+  SnackBar addedToPlanner() {
+    final addedToPlanner = SnackBar(
+      content: Text('Added to planner successfully.'),
+      behavior: SnackBarBehavior.floating,
+    );
+    return addedToPlanner;
+  }
+}
 
 class RegisterMessages {
   // user registration is successful
@@ -83,7 +94,6 @@ class LoginMessages {
 }
 
 class LogoutMessages {
-
   SnackBar logoutMessage() {
     final SnackBar logoutMessage = SnackBar(
       content: Text('User logged out.'),
@@ -91,5 +101,4 @@ class LogoutMessages {
     );
     return logoutMessage;
   }
-
 }
