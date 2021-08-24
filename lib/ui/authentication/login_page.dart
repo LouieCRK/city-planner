@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:uk_city_planner/services/networking/authentication_service.dart';
 import 'package:uk_city_planner/ui/authentication/register_page.dart';
 import 'package:provider/provider.dart';
+import 'package:uk_city_planner/ui/user-access/home_page.dart';
+import 'package:uk_city_planner/ui/user-access/navigation_bar.dart';
+import 'package:uk_city_planner/widgets/snack_bar.dart';
 
 class LoginPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -139,12 +142,32 @@ class LoginPage extends StatelessWidget {
                       primary: Colors.black54,
                       minimumSize: Size(20, 20),
                     ),
-                    onPressed: () { // on login button pressed, send credentials to service
-                      context.read<AuthenticationService>().signIn(
+                    onPressed: () async { // on login button pressed, send credentials to service
+                      String test = await context.read<AuthenticationService>().signIn(
                         email: emailController.text.trim(),
-                        password: passwordController.text.trim(),
-                      );
-                    },
+                        password: passwordController.text.trim()) as String;
+                        // error messages
+                        if (test == 'Signed in') {
+                          context.read<AuthenticationService>().signIn(
+                              email: emailController.text.trim(),
+                              password: passwordController.text.trim());
+                          ScaffoldMessenger.of(context).showSnackBar(LoginMessages().credentialSuccess());
+
+                        }
+                        if (test == 'The email address is badly formatted.') {
+                          ScaffoldMessenger.of(context).showSnackBar(LoginMessages().emailFormat());
+                        }
+                        if (test == 'There is no user record corresponding to this identifier. The user may have been deleted.') {
+                          ScaffoldMessenger.of(context).showSnackBar(LoginMessages().credentialFail());
+                        }
+                        if (test == 'Given String is empty or null') {
+                          ScaffoldMessenger.of(context).showSnackBar(LoginMessages().NoEntry());
+                        }
+                        if (test == 'The password is invalid or the user does not have a password.') {
+                          ScaffoldMessenger.of(context).showSnackBar(LoginMessages().wrongPassword());
+                        }
+
+                  },
                     ),
               ),
             ),

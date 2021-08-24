@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:uk_city_planner/services/networking/authentication_service.dart';
 import 'package:provider/provider.dart';
+import 'package:uk_city_planner/widgets/snack_bar.dart';
 
 class SettingsPage extends StatelessWidget {
   @override
@@ -105,6 +106,7 @@ class SettingsPage extends StatelessWidget {
                 icon: Icon(Icons.logout),
                 color: Colors.white,
                 onPressed: () { // on login button pressed, send credentials to service
+                  ScaffoldMessenger.of(context).showSnackBar(LogoutMessages().logoutMessage());
                   context.read<AuthenticationService>().signOut();
                 },
               ),

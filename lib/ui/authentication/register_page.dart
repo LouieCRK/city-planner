@@ -1,8 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:uk_city_planner/services/networking/authentication_service.dart';
+import 'package:uk_city_planner/widgets/snack_bar.dart';
 import 'login_page.dart';
+import 'package:provider/provider.dart';
 
 class RegisterPage extends StatelessWidget {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -88,6 +96,7 @@ class RegisterPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(40),
                 ),
                 child: TextField(
+                  controller: emailController,
                   style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     border: InputBorder.none,
@@ -121,6 +130,7 @@ class RegisterPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(40),
                 ),
                 child: TextField(
+                  controller: passwordController,
                   obscureText: true,
                   enableSuggestions: false,
                   autocorrect: false,
@@ -157,6 +167,7 @@ class RegisterPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(40),
                 ),
                 child: TextField(
+                  controller: confirmPasswordController,
                   obscureText: true,
                   enableSuggestions: false,
                   autocorrect: false,
@@ -200,7 +211,60 @@ class RegisterPage extends StatelessWidget {
                     primary: Colors.black54,
                     minimumSize: Size(20, 20),
                   ),
-                  onPressed: () => print("Register pressed..."),
+                  onPressed: () async {
+                    // on register button pressed, send credentials to service
+                    String test = "";
+                    bool noErrors = false;
+                    if (passwordController.text.trim() != confirmPasswordController.text.trim()) {
+                      test = "Passwords don't match.";
+                    } else {
+                      test = await context
+                          .read<AuthenticationService>()
+                          .signUp(
+                          email: emailController.text.trim(),
+                          password: passwordController.text.trim()) as String;
+                      noErrors = true;
+
+                    }
+                    // error messages
+
+                    if (test == 'Signed in') {
+                      context.read<AuthenticationService>().signUp(
+                          email: emailController.text.trim(),
+                          password: passwordController.text.trim());
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(LoginMessages().credentialSuccess());
+                    }
+                    if (test == 'The email address is badly formatted.') {
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(LoginMessages().emailFormat());
+                    }
+                    if (test == 'Given String is empty or null') {
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(RegisterMessages().NoEntry());
+                    }
+                    if (test == "Passwords don't match.") {
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(RegisterMessages().registerFail());
+                    }
+                    if (test == 'The email address is already in use by another account.') {
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(RegisterMessages().userTaken());
+                      emailController.text = "";
+                    }
+                    if (passwordController.text.trim()  != "" && confirmPasswordController.text.trim() != "" ) {
+                      if (passwordController.text.trim() == confirmPasswordController.text.trim() && test != 'The email address is badly formatted.') {
+                        context.read<AuthenticationService>().signUp(
+                            email: emailController.text.trim(),
+                            password: passwordController.text.trim());
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(RegisterMessages().registerConfirm());
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => LoginPage(),
+                        ));
+                      }
+                    }
+                  },
                 ),
               ),
             ),

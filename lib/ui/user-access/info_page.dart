@@ -5,6 +5,11 @@ import 'package:uk_city_planner/models/places_details_model.dart';
 import 'package:uk_city_planner/models/places_model.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:uk_city_planner/services/networking/places_network_service.dart';
+import 'package:uk_city_planner/services/business_logic/places_service.dart';
+import 'package:uk_city_planner/ui/user-access/planner_page.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class InfoPage extends StatefulWidget {
   final Result place;
@@ -16,6 +21,9 @@ class InfoPage extends StatefulWidget {
 
 class _InfoPageState extends State<InfoPage> {
   DetailsResult? _details;
+  var _selectedReview;
+
+  get _plannedPlaces => <Result>[];
 
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -30,15 +38,19 @@ class _InfoPageState extends State<InfoPage> {
         });
       }
         getDetails();
-      return Padding(
-        padding: const EdgeInsets.only(top: 190),
-        child: Center(
-          child: CircularProgressIndicator(
-            color: Color(0xff5bd5e3),
-          ),
-        ),
-      );
+      return Container();
     } else {
+      int i=0;
+      while (i < _details!.reviews.length){
+        if (_details!.reviews[i].rating > 4 && _details!.reviews[i].text.length > 160) {
+          _selectedReview = _details!.reviews[i].text.toString();
+        }
+        if (_selectedReview == null){
+          _selectedReview = _details!.reviews[0].text.toString();
+        }
+        i++;
+      }
+
       return Scaffold(
         body: Column(
           children: <Widget>[
@@ -267,7 +279,8 @@ class _InfoPageState extends State<InfoPage> {
                     flex: 400,
                     fit: FlexFit.loose,
                     child: Text(
-                      ("1: " + _details!.reviews[0].text.toString() + "2: " + _details!.reviews[1].text.toString()),
+                      // _details!.reviews[0].text.toString(),
+                      _selectedReview,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 8,
                       style: TextStyle(
@@ -285,15 +298,18 @@ class _InfoPageState extends State<InfoPage> {
                 Container(
                   // website
                   width: size.width * 0.9,
-                  child: Text(
-                    _details!.website.toString(),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                    style: TextStyle(
-                      color: Color(0xff23adb0),
-                      fontSize: 15.5,
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: 0,
+                  child: InkWell(
+                    onTap: () => launch(_details!.website.toString()),
+                    child: Text(
+                      _details!.website.toString(),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: TextStyle(
+                        color: Color(0xff23adb0),
+                        fontSize: 15.5,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 0,
+                      ),
                     ),
                   ),
                 ),
@@ -305,13 +321,16 @@ class _InfoPageState extends State<InfoPage> {
                 Container(
                   // phone number
                   width: size.width * 0.9,
-                  child: Text(
-                    _details!.formattedPhoneNumber.toString(),
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15.5,
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: 0,
+                  child: InkWell(
+                    onTap: () => _launchCaller(("tel:" + _details!.formattedPhoneNumber.toString().replaceAll(' ', ''))),
+                    child: Text(
+                      _details!.formattedPhoneNumber.toString(),
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15.5,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 0,
+                      ),
                     ),
                   ),
                 ),
@@ -475,7 +494,11 @@ class _InfoPageState extends State<InfoPage> {
                       ),
                     ),
                     onPressed: () {
+                      addToPlannedPlaces(widget.place);
                       print('Add to Planner button pressed...');
+                      MaterialPageRoute(
+                        builder: (_) => PlannerPage(),
+                      );
                     },
                     shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(30.0))),
@@ -495,5 +518,16 @@ class _InfoPageState extends State<InfoPage> {
     }
     stars.trim();
     return Text(stars, style: TextStyle(fontSize: 20, color: Colors.white));
+  }
+
+  void addToPlannedPlaces(Result place) => _plannedPlaces.add(place);
+
+  // function to call place phone number
+  _launchCaller(String phoneNumber) async {
+    if (await canLaunch(phoneNumber)) {
+      await launch(phoneNumber);
+    } else {
+      throw 'Could not launch $phoneNumber';
+    }
   }
 }

@@ -5,19 +5,16 @@ import 'package:uk_city_planner/models/places_model.dart';
 import 'file:///C:/Users/Crook/Documents/GitHub/uk-city-planner/lib/ui/user-access/info_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class ContentCarousel extends StatefulWidget {
+class PlannerCarousel extends StatefulWidget {
   List<Result>? _places;
-  List<DetailsResult>? _details;
-  String placeName = "";
 
-  ContentCarousel(this._places, this.placeName);
-  // this._details // todo - add to constructor when details fixed
+  PlannerCarousel(this._places);
 
   @override
-  _ContentCarouselState createState() => _ContentCarouselState();
+  _PlannerCarouselState createState() => _PlannerCarouselState();
 }
 
-class _ContentCarouselState extends State<ContentCarousel> {
+class _PlannerCarouselState extends State<PlannerCarousel> {
   @override
   Widget build(BuildContext context) {
     if (widget._places == null) {
@@ -34,69 +31,48 @@ class _ContentCarouselState extends State<ContentCarousel> {
     Size size = MediaQuery.of(context).size;
     return Column(
       children: <Widget>[
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                '${widget.placeName} near you',
-                style: TextStyle(
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1,
-                ),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(height: 10),
         Container(
-          // list view build for restaurants near user location
-          height: size.height * 0.59,
-          // height: 250,
+          height: size.height * 0.6579,
           child: GridView.builder(
-            padding: EdgeInsets.only(bottom: 20, left: 10, right: 10),
+            padding: EdgeInsets.only(bottom: 15, left: 10, right: 10),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, crossAxisSpacing: 0, mainAxisSpacing: 10),
             scrollDirection: Axis.vertical,
             itemCount: widget._places!.length,
             itemBuilder: (BuildContext context, int index) {
               Result place = widget._places![index];
-              // DetailsResult details = widget._details![index]; // todo when details fixed uncomment
               var placePhotos = place.photos!.length;
               var placeImageRef = place.photos![0].photoReference;
 
               if (placePhotos == 0){
                 placeImageRef = 'CnRvAAAAwMpdHeWlXl-lH0vp7lez4znKPIWSWvgvZFISdKx45AwJVP1Qp37YOrH7sqHMJ8C-vBDC546decipPHchJhHZL94RcTUfPa1jWzo-rSHaTlbNtjh-N68RkcToUCuY9v2HNpo5mziqkir37WU8FJEqVBIQ4k938TI3e7bf8xq-uwDZcxoUbO_ZJzPxremiQurAYzCTwRhE_V0';
-                // placeImageRef = details.photos![0].photoReference; // todo - when details fixed uncomment
               } else {
                 placeImageRef = place.photos![0].photoReference;
               }
 
-             return GestureDetector(
-               onTap: () => Navigator.push(
-                 context,
-                 MaterialPageRoute(
-                   builder: (_) => InfoPage(
-                     place: place,
-                   ),
-                 ),
-               ),
-               child: Container(
-                 margin: EdgeInsets.only(
-                   bottom: 5,
-                   top: 5,
-                   left: 5,
-                   right: 5,
-                 ),
-                 // color: Colors.red,
-                 child: Stack(
-                   alignment: Alignment.center,
+              return GestureDetector(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => InfoPage(
+                      place: place,
+                    ),
+                  ),
+                ),
+                child: Container(
+                  margin: EdgeInsets.only(
+                    bottom: 5,
+                    top: 5,
+                    left: 5,
+                    right: 5,
+                  ),
+                  // color: Colors.red,
+                  child: Stack(
+                    alignment: Alignment.center,
                     children: <Widget>[
                       Container(
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Colors.green,
                           borderRadius: BorderRadius.circular(20.0),
                           boxShadow: [
                             BoxShadow(
@@ -113,14 +89,14 @@ class _ContentCarouselState extends State<ContentCarousel> {
                               child: Expanded(
                                 flex: 1,
                                 child: Image(
-                                  height: 195,
-                                  width: 200,
+                                  height: size.height,
+                                  width: size.width,
                                   image: true
                                       ? NetworkImage(
-                                          'https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=195&photoreference=$placeImageRef&key=AIzaSyDPFVBgZDnp7Ee-6y8K5vPK_8kTOGfYAZ4')
+                                      'https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=195&photoreference=$placeImageRef&key=AIzaSyDPFVBgZDnp7Ee-6y8K5vPK_8kTOGfYAZ4')
                                       : AssetImage(
-                                              "assets/images/noImageAvailable.png")
-                                          as ImageProvider,
+                                      "assets/images/noImageAvailable.png")
+                                  as ImageProvider,
                                   fit: BoxFit.cover,
                                   // color: Colors.blue,
                                 ),
@@ -131,22 +107,21 @@ class _ContentCarouselState extends State<ContentCarousel> {
                               child: Container(
                                 decoration: BoxDecoration(
                                     gradient: LinearGradient(
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topRight,
-                                  colors: [
-                                    const Color(0xFF3F3F3F),
-                                    const Color(0x00000000),
-                                    const Color(0x00000000),
-                                    const Color(0xFF000000),
-                                  ],
-                                )
+                                      begin: Alignment.bottomCenter,
+                                      end: Alignment.topRight,
+                                      colors: [
+                                        const Color(0xFF3F3F3F),
+                                        const Color(0x00000000),
+                                        const Color(0x00000000),
+                                        const Color(0xFF000000),
+                                      ],
+                                    )
                                 ),
                               ),
                             ),
                             Positioned(
                               left: 10.0,
                               bottom: 10.0,
-                              width: 200,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
@@ -199,7 +174,7 @@ class _ContentCarouselState extends State<ContentCarousel> {
                                                 shadows: <Shadow>[
                                                   Shadow(
                                                     color:
-                                                        CupertinoColors.black,
+                                                    CupertinoColors.black,
                                                     blurRadius: 5,
                                                   )
                                                 ]),

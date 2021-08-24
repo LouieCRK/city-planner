@@ -14,7 +14,6 @@ class NavState extends State<NavBar> {
   int selectedIndex = 0;
   List<Widget> widgetOptions = <Widget>[
     HomePage(),
-    // RecommendedPage(),
     PlannerPage(),
     MapPage(),
     SettingsPage(),

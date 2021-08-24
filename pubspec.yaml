@@ -29,6 +29,7 @@ dependencies:
   google_maps_flutter: ^2.0.6
   flutter_google_places: ^0.3.0
   geolocator: ^7.3.1
+  url_launcher: ^6.0.9
 
   # Firebase
   firebase_core: ^1.4.0

@@ -48,7 +48,7 @@ class PlacesNetworkService {
       String latitude, String longitude) async {
     String url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
         'location=$latitude,$longitude'
-        '&radius=15000'
+        '&radius=17500'
         '&type=tourist_attraction'
         '&keyword=leisure|fun|cinema|zoo|movie_theater'
         '&key=$key&rankby=prominence';
@@ -97,10 +97,9 @@ class PlacesNetworkService {
     return shoppingResults;
   }
 
-// todo - fix details fetch
 Future<DetailsResult> findDetailsByID(String placeID) async {
   String url =
-      'https://maps.googleapis.com/maps/api/place/details/json?place_id=$placeID&fields=formatted_phone_number,website,review,photo&key=$key';
+      'https://maps.googleapis.com/maps/api/place/details/json?place_id=$placeID&fields=formatted_phone_number,website,review&key=$key';
   final response = await get(
     Uri.parse(url),
   );

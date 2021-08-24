@@ -28,44 +28,19 @@ class PlaceDetails {
 class DetailsResult {
   DetailsResult({
     required this.formattedPhoneNumber,
-    required this.photos,
     required this.reviews,
     required this.website,
   });
 
   final String formattedPhoneNumber;
-  final List<Photo>? photos;
   final List<Review> reviews;
   final String website;
 
   factory DetailsResult.fromJson(Map<String, dynamic> json) => DetailsResult(
     formattedPhoneNumber: json["formatted_phone_number"],
     // todo - work out why i'm getting error: Null check operator used on a null value here...
-    photos: (json["photos"] == null)
-        ? null
-        : List<Photo>.from(json["photos"].map((x) => Photo.fromJson(x))),
     reviews: List<Review>.from(json["reviews"].map!((x) => Review.fromJson(x))),
     website: json["website"],
-  );
-}
-class Photo {
-  Photo({
-    required this.height,
-    required this.htmlAttributions,
-    required this.photoReference,
-    required this.width,
-  });
-
-  final int height;
-  final List<String> htmlAttributions;
-  final String photoReference;
-  final int width;
-
-  factory Photo.fromJson(Map<String?, dynamic> json) => Photo(
-    height: json["height"],
-    htmlAttributions: List<String>.from(json["html_attributions"].map((x) => x)),
-    photoReference: json["photo_reference"],
-    width: json["width"],
   );
 }
 
