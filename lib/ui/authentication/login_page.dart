@@ -7,6 +7,8 @@ import 'package:uk_city_planner/ui/user-access/home_page.dart';
 import 'package:uk_city_planner/ui/user-access/navigation_bar.dart';
 import 'package:uk_city_planner/widgets/snack_bar.dart';
 
+import '../../main.dart';
+
 class LoginPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -148,11 +150,15 @@ class LoginPage extends StatelessWidget {
                         password: passwordController.text.trim()) as String;
                         // error messages
                         if (test == 'Signed in') {
-                          context.read<AuthenticationService>().signIn(
+                          await context.read<AuthenticationService>().signIn(
                               email: emailController.text.trim(),
                               password: passwordController.text.trim());
                           ScaffoldMessenger.of(context).showSnackBar(LoginMessages().credentialSuccess());
-
+                          Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => AuthenticationWrapper(),
+                              ),
+                          );
                         }
                         if (test == 'The email address is badly formatted.') {
                           ScaffoldMessenger.of(context).showSnackBar(LoginMessages().emailFormat());
@@ -166,7 +172,6 @@ class LoginPage extends StatelessWidget {
                         if (test == 'The password is invalid or the user does not have a password.') {
                           ScaffoldMessenger.of(context).showSnackBar(LoginMessages().wrongPassword());
                         }
-
                   },
                     ),
               ),
