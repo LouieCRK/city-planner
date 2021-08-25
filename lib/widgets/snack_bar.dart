@@ -9,6 +9,14 @@ class PlannerMessages {
     );
     return addedToPlanner;
   }
+
+  SnackBar removeFromPlanner() {
+    final removeFromPlanner = SnackBar(
+      content: Text('Removed from planner successfully.'),
+      behavior: SnackBarBehavior.floating,
+    );
+    return removeFromPlanner;
+  }
 }
 
 class RegisterMessages {

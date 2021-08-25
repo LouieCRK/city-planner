@@ -95,11 +95,11 @@ class SettingsPage extends StatelessWidget {
             top: size.height * 0.7,
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(20),
                 gradient: LinearGradient(
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
-                  colors: [Colors.teal, Colors.cyan],
+                  colors: [Color(0xFF1CBDC0), Color(0xFF1CBDC0)],
                 ),
               ),
               child: IconButton(
@@ -111,6 +111,9 @@ class SettingsPage extends StatelessWidget {
                 },
               ),
             ),
+          ),
+          SizedBox(
+            height: 10,
           ),
           Positioned(
             child: Text('Logout Here'),

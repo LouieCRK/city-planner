@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:uk_city_planner/models/places_model.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:uk_city_planner/services/business_logic/places_service.dart';
+import 'package:uk_city_planner/ui/user-access/info_page.dart';
+import 'package:uk_city_planner/ui/user-access/planner_info_page.dart';
 
 class PlannerCarousel extends StatefulWidget {
   List<Result>? _plannedPlaces = PlacesService().getPlanner();
@@ -17,17 +19,17 @@ class _PlannerCarouselState extends State<PlannerCarousel> {
   @override
   Widget build(BuildContext context) {
     if (widget._plannedPlaces!.length == 0) {
-      // return Text(
-      //   "It's a little empty in here..."
-      // );
-      return Padding(
-        padding: const EdgeInsets.only(top: 190),
-        child: Center(
-          child: CircularProgressIndicator(
-            color: Color(0xff5bd5e3),
-          ),
-        ),
+      return Text(
+        "It's a little empty in here..."
       );
+      // return Padding(
+      //   padding: const EdgeInsets.only(top: 190),
+      //   child: Center(
+      //     child: CircularProgressIndicator(
+      //       color: Color(0xff5bd5e3),
+      //     ),
+      //   ),
+      // );
     }
 
     Size size = MediaQuery.of(context).size;
@@ -52,6 +54,7 @@ class _PlannerCarouselState extends State<PlannerCarousel> {
 
               if (placePhotos == 0) {
                 placeImageRef =
+                placeImageRef =
                     'CnRvAAAAwMpdHeWlXl-lH0vp7lez4znKPIWSWvgvZFISdKx45AwJVP1Qp37YOrH7sqHMJ8C-vBDC546decipPHchJhHZL94RcTUfPa1jWzo-rSHaTlbNtjh-N68RkcToUCuY9v2HNpo5mziqkir37WU8FJEqVBIQ4k938TI3e7bf8xq-uwDZcxoUbO_ZJzPxremiQurAYzCTwRhE_V0';
               } else {
                 placeImageRef = place.photos![0].photoReference;
@@ -59,11 +62,20 @@ class _PlannerCarouselState extends State<PlannerCarousel> {
 
               return GestureDetector(
                 // todo - on tap remove from planner
-                onTap: () => PopupMenuButton<MenuItem>(
-                  itemBuilder: (context) => [
-                    ...MenuItems.itemsFirst.map(buildItem).toList(),
-                  ],
+                  onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => PlannerInfoPage(
+                    place: place,
+                  ),
                 ),
+                  ),
+
+                // onTap: () => PopupMenuButton<MenuItem>(
+                //   itemBuilder: (context) => [
+                //     ...MenuItems.itemsFirst.map(buildItem).toList(),
+                //   ],
+                // ),
                 child: Container(
                   margin: EdgeInsets.only(
                     bottom: 5,
@@ -125,22 +137,22 @@ class _PlannerCarouselState extends State<PlannerCarousel> {
                             ),
                             Positioned(
                               left: 10.0,
-                              bottom: 10.0,
+                              bottom: 12.0,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        left: 0, right: 29),
+                                        left: 7, right: 29),
                                     child: SizedBox(
-                                      width: 160,
+                                      width: 200,
                                       child: Text(
                                         place.name.toString(),
                                         maxLines: 3,
                                         overflow: TextOverflow.fade,
                                         style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 24.0,
+                                            fontSize: 30.0,
                                             fontWeight: FontWeight.w600,
                                             letterSpacing: 1.2,
                                             shadows: <Shadow>[
@@ -152,40 +164,47 @@ class _PlannerCarouselState extends State<PlannerCarousel> {
                                       ),
                                     ),
                                   ),
-                                  Row(
-                                    children: <Widget>[
-                                      Icon(
-                                        FontAwesomeIcons.locationArrow,
-                                        size: 10.0,
-                                        color: Colors.white,
-                                      ),
-                                      SizedBox(width: 5.0),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            right: 0,
-                                            left: 0,
-                                            top: 0,
-                                            bottom: 0),
-                                        child: SizedBox(
-                                          width: 150,
-                                          child: Text(
-                                            place.vicinity.toString(),
-                                            textAlign: TextAlign.left,
-                                            overflow: TextOverflow.clip,
-                                            maxLines: 1,
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                shadows: <Shadow>[
-                                                  Shadow(
-                                                    color:
-                                                        CupertinoColors.black,
-                                                    blurRadius: 5,
-                                                  )
-                                                ]),
+                                  Padding(
+                                      padding: const EdgeInsets.only(
+                                          right: 0,
+                                          left: 7,
+                                          top: 0,
+                                          bottom: 0),
+                                    child: Row(
+                                      children: <Widget>[
+                                        Icon(
+                                          FontAwesomeIcons.locationArrow,
+                                          size: 10.0,
+                                          color: Colors.tealAccent,
+                                        ),
+                                        SizedBox(width: 5.0),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: 0,
+                                              left: 0,
+                                              top: 0,
+                                              bottom: 0),
+                                          child: SizedBox(
+                                            width: 150,
+                                            child: Text(
+                                              place.vicinity.toString(),
+                                              textAlign: TextAlign.left,
+                                              overflow: TextOverflow.clip,
+                                              maxLines: 1,
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  shadows: <Shadow>[
+                                                    Shadow(
+                                                      color:
+                                                          CupertinoColors.black,
+                                                      blurRadius: 5,
+                                                    )
+                                                  ]),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
