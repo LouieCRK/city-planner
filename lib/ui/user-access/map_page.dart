@@ -5,8 +5,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uk_city_planner/models/places_model.dart';
 import 'package:uk_city_planner/services/business_logic/places_service.dart';
-import 'package:uk_city_planner/services/networking/places_network_service.dart';
-
 import 'info_page.dart';
 
 class MapPage extends StatefulWidget {
