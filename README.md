@@ -1,3 +1,3 @@
 # City Planner.
-![8357ddfb6690bbe3394f9e8590511cee](https://user-images.githubusercontent.com/55953362/127701924-c830c01a-7bea-4718-8b59-8e4692a3d114.png)
-![840f4f3ccdc4ec3dbe699505b5229728](https://user-images.githubusercontent.com/55953362/127701922-4a6a5dad-48a6-4c99-a346-491f55d06d77.png)
+![Home   Info](https://github.com/LouieCRK/city-planner/assets/55953362/57efad60-be13-420d-81d7-fba271146006) 
+![Map   Planner](https://github.com/LouieCRK/city-planner/assets/55953362/ff12a827-b951-479d-bd87-b5a4aa1b91da)
